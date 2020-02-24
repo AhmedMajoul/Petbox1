@@ -6,7 +6,7 @@ const PetSchema = new mongoose.Schema({
     required: true
   },
   picture: {
-    type: String
+    type: Array
   },
   dateBirth: {
     type: Date
