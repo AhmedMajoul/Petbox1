@@ -191,7 +191,8 @@ router.put(
       avatar,
       password,
       adress,
-      phone
+      phone,
+      type
     } = req.body;
 
     const modUser = {
@@ -200,15 +201,15 @@ router.put(
       avatar,
       password,
       adress,
-      phone
+      phone,
+      type
     };
 
     try {
       const user = await User.findOneAndUpdate({ _id: req.user.id }, {$set:{...modUser}}, {new: true});
 
       await user.save();
-      console.log(modUser)
-      console.log(user)
+     
       res.json(user);
     } catch (err) {
       console.error(err.message);
