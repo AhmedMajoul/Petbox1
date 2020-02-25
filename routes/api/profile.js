@@ -119,7 +119,8 @@ router.put(
       avatar,
       password,
       adress,
-      phone
+      phone,
+      type
     } = req.body;
 
     
@@ -129,7 +130,8 @@ router.put(
       avatar,
       password,
       adress,
-      phone
+      phone,
+      type
     };
 
     const salt = await bcrypt.genSalt(10);
@@ -140,8 +142,7 @@ router.put(
       const user = await User.findOneAndUpdate({ _id: req.user.id }, {$set:{...modUser}}, {new: true});
 
       await user.save();
-      console.log(modUser)
-      console.log(user)
+     
       res.json(user);
     } catch (err) {
       console.error(err.message);
