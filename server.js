@@ -18,6 +18,7 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/dashboard', require('./routes/api/dashboard'));
 app.use('/api/itemshop', require('./routes/api/itemshop'));
+app.use('/api/petshopposts', require('./routes/api/petShopPosts'));
 
 
 // Serve static assets in production
