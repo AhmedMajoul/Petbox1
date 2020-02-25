@@ -20,8 +20,11 @@ const ItemSchema = new mongoose.Schema({
     required:true
   },
   species:{
-    type:String,
+    type:Array,
   },
+  likes:{
+    type:Array
+  }
 });
 
-module.exports = Item = mongoose.model('item', ItemSchema);
+module.exports = Items = mongoose.model('items', ItemSchema);
