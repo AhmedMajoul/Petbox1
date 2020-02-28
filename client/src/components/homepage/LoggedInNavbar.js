@@ -16,6 +16,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import './LoggedInNavbar.css'
 import {Link} from 'react-router-dom'
+import SplitButton from './Signupin'
+import './Signupin.css'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -169,19 +171,6 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
           <Link to='/'>Petbox</Link>
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
           <div className="navbar-links">
             <Link to='/itemshop'>Itemshop</Link>
             <Link to='/petshop'>Petshop</Link>
@@ -199,6 +188,7 @@ export default function PrimarySearchAppBar() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            <SplitButton/>
             <IconButton
               edge="end"
               aria-label="account of current user"
