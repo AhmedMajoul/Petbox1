@@ -1,7 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Routes from './components/routing/Routes';
+
 import { Link } from 'react-router-dom';
+import AdoptPost from './components/adoption/AdoptPost';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -23,18 +25,21 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <PrimarySearchAppBar />
-      {/* <SearchFilters /> */}
       <Router>
-      <Link to='/register'>Register</Link>
+      <PrimarySearchAppBar/>
+    {/* <SearchFilters /> */}
+    <Link to='/register'>Register</Link>
       <br/>
       <Link to='/login'>Login</Link>
-        <Switch>
-          <Route component={Routes} />
-        </Switch>
+      {/* <AdoptPost/> */}
+      <Switch>
+            {/* <Route exact path="/" component={PrimarySearchAppBar} /> */}
+            <Route component={Routes} />
+          </Switch>
       </Router>
     </Provider>
   );
 };
 
 export default App;
+
