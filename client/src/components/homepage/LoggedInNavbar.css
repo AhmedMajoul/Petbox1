@@ -1,0 +1,14 @@
+.navbar-links>span{
+    cursor:pointer;
+    line-height:100%
+}
+.navbar-links{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 50vw;
+}
+.navbar-logo{
+    height:60px
+}

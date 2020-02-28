@@ -8,17 +8,17 @@ const app = express();
 connectDB();
 
 // Init Middleware
-process.setMaxListeners(20)
+process.setMaxListeners(30)
 app.use(express.json({ extended: false }));
 
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/adoptposts', require('./routes/api/adoptPosts'));
-app.use('/api/itemshop', require('./routes/api/itemshop'));
+app.use('/api/itemshop', require('./routes/api/itemShop'));
 app.use('/api/petshopposts', require('./routes/api/petShopPosts'));
+app.use('/api/pets', require('./routes/api/petProfile'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
