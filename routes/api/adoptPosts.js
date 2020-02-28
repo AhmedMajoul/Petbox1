@@ -32,6 +32,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
+        picture: req.body.picture,
         user: req.user.id
       });
 
@@ -75,7 +76,7 @@ router.get('/:id', async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
-  // @route    DELETE api/adoptposts/:id
+// @route    DELETE api/adoptposts/:id
 // @desc     Delete adopt post
 // @access   Private
 router.delete('/:id', auth, async (req, res) => {
@@ -102,6 +103,53 @@ router.delete('/:id', auth, async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
+  // @route    PUT api/adoptposts/modify/:id    
+// @desc     modify a sel pet post
+// @access   Private
+router.put(   //////////////not tested
+  '/modify/:id',
+  [
+    auth,
+    [
+      check('text', 'La description est obligatoire')
+        .not()
+        .isEmpty(),
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const adoptpost = await AdoptPost.findById(req.params.id);
+
+    if(!adoptpost){
+      return res.status(404).json({msg:"Post not found"})
+    }
+
+    // Check user
+    if (adoptpost.user.toString() !== req.user.id){   
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    try {  
+      const newAdoptPost = ({
+        text: req.body.text,
+        picture: req.body.picture,
+      });
+
+      const adoptpost = await AdoptPost.findOneAndUpdate({ _id: req.params.id }, {$set:{...newAdoptPost}}, {new: true});
+      await adoptpost.save();
+      res.json(adoptpost);
+    } catch (err) {
+      console.error(err.message);
+      if(err.kind==="ObjectID"){
+        return res.status(404).json({ msg: 'Post not found' });
+    }
+      res.status(500).send('Server Error');
+    }
+  }
+);
 // @route    PUT api/adoptposts/like/:id
 // @desc     Like a adopt post
 // @access   Private

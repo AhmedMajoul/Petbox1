@@ -13,6 +13,9 @@ const AdopPostSchema = new Schema({
   name: {
     type: String
   },
+  picture: {
+    type: String
+  },
   avatar: {
     type: String
   },

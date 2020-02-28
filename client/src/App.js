@@ -1,4 +1,6 @@
+
 import React, { Fragment, useEffect } from 'react';
+import AdoptPost from '../src/components/AdoptPost'
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Routes from './components/routing/Routes';
 
@@ -22,6 +24,7 @@ const App = () => {
   return (
     <Provider store={store}>
     <PrimarySearchAppBar/>
+    <AdoptPost/>
       {/* <Router>
       </Router> */}
     </Provider>
@@ -29,3 +32,4 @@ const App = () => {
 };
 
 export default App;
+
