@@ -1,6 +1,8 @@
+
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Routes from './components/routing/Routes';
+import AdoptPost from '../src/components/AdoptPost'
 
 // Redux
 import { Provider } from 'react-redux';
@@ -23,6 +25,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
       <PrimarySearchAppBar/>
+      <AdoptPost/>
       <Switch>
             {/* <Route exact path="/" component={PrimarySearchAppBar} /> */}
             {/* <Route component={Routes} /> */}
@@ -33,3 +36,4 @@ const App = () => {
 };
 
 export default App;
+
