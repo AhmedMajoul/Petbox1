@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import Routes from './components/routing/Routes';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Routes from './components/routing/Routes';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -21,9 +21,13 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    <PrimarySearchAppBar/>
-      {/* <Router>
-      </Router> */}
+      <Router>
+      <PrimarySearchAppBar/>
+      <Switch>
+            {/* <Route exact path="/" component={PrimarySearchAppBar} /> */}
+            {/* <Route component={Routes} /> */}
+          </Switch>
+      </Router>
     </Provider>
   );
 };
