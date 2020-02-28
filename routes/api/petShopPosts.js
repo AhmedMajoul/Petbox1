@@ -10,7 +10,7 @@ const User = require('../../models/User');
 // @route    PUT api/petshopposts
 // @desc     modify a sel pet post
 // @access   Private
-router.put( // tested the poster user: 200 ok / tested with non poster user: (401)ok
+router.put( // tested the poster user: (200) ok / tested with non poster user: (401)ok
     '/:id',
     [
       auth,
