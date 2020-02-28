@@ -1,6 +1,6 @@
 
 import React, { Fragment, useEffect } from 'react';
-import AdoptPost from '../src/components/AdoptPost'
+import AdoptPost from '../src/components/adoption/AdoptPost'
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Routes from './components/routing/Routes';
 
