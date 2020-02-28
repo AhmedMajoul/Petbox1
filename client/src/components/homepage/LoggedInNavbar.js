@@ -15,6 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import './LoggedInNavbar.css'
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -166,7 +167,7 @@ export default function PrimarySearchAppBar() {
         <Toolbar>
         <img className="navbar-logo" src="https://scontent.ftun11-1.fna.fbcdn.net/v/t1.15752-9/87181963_317249705898553_1813995126981132288_n.png?_nc_cat=111&_nc_sid=b96e70&_nc_ohc=KiyaTpMLFOwAX87j3jy&_nc_ht=scontent.ftun11-1.fna&oh=ecd22012253c20bc7601f7471fbf0759&oe=5EF7DF34"></img>
           <Typography className={classes.title} variant="h6" noWrap>
-            Petbox
+          <Link to='/'>Petbox</Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -182,9 +183,9 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <div className="navbar-links">
-            <span>Itemshop</span>
-            <span>Petshop</span>
-            <span>Adopt pets</span>
+            <Link to='/itemshop'>Itemshop</Link>
+            <Link to='/petshop'>Petshop</Link>
+            <Link to='/adoption'>Adopt a pet </Link>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
