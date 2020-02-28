@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Routes from './components/routing/Routes';
 import MainNavbar from './components/homepage/MainNavbar';
 import { Link } from 'react-router-dom';
-import AdoptPost from './components/adoption/AdoptPost';
+import AdoptPost from '../src/components/adoption/AdoptPost'
+
 
 // Redux
 import { Provider } from 'react-redux';
