@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
-import Signupin from './Signupin.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './Signupin.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const SplitButton = (props) => {
