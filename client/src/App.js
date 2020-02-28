@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import PrimarySearchAppBar from './components/homepage/LoggedInNavbar'
 
 import './App.css';
 
@@ -20,7 +21,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    <h1>Hello Pet world!!! :></h1>
+    <PrimarySearchAppBar/>
       {/* <Router>
       </Router> */}
     </Provider>
