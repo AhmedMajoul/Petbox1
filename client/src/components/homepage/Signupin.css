@@ -1,0 +1,7 @@
+.signup-signin{
+    display: flex;
+}
+.signup-signin Button{
+    width:8vw;
+    margin:0px 10px
+}
