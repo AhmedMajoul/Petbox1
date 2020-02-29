@@ -13,7 +13,6 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import "./MainNavbar.css";
 import { Link } from "react-router-dom";
-import "./Signupin.css";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, ButtonGroup } from "reactstrap";
