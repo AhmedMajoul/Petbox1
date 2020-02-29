@@ -14,6 +14,11 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
+
+// set up a store subscription listener
+// to store the users token in localStorage
+
+
 let currentState;
 
 store.subscribe(() => {
@@ -28,7 +33,6 @@ store.subscribe(() => {
       : localStorage.removeItem('token');
   }
 });
-
 
 
 export default store;

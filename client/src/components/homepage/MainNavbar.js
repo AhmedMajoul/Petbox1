@@ -17,6 +17,8 @@ import "./Signupin.css";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, ButtonGroup } from "reactstrap";
+import { logout } from '../../actions/auth';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -80,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function MainNavbar({ isAuthenticated }) {
+function MainNavbar({ isAuthenticated, logout }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -196,7 +198,7 @@ function MainNavbar({ isAuthenticated }) {
               <div>
                 <ButtonGroup className="signup-signin">
                   <Link to="/logout">
-                    <Button>Se déconnecter</Button>
+                    <Button onClick={logout}>Se déconnecter</Button>
                   </Link>
                 </ButtonGroup>
                 <IconButton
@@ -243,7 +245,11 @@ function MainNavbar({ isAuthenticated }) {
   );
 }
 
+MainNavbar.propTypes = {
+  logout: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
-export default connect(mapStateToProps, { MainNavbar })(MainNavbar);
+export default connect(mapStateToProps, { MainNavbar, logout })(MainNavbar);
