@@ -14,13 +14,14 @@ import {
 // Get posts
 export const getPosts = () => async dispatch => {
   try {
-    const res = await axios.get('/api/posts');
-
+    const res = await axios.get('/api/adoptposts');
+    console.log(res.data)
     dispatch({
       type: GET_POSTS,
       payload: res.data
     });
   } catch (err) {
+    console.log("error:", err)
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -31,7 +32,7 @@ export const getPosts = () => async dispatch => {
 // Add like
 export const addLike = id => async dispatch => {
   try {
-    const res = await axios.put(`/api/posts/like/${id}`);
+    const res = await axios.put(`/api/adoptposts/like/${id}`);
 
     dispatch({
       type: UPDATE_LIKES,
@@ -48,7 +49,7 @@ export const addLike = id => async dispatch => {
 // Remove like
 export const removeLike = id => async dispatch => {
   try {
-    const res = await axios.put(`/api/posts/unlike/${id}`);
+    const res = await axios.put(`/api/adoptposts/unlike/${id}`);
 
     dispatch({
       type: UPDATE_LIKES,

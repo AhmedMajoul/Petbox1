@@ -233,6 +233,9 @@ function MainNavbar({ isAuthenticated, logout }) {
                 </Link>
               </ButtonGroup>
             )}
+             <Link to="/posts">
+                  <Button>posts</Button>
+                </Link>
           </div>
         </Toolbar>
       </AppBar>

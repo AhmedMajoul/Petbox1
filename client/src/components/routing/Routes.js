@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Alert from '../layout/Alert';
-
+import Posts from '../adoption/posts'
 import AdoptPost from '../adoption/AdoptPost'
 // import Dashboard from '../dashboard/Dashboard';
 // import CreateProfile from '../profile-forms/CreateProfile';
@@ -25,6 +25,9 @@ const Routes = () => {
       <Switch>
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/posts' component={Posts} />
+        <Route exact path='/adoption' component={AdoptPost} />
+
         {/* <Route exact path='/profiles' component={Profiles} />
       <Switch>
       <Route exact path='/adoption' component={AdoptPost} />
@@ -37,6 +40,7 @@ const Routes = () => {
         <PrivateRoute exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/posts/:id' component={Post} />
         <Route component={NotFound} /> */}
+
       </Switch>
     </section>
   );
