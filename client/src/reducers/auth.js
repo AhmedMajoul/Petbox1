@@ -28,6 +28,7 @@ import {
           user: payload
         };
       case REGISTER_SUCCESS:
+        localStorage.setItem('token',action.payload.token);
         return {
           ...state,
           ...payload,
@@ -35,6 +36,7 @@ import {
           loading: false
         };
       case LOGIN_SUCCESS:
+        localStorage.setItem('token',action.payload.token);
         return {
           ...state,
           ...payload,
