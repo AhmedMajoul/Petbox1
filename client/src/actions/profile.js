@@ -1,18 +1,18 @@
-// import {
-	
-// } from '';
+import {GET_PROFILE,PROFILE_ERROR} from "./types";
+import axios from 'axios'
 
-const initialState = {
-
-};
-
-export default function(state = initialState, action) {
-	const { type, payload } = action;
-
-	switch (type) {
-        // case:
-        // case:
-		default:
-			return state;
+export const getProfileById = (id) => async dispatch => {
+	try{
+		const res = await axios.get(`/api/users/${id}`)
+		dispatch({
+			type: GET_PROFILE,
+			payload: res.data
+		  })
 	}
+	catch (err) {
+		console.log(err)
+		dispatch({
+		  type: PROFILE_ERROR
+		});
+	  }
 }

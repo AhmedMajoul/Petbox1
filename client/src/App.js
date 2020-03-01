@@ -1,22 +1,19 @@
-import React, { Fragment, useEffect } from 'react';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Routes from './components/routing/Routes';
-import MainNavbar from './components/homepage/MainNavbar';
-import { Link } from 'react-router-dom';
-import AdoptPost from '../src/components/adoption/AdoptPost'
-
+import React, { Fragment, useEffect } from "react";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Routes from "./components/routing/Routes";
+import MainNavbar from "./components/homepage/MainNavbar";
+import Spinner from "./components/layout/Spinner";
 
 // Redux
-import { Provider } from 'react-redux';
-import store from './store';
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
-import SearchFilters from './components/search_filters/SearchFilters';
+import store from "./store";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
+import SearchFilters from "./components/search_filters/SearchFilters";
 
-import './App.css';
+import "./App.css";
 
-const App = () => {
+const App = ({ loading, token }) => {
   useEffect(() => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
@@ -25,19 +22,26 @@ const App = () => {
   }, []);
 
   return (
-    <Provider store={store}>
-      <Router>
-      <MainNavbar/>
-    {/* <SearchFilters /> */}
-      {/* <AdoptPost/> */}
-      <Switch>
-            {/* <Route exact path="/" component={PrimarySearchAppBar} /> */}
+    <Fragment>
+      {loading && token ? (
+        <Spinner />
+      ) : (
+        <Router>
+          <MainNavbar />
+          {/* <SearchFilters /> */}
+          {/* <AdoptPost/> */}
+          <Switch>
             <Route component={Routes} />
           </Switch>
-      </Router>
-    </Provider>
+        </Router>
+      )}
+    </Fragment>
   );
 };
 
-export default App;
+const mapStateToProps = state => ({
+  token: state.auth.token,
+  loading: state.auth.loading
+});
 
+export default connect(mapStateToProps, { App })(App);

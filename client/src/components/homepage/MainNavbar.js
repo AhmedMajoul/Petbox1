@@ -13,7 +13,6 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import "./MainNavbar.css";
 import { Link } from "react-router-dom";
-import "./Signupin.css";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, ButtonGroup } from "reactstrap";
@@ -82,7 +81,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function MainNavbar({ isAuthenticated, logout }) {
+function MainNavbar({ token, user, logout }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -194,34 +193,17 @@ function MainNavbar({ isAuthenticated, logout }) {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            {isAuthenticated ? (
+            {token ? (
+              <div className="signup-signin">
               <div>
-                <ButtonGroup className="signup-signin">
+              <Link to="/profile">
+                <img src={user?user.avatar:""} height="100%" width="auto" alt="img error"/>
+                <span className="navbar-name">{user?user.name:""}</span>
+                </Link>
+                </div>
                   <Link to="/logout">
                     <Button onClick={logout}>Se déconnecter</Button>
                   </Link>
-                </ButtonGroup>
-                <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-                <div className={classes.sectionMobile}>
-                  <IconButton
-                    aria-label="show more"
-                    aria-controls={mobileMenuId}
-                    aria-haspopup="true"
-                    onClick={handleMobileMenuOpen}
-                    color="inherit"
-                  >
-                    <MoreIcon />
-                  </IconButton>
-                </div>
               </div>
             ) : (
               <ButtonGroup className="signup-signin">
@@ -241,8 +223,8 @@ function MainNavbar({ isAuthenticated, logout }) {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-    </div>
-  );
+    </div>)
+  
 }
 
 MainNavbar.propTypes = {
@@ -250,6 +232,7 @@ MainNavbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  token: state.auth.token,
+  user: state.auth.user
 });
 export default connect(mapStateToProps, { MainNavbar, logout })(MainNavbar);
