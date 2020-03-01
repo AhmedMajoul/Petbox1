@@ -3,7 +3,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/spinner';
-import PostItem from './postItem';
+// import PostItem from './postItem';
 // import PostForm from './PostForm';
 import AdoptPost from './AdoptPost'
 import { getPosts } from '../../actions/adoptPosts';
@@ -25,7 +25,6 @@ loading ?
        <div className='posts'>
         {adoptposts.map(post => (
         // <p>{post.text}</p>
-        //   <PostItem key={post._id} post={post} />
           <AdoptPost key={post._id} post={post} />
         ))}
       </div> 
@@ -36,7 +35,7 @@ loading ?
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  adoptposts: PropTypes.object.isRequired
+  adoptposts: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({

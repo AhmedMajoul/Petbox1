@@ -56,7 +56,7 @@ import {
 		  adoptposts: state.adoptposts.map(post =>
 			post._id === payload.id ? { ...post, likes: payload.likes } : post
 		  ),
-		  loading: false
+		  loading: false,
 		};
 	  case ADD_COMMENT:
 		return {

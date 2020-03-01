@@ -81,7 +81,8 @@ function AdoptPost({
 
   const [liked, setliked] = React.useState(false);
   const handlelikeClick = () => {
-    setliked(!liked)
+    setliked(!liked);
+    liked? removeLike(_id): addLike(_id)
   };
 
   const [supp, setsupp] = React.useState(false);
@@ -94,6 +95,7 @@ function AdoptPost({
   const handleeditClick = () => {
     setedit(!edit)
   };
+  var timeLikeClicked= 1;
  
   return (
     <Card className="root">
@@ -111,7 +113,7 @@ function AdoptPost({
           </IconButton>
         }
         // <p>{name}</p>
-        title="Shrimp and Chorizo Paella"
+        title={name}
         subheader={<p className='post-date'>
         Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
       </p>}
@@ -128,18 +130,23 @@ function AdoptPost({
       </CardContent>
       </div>
       <CardActions disableSpacing>
-        <IconButton aria-liked={liked} 
-        onClick={e=>addLike(_id)
-          // handlelikeClick
-        }  
-        className={clsx(classes.dislike, {
-          [classes.like]: liked,
-        })}>
+        <IconButton aria-label={liked} 
+        onClick={(e)=>{ 
+         handlelikeClick()
+        }}
+        style={liked && user !== auth.user._id ? {color:"#d32f2f"}:{color:"grey"}}
+        // style={(liked )?{color:"#d32f2f"}:{color:"grey"}}
+        // className={
+        //   clsx(classes.dislike, {
+        //   [classes.like]: liked,
+        // })}
+        >
           <FavoriteIcon />
           <span>{likes.length > 0 && <span className={classes.Number}>{likes.length}</span>}</span>
         </IconButton>
-        
-        {!auth.loading && user === auth.user._id && (
+
+
+            {!auth.loading && user === auth.user._id && (
             // <button
             //   onClick={() => deletePost(_id)}
             //   type='button'
@@ -148,7 +155,9 @@ function AdoptPost({
             //   <i className='fas fa-times' />
             // </button>
              <IconButton aria-label={supp} 
-             onClick={() => deletePost(_id)}  
+             onClick={() =>{
+              deletePost(_id);
+            }}  
              className={clsx(classes.dislike, {
                [classes.supp]: supp,
              })}>
@@ -207,7 +216,8 @@ AdoptPost.propTypes = {
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
-  showActions: PropTypes.bool
+  showActions: PropTypes.bool,
+  islikeclicked:PropTypes.bool
 };
 
 const mapStateToProps = state => ({
