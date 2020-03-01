@@ -24,6 +24,8 @@ export const LOAD_USER = 'LOAD_USER';
 export const LOADING = 'LOADING';
 // user profile and pets
 export const GET_PROFILE = 'GET_PROFILE';
+export const PUT_PROFILE = 'PUT_PROFILE';
+export const DELETE_PROFILE = 'DELETE_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const GET_PETS = 'GET_PETS';
 export const PETS_ERROR = 'PETS_ERROR';
