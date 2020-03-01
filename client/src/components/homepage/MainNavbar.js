@@ -179,7 +179,7 @@ function MainNavbar({ token, user, logout }) {
           <div className="navbar-links">
             <Link to="/itemshop">Itemshop</Link>
             <Link to="/petshop">Petshop</Link>
-            <Link to="/adoption">Adopt a pet </Link>
+            <Link to="/posts">Adopt a pet </Link>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -215,9 +215,9 @@ function MainNavbar({ token, user, logout }) {
                 </Link>
               </ButtonGroup>
             )}
-             <Link to="/posts">
+             {/* <Link to="/posts">
                   <Button>posts</Button>
-                </Link>
+                </Link> */}
           </div>
         </Toolbar>
       </AppBar>
