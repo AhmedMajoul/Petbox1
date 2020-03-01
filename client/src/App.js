@@ -13,6 +13,7 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import SearchFilters from './components/search_filters/SearchFilters';
+// import PrivateRoute from './components/routing/CheckForAdmin';
 
 import './App.css';
 
@@ -31,9 +32,9 @@ const App = () => {
     {/* <SearchFilters /> */}
       {/* <AdoptPost/> */}
       <Switch>
-            {/* <Route exact path="/" component={PrimarySearchAppBar} /> */}
-            <Route component={Routes} />
-          </Switch>
+          {/* <Route exact path="/" component={PrimarySearchAppBar} /> */}
+          <Route component={Routes} />
+        </Switch>
       </Router>
     </Provider>
   );

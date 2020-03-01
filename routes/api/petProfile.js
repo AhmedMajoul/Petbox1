@@ -17,10 +17,10 @@ router.post( //  tested: (200) ok
   [
     auth,
     [
-      check('petName', 'Le nom de votre pet est obligatoire')
+      check('name', 'Le nom de votre pet est obligatoire')
         .not()
         .isEmpty(),
-      check('petSpecies', 'La nature de votre pet est obligatoire')
+      check('species', 'La nature de votre pet est obligatoire')
         .not()
         .isEmpty()
     ]
