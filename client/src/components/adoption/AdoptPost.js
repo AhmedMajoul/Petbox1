@@ -59,6 +59,10 @@ const useStyles = makeStyles(theme => ({
  Number:{
   color:"grey",
   fontSize:15
+},
+space:{
+  display:"flex",
+  justifyContent:"space-between"
 }
 }));
 
@@ -74,15 +78,17 @@ function AdoptPost({
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
+  
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const [count, setCount] = React.useState(0);
   const [liked, setliked] = React.useState(false);
   const handlelikeClick = () => {
     setliked(!liked);
-    liked? removeLike(_id): addLike(_id)
+    if(liked) {removeLike(_id); setliked(!liked)}
+    else {addLike(_id); setliked(!liked)}
   };
 
   const [supp, setsupp] = React.useState(false);
@@ -129,12 +135,14 @@ function AdoptPost({
         </Typography>
       </CardContent>
       </div>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing className={classes.space}>
+        <div>
         <IconButton aria-label={liked} 
         onClick={(e)=>{ 
-         handlelikeClick()
+         handlelikeClick();
+         setliked(!liked)
         }}
-        style={liked && user !== auth.user._id ? {color:"#d32f2f"}:{color:"grey"}}
+        style={liked ? {color:"#d32f2f"}:{color:"grey"}}
         // style={(liked )?{color:"#d32f2f"}:{color:"grey"}}
         // className={
         //   clsx(classes.dislike, {
@@ -155,9 +163,7 @@ function AdoptPost({
             //   <i className='fas fa-times' />
             // </button>
              <IconButton aria-label={supp} 
-             onClick={() =>{
-              deletePost(_id);
-            }}  
+             onClick={()=>{deletePost(_id)}}  
              className={clsx(classes.dislike, {
                [classes.supp]: supp,
              })}>
@@ -173,6 +179,13 @@ function AdoptPost({
         })}>
         <EditOutlinedIcon />
         </IconButton>
+        </div>
+        <div>
+        <Link to={`/adoptposts/${_id}`}>
+        {comments.length > 0 && (
+        <span className={classes.Number}>{comments.length}</span>
+          )}
+          </Link>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -181,13 +194,9 @@ function AdoptPost({
           aria-expanded={expanded}
           aria-label="show more"
         > 
-        <Link to={`/adoptposts/${_id}`}>
-        {comments.length > 0 && (
-        <span className={classes.Number}>{comments.length}</span>
-          )}
-          </Link>
-        <ExpandMoreIcon />
+      <ExpandMoreIcon />
         </IconButton> 
+        </div>
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
