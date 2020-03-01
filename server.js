@@ -14,7 +14,6 @@ app.use(express.json({ extended: false }));
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/adoptposts', require('./routes/api/adoptPosts'));
 app.use('/api/itemshop', require('./routes/api/itemShop'));
 app.use('/api/petshopposts', require('./routes/api/petShopPosts'));
