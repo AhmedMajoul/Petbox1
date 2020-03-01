@@ -27,11 +27,11 @@ const Routes = () => {
         <Route exact path='/login' component={Login} />
         <Route exact path='/posts' component={Posts} />
         <Route exact path='/adoption' component={AdoptPost} />
+        <Route exact path='/profile' component={Profile} />
 
         {/* <Route exact path='/profiles' component={Profiles} />
       <Switch>
       <Route exact path='/adoption' component={AdoptPost} />
-         <Route exact path='/profile' component={Profile} />
         {/*<PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/create-profile' component={CreateProfile} />
         <PrivateRoute exact path='/edit-profile' component={EditProfile} />
