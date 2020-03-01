@@ -4,7 +4,7 @@ const UserCardTemporary = ({ user }) => {
     const { _id, type, name, email, avatar, adress, phone, date } = user;
     return (
         <div style={{display:'flex', flexDirection:'column', width:'300px'}}>
-            <img src={avatar} alt="avatar"/>
+            <img src={avatar} alt="avatar" style={{width:'100%',borderRadius:'50%'}}/>
             <h5>{`nom: ${name}`}</h5>
             <h5>{`_id: ${_id}`}</h5>
             <h5>{`email: ${email}`}</h5>

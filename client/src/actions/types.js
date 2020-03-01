@@ -20,6 +20,7 @@ export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 
 // admin
 export const LOAD_USERS = 'LOAD_USERS';
+export const LOAD_USER = 'LOAD_USER';
 export const LOADING = 'LOADING';
 // user profile and pets
 export const GET_PROFILE = 'GET_PROFILE';
