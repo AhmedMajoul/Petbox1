@@ -17,10 +17,10 @@ router.post( //  tested: (200) ok
   [
     auth,
     [
-      check('petName', 'Le nom de votre pet est obligatoire')
+      check('name', 'Le nom de votre pet est obligatoire')
         .not()
         .isEmpty(),
-      check('petSpecies', 'La nature de votre pet est obligatoire')
+      check('species', 'La nature de votre pet est obligatoire')
         .not()
         .isEmpty()
     ]
@@ -35,11 +35,11 @@ router.post( //  tested: (200) ok
 
       const newPet = new Pet({
         userId: req.user.id,
-        name: req.body.petName,
-        picture: req.body.petPicture,
-        species: req.body.petSpecies,
-        race: req.body.petRace,
-        dateBirth: req.body.petDateOfBirth
+        name: req.body.name,
+        picture: req.body.picture,
+        species: req.body.species,
+        race: req.body.race,
+        dateBirth: req.body.dateBirth
       });
 
       const pet = await newPet.save();
