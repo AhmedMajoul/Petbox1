@@ -11,6 +11,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import GetUsers from './GetUsers';
+import GetUser from './GetUser';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,7 +37,7 @@ const Dashboard = props => {
                 </ButtonGroup>
                 <Switch>
                     <Route exact path='/get-users'>chobik lobik !!! haw el users el kol<br/><GetUsers/></Route>
-                    <Route exact path='/get-user-by-id'>how lgitou</Route>
+                    <Route exact path='/get-user-by-id'>how lgitou<br/><GetUser/></Route>
                     <Route exact path='/statistics'>el3ab yala</Route>
                 </Switch>
             </Router>
