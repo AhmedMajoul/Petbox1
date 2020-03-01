@@ -2,7 +2,7 @@ import React, { Fragment,useEffect } from "react";
 import { connect } from "react-redux";
 import { getPets } from "../../actions/petProfile";
 import PropTypes from 'prop-types';
-
+import Modalprofile from './Modalprofile';
 
 const Profile = ({ getPets, auth, user, pets }) => {
     useEffect(()=>{
@@ -11,6 +11,7 @@ const Profile = ({ getPets, auth, user, pets }) => {
       <span>login to continue</span>
     ) : (
     <div>
+    <Modalprofile/>
       <h1>{user.name}</h1>
       <img src={user?user.avatar:""} height="100%" width="auto" alt="img error"/>
       <p>E-mail : {user.email}</p>
