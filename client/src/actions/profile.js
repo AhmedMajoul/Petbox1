@@ -33,11 +33,11 @@ export const putProfile = (newProfile) => async dispatch => {
 	  }
 }
 
-// export const getProfileById = (id) => async dispatch => {
+// export const delProfileById = (id) => async dispatch => {
 // 	try{
-// 		const res = await axios.get(`/api/users/${id}`)
+// 		const res = await axios.delete(`/api/users/5e53ddf1689b6c3f942245db`)
 // 		dispatch({
-// 			type: GET_PROFILE,
+// 			type: DELETE_PROFILE,
 // 			payload: res.data
 // 		  })
 // 	}

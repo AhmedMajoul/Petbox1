@@ -190,7 +190,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route    DELETE api/profile
+// @route    DELETE api/users
 // @desc     Delete profile, user & posts
 // @access   Private
 

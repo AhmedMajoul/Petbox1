@@ -40,9 +40,13 @@ const TransitionsModal = ({putProfile,user}) =>{
 
   const onSubmit = async e => {
       e.preventDefault();
+      setOpen(false)
       await putProfile(state);
       document.location.reload();
     }
+    const handleCancel = e => {
+        setOpen(false)
+      }
 
   const handleClose = () => {
     setOpen(false);
@@ -115,7 +119,8 @@ const TransitionsModal = ({putProfile,user}) =>{
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' className='btn btn-primary' value="S'inscrire" />
+        <input type='submit' className='btn btn-primary' value="Modifier" />
+        <input onClick={()=>handleCancel()} className='btn btn-primary' value="Annuler" />
         </form>
         </Fade>
       </Modal>
