@@ -131,11 +131,11 @@ router.put( // tested the poster user: 200 ok / tested with non poster user: (40
 
     try {
       const newPet = {
-        name: req.body.petName,
-        picture: req.body.petPicture,
-        species: req.body.petSpecies,
-        race: req.body.petRace,
-        dateBirth: req.body.petDateOfBirth
+        name: req.body.name,
+        picture: req.body.picture,
+        species: req.body.species,
+        race: req.body.race,
+        dateBirth: req.body.dateBirth
       };
       const pet = await Pet.findOneAndUpdate({ _id: req.params.id }, { $set: { ...newPet } }, { new: true });
       await pet.save();
@@ -149,7 +149,7 @@ router.put( // tested the poster user: 200 ok / tested with non poster user: (40
 
 // *********************************   DELETES   **********************************//
 // @route    DELETE api/pets/:id
-// @desc     Delete a pet by id by its owner
+// @desc     Delete a pet by id
 // @access   Private
 router.delete('/:id', auth, async (req, res) => {// tested with owner user (200)ok /  tested with non owner user (401)ok
   try {

@@ -28,5 +28,8 @@ export const PUT_PROFILE = 'PUT_PROFILE';
 export const DELETE_PROFILE = 'DELETE_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const GET_PETS = 'GET_PETS';
+export const ADD_PET = 'ADD_PET';
+export const EDIT_PET = 'EDIT_PET';
+export const DELETE_PET = 'DELETE_PET';
 export const PETS_ERROR = 'PETS_ERROR';
 

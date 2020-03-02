@@ -82,23 +82,18 @@ function AdoptPost({
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
   
+  const isliked=likes.filter((el)=>el.user==auth.user._id).length>0
   const [Text, setText] = React.useState('');
-
   const [count, setCount] = React.useState(0);
-  const [liked, setliked] = React.useState(false);
+  const [liked, setliked] = React.useState(isliked);
+  // setliked(
+  //   likes.indexOf({_id:auth.user._id})>0
+  // )
   const handlelikeClick = () => {
-    setliked(!liked);
-    if (liked) {
-      removeLike(_id);
-      setliked(!liked);
-    } else {
-      addLike(_id);
-      setliked(!liked);
-    }
+    if(liked) {removeLike(_id); setliked(false)}
+    else {addLike(_id); setliked(true)}
   };
-
   const [supp, setsupp] = React.useState(false);
   const handledeleteClick = () => {
     setsupp(!supp);
@@ -151,29 +146,24 @@ function AdoptPost({
       </div>
       {showActions && (
       <CardActions disableSpacing className={classes.space}>
-          <div>
-          <IconButton
-            aria-label={liked}
-            onClick={e => {
-              handlelikeClick();
-              setliked(!liked);
-            }}
-            style={liked ? { color: '#d32f2f' } : { color: 'grey' }}
-            // style={(liked )?{color:"#d32f2f"}:{color:"grey"}}
-            // className={
-            //   clsx(classes.dislike, {
-            //   [classes.like]: liked,
-            // })}
-          >
-            <FavoriteIcon />
-            <span>
-              {likes.length > 0 && (
-                <span className={classes.Number}>{likes.length}</span>
-              )}
-            </span>
-          </IconButton>
+        <div>
+        <IconButton
+        onClick={()=>{ 
+         handlelikeClick();
+        }}
+        style={liked ? {color:"#d32f2f"}:{color:"grey"}}
+        // style={(liked )?{color:"#d32f2f"}:{color:"grey"}}
+        // className={
+        //   clsx(classes.dislike, {
+        //   [classes.like]: liked,
+        // })}
+        >
+          <FavoriteIcon />
+          <span>{likes.length > 0 && <span className={classes.Number}>{likes.length}</span>}</span>
+        </IconButton>
 
-          {!auth.loading && user === auth.user._id && (
+
+            {!auth.loading && user === auth.user._id && (
             // <button
             //   onClick={() => deletePost(_id)}
             //   type='button'
