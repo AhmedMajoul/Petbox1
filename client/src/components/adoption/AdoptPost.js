@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
@@ -17,11 +16,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import AdoptPostEdit from './AdoptPostEdit'
 import './AdoptPost.css';
 
 const useStyles = makeStyles(theme => ({
@@ -183,16 +182,16 @@ function AdoptPost({
               <DeleteIcon />
             </IconButton>
           )}
-
-          <IconButton
+          <AdoptPostEdit Description={text}/>
+          {/* <IconButton
             aria-label={edit}
             onClick={handleeditClick}
             className={clsx(classes.dislike, {
               [classes.edit]: edit
             })}
           >
-            <EditOutlinedIcon />
-          </IconButton>
+            <EditOutlinedIcon /> */}
+          {/* </IconButton> */}
         </div>
          
         <Link to={`/posts/${_id}`} className='btn btn-primary'>
@@ -208,7 +207,7 @@ function AdoptPost({
               <span className={classes.Number}>{comments.length}</span>
             )}
           </Link>
-          <IconButton
+          {/* <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded
             })}
@@ -217,11 +216,11 @@ function AdoptPost({
             aria-label='show more'
           >
             <ExpandMoreIcon />
-          </IconButton>
+          </IconButton> */}
         </div>
       </CardActions>
       )}
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
+      {/* <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent>
            <form
         className='form my-1'
@@ -253,7 +252,7 @@ function AdoptPost({
             <span>text</span>
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
   );
 }
