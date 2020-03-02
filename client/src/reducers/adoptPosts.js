@@ -29,7 +29,7 @@ import {
 	  case GET_POST:
 		return {
 		  ...state,
-		  post: payload,
+		  adoptpost: payload,
 		  loading: false
 		};
 	  case ADD_POST:
@@ -61,18 +61,22 @@ import {
 	  case ADD_COMMENT:
 		return {
 		  ...state,
-		  post: { ...state.post, comments: payload },
+		  adoptposts: state.adoptposts.map(post =>
+			post._id === payload.id ? { ...post, comments: payload.comments } : post
+		  ),
+		//   { ...state.adoptpost, comments: payload },
 		  loading: false
 		};
 	  case REMOVE_COMMENT:
 		return {
 		  ...state,
-		  post: {
-			...state.post,
-			comments: state.post.comments.filter(
+		  adoptpost: {
+			...state.adoptpost,
+			comments: state.adoptpost.comments.filter(
 			  comment => comment._id !== payload
 			)
 		  },
+
 		  loading: false
 		};
 	  default:
