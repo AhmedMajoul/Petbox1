@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getPets } from "../../actions/petProfile";
 import PropTypes from 'prop-types';
 import Modalprofile from './Modalprofile';
+import Card from './Card'
 // import SimpleModal from './ModalDelProfile';
 
 const Profile = ({ getPets, auth, user, pets }) => {
@@ -20,15 +21,21 @@ const Profile = ({ getPets, auth, user, pets }) => {
       <p>Adresse : {user.adress}</p>
       <p>N° de téléphone : {user.phone}</p>
       <p>{`Date d'inscription : ${user.date.split('T')[0]}`}</p>
+      <div className="card-container">
       {pets.map((el,i)=>
-      <div key={i}>
+      <Card pet={el}/>)}
+      </div>
+      {/* <div key={i}>
       <h1>{el?el.name:""}</h1>
       <img width="200px" height="auto" src={el?el.picture[0]:""} alt="img error"/>
       <p>species : {el&&el.species}</p>
       <p>Adresse : {el&&el.address}</p>
       <p>race : {el.race}</p>
-      {/* <p>{`dateBirth : ${el.dateBirth.split('T')[0]}`}</p> */}
-      </div>)}</div>
+      <p>{`dateBirth : ${el.dateBirth.split('T')[0]}`}</p>
+      </div>
+      </div> 
+      )} */}
+      </div>
     )
    }
 
