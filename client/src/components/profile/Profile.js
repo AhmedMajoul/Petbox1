@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getPets } from "../../actions/petProfile";
 import PropTypes from 'prop-types';
 import Modalprofile from './Modalprofile';
+// import SimpleModal from './ModalDelProfile';
 
 const Profile = ({ getPets, auth, user, pets }) => {
     useEffect(()=>{
@@ -12,6 +13,7 @@ const Profile = ({ getPets, auth, user, pets }) => {
     ) : (
     <div>
     <Modalprofile/>
+    {/* <SimpleModal/> */}
       <h1>{user.name}</h1>
       <img src={user?user.avatar:""} height="100%" width="auto" alt="img error"/>
       <p>E-mail : {user.email}</p>
@@ -32,7 +34,7 @@ const Profile = ({ getPets, auth, user, pets }) => {
 
    Profile.propTypes = {
     getPets: PropTypes.func.isRequired,
-    user: PropTypes.object,
+    user: PropTypes.object.isRequired,
     pets: PropTypes.array
   };
 

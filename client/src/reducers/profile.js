@@ -18,7 +18,11 @@ export default function(state = initialState, action) {
 		return {
 		  ...state,
 		  ...payload
-		}
+    }
+    // case DELETE_PROFILE:
+		// return {
+		//   ...state
+    // }
     default:
       return state;
   }
