@@ -6,6 +6,7 @@ import Alert from '../layout/Alert';
 
 import Admin from '../dashboard/Admin';
 
+import Post from "../post/post";
 import Posts from '../adoption/posts'
 import AdoptPost from '../adoption/AdoptPost'
 
@@ -33,6 +34,8 @@ const Routes = () => {
         <Route exact path='/posts' component={Posts} />
         <Route exact path='/adoption' component={AdoptPost} />
         <Route exact path='/profile' component={Profile} />
+        <Route exact path='/posts/:id' component={Post} />
+
 
         {/* <Route exact path='/profiles' component={Profiles} />
       <Switch>
