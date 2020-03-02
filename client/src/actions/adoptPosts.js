@@ -174,3 +174,19 @@ export const deleteComment = (postId, commentId) => async dispatch => {
     });
   }
 };
+// Modify like
+export const editPost = id => async dispatch => {
+  try {
+    const res = await axios.put(`/api/adoptposts/like/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res.data }
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};

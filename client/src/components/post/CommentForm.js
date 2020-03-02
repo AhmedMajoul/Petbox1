@@ -5,7 +5,12 @@ import { addComment } from '../../actions/adoptPosts';
 
 const CommentForm = ({ postId, addComment }) => {
   const [text, setText] = useState('');
-
+  const onSubmit = async e => {
+    e.preventDefault();
+    await addComment(postId, { text });
+    setText('');
+    document.location.reload(false);
+  }
   return (
     <div className='post-form'>
       <div className='bg-primary p'>
@@ -13,10 +18,8 @@ const CommentForm = ({ postId, addComment }) => {
       </div>
       <form
         className='form my-1'
-        onSubmit={e => {
-          e.preventDefault();
-          addComment(postId, { text });
-          setText('');
+        onSubmit={(e) => {
+          onSubmit(e)
         }}
       >
         <textarea

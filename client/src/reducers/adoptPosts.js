@@ -6,7 +6,8 @@ import {
 	ADD_POST,
 	GET_POST,
 	ADD_COMMENT,
-	REMOVE_COMMENT
+	REMOVE_COMMENT,
+	PUT_POST
   } from '../actions/types';
   
   const initialState = {
@@ -62,7 +63,7 @@ import {
 		return {
 		  ...state,
 		  adoptposts: state.adoptposts.map(post =>
-			post._id === payload.id ? { ...post, comments: payload.comments } : post
+			post._id === payload.id ? { ...post, comments:payload.comments} : post
 		  ),
 		//   { ...state.adoptpost, comments: payload },
 		  loading: false
@@ -79,6 +80,11 @@ import {
 
 		  loading: false
 		};
+		case PUT_POST:
+		return {
+		  ...state,
+		  ...payload
+    }
 	  default:
 		return state;
 	}
