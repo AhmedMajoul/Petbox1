@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import UserCardTemporary from './UserCardTemporary';
+import UserCard from './UserCard';
 import { getUser } from '../../actions/adminAct';
 import Spinner from '../layout/Spinner';
 
@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection:'column',
         alignItems: 'center',
+        width: '100%',
         flexWrap: 'wrap',
         '& > *': {
             margin: theme.spacing(1),
@@ -40,7 +41,7 @@ const GetUser = ({user, loading, getUser }) => {
                 <input type='text' placeholder="precisez l'identifiant de l'utilisateur" onChange={e=>onChange(e)} value={id} name='id'/>
                 
             </form>
-            {submitted?(loading?(<Spinner/>):(<UserCardTemporary user={user}/>)):''}
+            {submitted?(loading?(<Spinner/>):(<UserCard user={user}/>)):''}
         </div>
     )
 }

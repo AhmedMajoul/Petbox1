@@ -4,6 +4,7 @@ import {
     LOAD_USERS,
     LOAD_USER,
     LOADING,
+    STOP_LOADING,
     AUTH_ERROR
 } from './types';
 
@@ -40,7 +41,55 @@ export const getUser = (id) => async dispatch => {
     } catch (err) {
         console.log(err)
         dispatch({
-            type: AUTH_ERROR
+            type: STOP_LOADING
         });
     }
 };
+
+//delete user
+export const deleteUser = (id) => async dispatch => {
+    try {
+        dispatch({type: LOADING});
+        const res = await axios.delete(`/api/users/${id}`);
+        console.log(res.data)
+        getAllUsers();
+        
+    } catch (err) {
+        console.log(err)
+        dispatch({
+            type: STOP_LOADING
+        });
+    }
+}
+
+//promote user to admin
+export const promoteToAdmin = id => async dispatch => {
+    try {
+        dispatch({type: LOADING});
+        const res = await axios.put(`/api/users/promotetoadmin/${id}`);
+        console.log(res.data)
+        getAllUsers();
+
+    } catch (err) {
+        console.log(err)
+        dispatch({
+            type: STOP_LOADING
+        });
+    }
+}
+
+//depromote admin to user
+export const depromoteToUser = id => async dispatch => {
+    try {
+        dispatch({type: LOADING});
+        const res = await axios.put(`/api/users/depromotetouser/${id}`);
+        console.log(res.data)
+        getAllUsers();
+
+    } catch (err) {
+        console.log(err)
+        dispatch({
+            type: STOP_LOADING
+        });
+    }
+}

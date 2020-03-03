@@ -6,9 +6,12 @@ import Alert from '../layout/Alert';
 
 import Admin from '../dashboard/Admin';
 
+import Carousel from '../homepage/Carousel';
+
 import Post from "../post/post";
 import Posts from '../adoption/posts'
 import AdoptPost from '../adoption/AdoptPost'
+
 
 // import Dashboard from '../dashboard/Dashboard';
 // import CreateProfile from '../profile-forms/CreateProfile';
@@ -34,6 +37,8 @@ const Routes = () => {
         <Route exact path='/posts' component={Posts} />
         <Route exact path='/adoption' component={AdoptPost} />
         <Route exact path='/profile' component={Profile} />
+        <Route exact path='/' component={Carousel} />
+
         <Route exact path='/posts/:id' component={Post} />
 
 
