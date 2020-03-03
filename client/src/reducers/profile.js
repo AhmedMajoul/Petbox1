@@ -1,4 +1,4 @@
-import {PUT_PROFILE,DELETE_PROFILE} from "../actions/types";
+import {PUT_PROFILE} from "../actions/types";
 
 const initialState = {
   // id: null,

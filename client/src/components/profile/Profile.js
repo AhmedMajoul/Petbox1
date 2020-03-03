@@ -4,7 +4,7 @@ import { getPets } from "../../actions/petProfile";
 import PropTypes from 'prop-types';
 import Modalprofile from './Modalprofile';
 import Card from './Card'
-// import SimpleModal from './ModalDelProfile';
+import PetModal from './ModalPetAdd'
 
 const Profile = ({ getPets, auth, user, pets }) => {
     useEffect(()=>{
@@ -22,8 +22,9 @@ const Profile = ({ getPets, auth, user, pets }) => {
       <p>N° de téléphone : {user.phone}</p>
       <p>{`Date d'inscription : ${user.date.split('T')[0]}`}</p>
       <div className="card-container">
+      <PetModal/>
       {pets.map((el,i)=>
-      <Card pet={el}/>)}
+      <Card key={i} pet={el}/>)}
       </div>
       {/* <div key={i}>
       <h1>{el?el.name:""}</h1>
