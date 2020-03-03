@@ -3,15 +3,13 @@ import { Route, Switch } from 'react-router-dom';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Alert from '../layout/Alert';
-
 import Admin from '../dashboard/Admin';
-
 import Carousel from '../homepage/Carousel';
-
+import PetShop from "../PetShop/Posts";
 import Post from "../post/post";
 import Posts from '../adoption/posts'
 import AdoptPost from '../adoption/AdoptPost'
-
+import PetshopPost from '../PetShop/petshopPost/post'
 
 // import Dashboard from '../dashboard/Dashboard';
 // import CreateProfile from '../profile-forms/CreateProfile';
@@ -38,8 +36,9 @@ const Routes = () => {
         <Route exact path='/adoption' component={AdoptPost} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/' component={Carousel} />
-
-        <Route exact path='/posts/:id' component={Post} />
+        <Route exact path='/petShop' component={PetShop} />
+        <Route exact path='/adoptposts/:id' component={Post} />
+        <Route exact path='/petShopPost/:id' component={PetshopPost} />
 
 
         {/* <Route exact path='/profiles' component={Profiles} />
