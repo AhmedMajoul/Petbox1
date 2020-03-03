@@ -1,7 +1,8 @@
 import {
     LOAD_USERS,
     LOAD_USER,
-    LOADING
+    LOADING,
+    STOP_LOADING
 } from '../actions/types';
 
 const initialState = {
@@ -20,19 +21,25 @@ const initialState = {
                 loading: false,
             };
             break;
-            case LOAD_USER:
-                return {
-                    ...state,
-                    user: payload,
-                    loading: false,
-                };
-                break;
+        case LOAD_USER:
+            return {
+                ...state,
+                user: payload,
+                loading: false,
+            };
+            break;
         case LOADING:
             return {
                 ...state,
                 loading:true
             };
             break;
+            case STOP_LOADING:
+                return {
+                    ...state,
+                    loading:false
+                };
+                break;
         default: return state;
     }
   }
