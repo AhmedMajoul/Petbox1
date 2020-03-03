@@ -174,14 +174,14 @@ export const deleteComment = (postId, commentId) => async dispatch => {
     });
   }
 };
-// Modify like
+// Modify Post
 export const editPost = id => async dispatch => {
   try {
-    const res = await axios.put(`/api/adoptposts/like/${id}`);
+    const res = await axios.put(`/api/adoptposts/modify/${id}`);
 
     dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
+      type: PUT_POST,
+      payload: { id, text: res.data }
     });
   } catch (err) {
     dispatch({

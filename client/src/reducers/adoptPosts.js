@@ -80,11 +80,14 @@ import {
 
 		  loading: false
 		};
-		case PUT_POST:
+	case PUT_POSt:
 		return {
 		  ...state,
-		  ...payload
-    }
+		  adoptposts: state.adoptposts.map(post =>
+			post._id === payload.id ? { ...post, text: payload.text } : post
+		  ),
+		  loading: false,
+		};
 	  default:
 		return state;
 	}
