@@ -82,7 +82,7 @@ function AdoptPost({
     setExpanded(!expanded);
   };
   
-  const isliked=likes.filter((el)=>el.user==auth.user._id).length>0
+  const isliked=auth.user?(likes.filter((el)=>el.user===auth.user._id).length>0):false
   const [Text, setText] = React.useState('');
   const [count, setCount] = React.useState(0);
   const [liked, setliked] = React.useState(isliked);
@@ -90,8 +90,9 @@ function AdoptPost({
   //   likes.indexOf({_id:auth.user._id})>0
   // )
   const handlelikeClick = () => {
+    if (auth.user){
     if(liked) {removeLike(_id); setliked(false)}
-    else {addLike(_id); setliked(true)}
+    else {addLike(_id); setliked(true)}}
   };
   const [supp, setsupp] = React.useState(false);
   const handledeleteClick = () => {
