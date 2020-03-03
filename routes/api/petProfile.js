@@ -106,10 +106,10 @@ router.put( // tested the poster user: 200 ok / tested with non poster user: (40
   [
     auth,
     [
-      check('petName', 'Le nom de votre pet est obligatoire')
+      check('name', 'Le nom de votre pet est obligatoire')
         .not()
         .isEmpty(),
-      check('petSpecies', 'La nature de votre pet est obligatoire')
+      check('species', 'La nature de votre pet est obligatoire')
         .not()
         .isEmpty()
     ]
