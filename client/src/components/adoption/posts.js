@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './postItem';
 
-// import PostForm from './PostForm';
+import PostForm from './PostForm';
 import AdoptPost from './AdoptPost'
 import { getPosts } from '../../actions/adoptPosts';
 
@@ -23,7 +23,7 @@ loading ?
         <i className='fas fa-user' /> Welcome to the community
       </p>
      
-      {/* <PostForm /> */}
+      <PostForm />
        <div className='posts'>
         {adoptposts.map(post => (
         // <p>{post.text}</p>

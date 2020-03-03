@@ -6,7 +6,8 @@ import {
 	ADD_POST,
 	GET_POST,
 	ADD_COMMENT,
-	REMOVE_COMMENT
+	REMOVE_COMMENT,
+	PUT_POST
   } from '../actions/types';
   
   const initialState = {
@@ -29,19 +30,19 @@ import {
 	  case GET_POST:
 		return {
 		  ...state,
-		  post: payload,
+		  adoptpost: payload,
 		  loading: false
 		};
 	  case ADD_POST:
 		return {
 		  ...state,
-		  posts: [payload, ...state.posts],
+		  adoptposts: [payload, ...state.adoptposts],
 		  loading: false
 		};
 	  case DELETE_POST:
 		return {
 		  ...state,
-		  posts: state.posts.filter(post => post._id !== payload),
+		  adoptposts: state.adoptposts.filter(post => post._id !== payload),
 		  loading: false
 		};
 	  case POST_ERROR:
@@ -61,19 +62,31 @@ import {
 	  case ADD_COMMENT:
 		return {
 		  ...state,
-		  post: { ...state.post, comments: payload },
+		  adoptposts: state.adoptposts.map(post =>
+			post._id === payload.id ? { ...post, comments:payload.comments} : post
+		  ),
+		//   { ...state.adoptpost, comments: payload },
 		  loading: false
 		};
 	  case REMOVE_COMMENT:
 		return {
 		  ...state,
-		  post: {
-			...state.post,
-			comments: state.post.comments.filter(
+		  adoptpost: {
+			...state.adoptpost,
+			comments: state.adoptpost.comments.filter(
 			  comment => comment._id !== payload
 			)
 		  },
+
 		  loading: false
+		};
+	case PUT_POSt:
+		return {
+		  ...state,
+		  adoptposts: state.adoptposts.map(post =>
+			post._id === payload.id ? { ...post, text: payload.text } : post
+		  ),
+		  loading: false,
 		};
 	  default:
 		return state;
