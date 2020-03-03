@@ -33,14 +33,12 @@ const useStyles = makeStyles(theme => ({
 const TransitionsModal = ({putProfile,user,Description}) =>{
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [state, setState] = React.useState({
-    ...user
-  })
+  const [description, setDescription] = React.useState({Description})
 
-  const { name, email, password, adress, phone } = state
+//   const { name, email, password, adress, phone } = state
 
   const onChange = e =>
-    setState({ ...state, [e.target.name]: e.target.value })
+  setDescription({[e.target.name]: e.target.value })
 
  
 
