@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addLike, removeLike, deletePost, addComment } from '../../actions/adoptPosts';
+import { addLike, removeLike, deletePost, addComment } from '../../actions/petShopPosts';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -20,8 +20,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import AdoptPostEdit from './AdoptPostEdit'
-import './AdoptPost.css';
+// import AdoptPostEdit from './AdoptPostEdit'
+import '../adoption/AdoptPost.css';
 
 const useStyles = makeStyles(theme => ({
   expand: {
@@ -80,15 +80,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function AdoptPost({
-  adoptpostState,
-  addComment,
-  postId,
+function PetShopPost({
   addLike,
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date, picture },
+  post: { _id, text, name, avatar, user, likes, comments, date, petPhoto, petName, petPrice, petRace, petDateOfBirth },
   showActions
 }) {
   const classes = useStyles();
@@ -148,12 +145,26 @@ function AdoptPost({
           <Typography variant='body2' color='textSecondary' className='text'>
             {text}
           </Typography>
+          <div className={classes.icons}>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petName}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petPrice}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petRace}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petDateOfBirth}
+          </Typography>
+          </div>
         </CardContent>
 
-        {(picture !== '') && (
+        {(petPhoto !== '') && (
         <img 
           className={classes.media}
-          src={picture}
+          src={petPhoto}
         />)}
 
         
@@ -185,14 +196,12 @@ function AdoptPost({
               <DeleteIcon />
             </IconButton>
 
-            <AdoptPostEdit Description={text} PostId={_id} />
+            {/* <AdoptPostEdit Description={text} PostId={_id} /> */}
             </div>
           )}
-          
-
         </div>
-         
-        <Link to={`/adoptposts/${_id}`} className='btn btn-primary'>
+
+        <Link to={`/petShopPost/${_id}`} className='btn btn-primary'>
             Discussion{' '}
             {comments.length > 0 && (
               <span className='comment-count'>{comments.length}</span>
@@ -205,11 +214,11 @@ function AdoptPost({
   );
 }
 
-AdoptPost.defaultProps = {
+PetShopPost.defaultProps = {
   showActions: true
 };
 
-AdoptPost.propTypes = {
+PetShopPost.propTypes = {
   addComment:PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
@@ -222,7 +231,7 @@ AdoptPost.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  adoptpostState: state.adoptPosts
+  petShopPosts: state.petShopPosts
 });
 
-export default connect(mapStateToProps, { addLike, removeLike, deletePost, addComment })(AdoptPost);
+export default connect(mapStateToProps, { addLike, removeLike, deletePost, addComment })(PetShopPost);
