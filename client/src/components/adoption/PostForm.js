@@ -5,6 +5,8 @@ import { addPost } from '../../actions/adoptPosts';
 
 const PostForm = ({ addPost }) => {
   const [text, setText] = useState('');
+  const [picture, setSrc] = useState('');
+
 
   return (
     <div className='post-form'>
@@ -15,8 +17,9 @@ const PostForm = ({ addPost }) => {
         className='form my-1'
         onSubmit={e => {
           e.preventDefault();
-          addPost({ text });
+          addPost({ text, picture });
           setText('');
+          setSrc('')
         }}
       >
         <textarea
@@ -26,6 +29,15 @@ const PostForm = ({ addPost }) => {
           placeholder='Create a post'
           value={text}
           onChange={e => setText(e.target.value)}
+          required
+        />
+        <textarea
+          name='text'
+          cols='30'
+          rows='1'
+          placeholder='SRC IMG'
+          value={picture}
+          onChange={e => setSrc(e.target.value)}
           required
         />
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
