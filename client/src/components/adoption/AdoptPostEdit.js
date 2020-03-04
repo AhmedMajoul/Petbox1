@@ -55,6 +55,7 @@ const TransitionsModal = ({
   };
 
   const onSubmit = async e => {
+
     console.log('text', text);
     e.preventDefault();
     setOpen(false);

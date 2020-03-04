@@ -80,7 +80,7 @@ import {
 
 		  loading: false
 		};
-	case PUT_POSt:
+	case PUT_POST:
 		return {
 		  ...state,
 		  adoptposts: state.adoptposts.map(post =>
