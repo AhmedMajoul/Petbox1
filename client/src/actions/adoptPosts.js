@@ -9,8 +9,7 @@ import {
   GET_POST,
   PUT_POST,
   ADD_COMMENT,
-  REMOVE_COMMENT,
-  PUT_POSt
+  REMOVE_COMMENT
 } from './types';
 
 // Get posts
@@ -182,7 +181,7 @@ export const editPost = (id, newAdoptPost) => async dispatch => {
     const res = await axios.put(`/api/adoptposts/modify/${id}`, newAdoptPost);
 
     dispatch({
-      type: PUT_POSt,
+      type: PUT_POST,
       payload: { id, new: res.data }
     });
   } catch (err) {
