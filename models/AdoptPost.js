@@ -35,7 +35,7 @@ const AdopPostSchema = new Schema({
       },
       text: {
         type: String,
-        // required: true
+        required: true
       },
       name: {
         type: String

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import UserCardTemporary from './UserCardTemporary';
+import UserCard from './UserCard';
 import { getAllUsers } from '../../actions/adminAct';
 import Spinner from '../layout/Spinner';
 
@@ -24,7 +24,7 @@ const GetUsers = ({getAllUsers, loading, list}) => {
     },[])
     return (
         <div className={getUserClass.root}>
-            {loading?(<Spinner/>):list.map((el, index) => <UserCardTemporary user={el} key={index} />)}
+            {loading?(<Spinner/>):list.map((el, index) => <UserCard user={el} key={index} />)}
         </div>
     )
 }

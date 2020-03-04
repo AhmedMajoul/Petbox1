@@ -7,8 +7,10 @@ import {
   DELETE_POST,
   ADD_POST,
   GET_POST,
+  PUT_POST,
   ADD_COMMENT,
-  REMOVE_COMMENT
+  REMOVE_COMMENT,
+  PUT_POSt
 } from './types';
 
 // Get posts
@@ -174,14 +176,14 @@ export const deleteComment = (postId, commentId) => async dispatch => {
     });
   }
 };
-// Modify like
-export const editPost = id => async dispatch => {
+// Modify Post
+export const editPost = (id, newAdoptPost) => async dispatch => {
   try {
-    const res = await axios.put(`/api/adoptposts/like/${id}`);
+    const res = await axios.put(`/api/adoptposts/modify/${id}`, newAdoptPost);
 
     dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
+      type: PUT_POSt,
+      payload: { id, new: res.data }
     });
   } catch (err) {
     dispatch({

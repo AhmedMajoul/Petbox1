@@ -107,7 +107,7 @@ router.delete('/:id', auth, async (req, res) => {
 // @route    PUT api/adoptposts/modify/:id    
 // @desc     modify a sel pet post
 // @access   Private
-router.put(   //////////////not tested
+router.put(   
   '/modify/:id',
   [
     auth,
@@ -136,7 +136,7 @@ router.put(   //////////////not tested
     try {  
       const newAdoptPost = ({
         text: req.body.text,
-        picture: req.body.picture,
+        // picture: req.body.picture,
       });
 
       const adoptpost = await AdoptPost.findOneAndUpdate({ _id: req.params.id }, {$set:{...newAdoptPost}}, {new: true});

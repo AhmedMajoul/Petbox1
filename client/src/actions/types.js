@@ -17,15 +17,16 @@ export const ADD_POST = 'ADD_POST';
 export const GET_POST = 'GET_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
-export const PUT_POST = 'PUT_POST';
+export const PUT_POSt = 'PUT_POSt';
 
 
 
 // admin
 export const LOAD_USERS = 'LOAD_USERS';
 export const LOAD_USER = 'LOAD_USER';
+export const DELETE_USER = 'DELETE_USER';
 export const LOADING = 'LOADING';
-
+export const STOP_LOADING = 'STOP_LOADING';
 // user profile and pets
 export const GET_PROFILE = 'GET_PROFILE';
 export const PUT_PROFILE = 'PUT_PROFILE';
