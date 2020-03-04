@@ -20,7 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-// import AdoptPostEdit from './AdoptPostEdit'
+import PetShopPostEdit from '../PetShop/PetShopPostEdit'
 import '../adoption/AdoptPost.css';
 
 const useStyles = makeStyles(theme => ({
@@ -85,7 +85,7 @@ function PetShopPost({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date, petPhoto, petName, petPrice, petRace, petDateOfBirth },
+  post: { _id, text, name, avatar, user, likes, comments, date, petPhoto, petName, petPrice, petRace, petDateOfBirth, petSexe },
   showActions
 }) {
   const classes = useStyles();
@@ -150,7 +150,7 @@ function PetShopPost({
             {petName}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petPrice}
+            {petSexe}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
             {petRace}
@@ -158,14 +158,17 @@ function PetShopPost({
           <Typography variant='body2' color='textSecondary' className='text'>
             {petDateOfBirth}
           </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petPrice}
+          </Typography>
           </div>
         </CardContent>
 
-        {(petPhoto !== '') && (
+        {(petPhoto !== '') ? (
         <img 
           className={classes.media}
           src={petPhoto}
-        />)}
+        />):<span></span>}
 
         
       {showActions && (
@@ -196,7 +199,7 @@ function PetShopPost({
               <DeleteIcon />
             </IconButton>
 
-            {/* <AdoptPostEdit Description={text} PostId={_id} /> */}
+            <PetShopPostEdit Description={{text, petPhoto, petName, petPrice, petRace, petDateOfBirth, petSexe}} PostId={_id} />
             </div>
           )}
         </div>

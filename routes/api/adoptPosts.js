@@ -29,6 +29,12 @@ router.post(
     [
       check('text', 'Text is required')
         .not()
+        .isEmpty(),
+      check('petRace', 'La race de votre animal est obligatoire')
+        .not()
+        .isEmpty(),
+      check('petSexe', 'Le sexe de votre animal est obligatoir')
+        .not()
         .isEmpty()
     ]
   ],
@@ -45,6 +51,10 @@ router.post(
         name: user.name,
         avatar: user.avatar,
         picture: req.body.picture,
+        petName: req.body.petName,
+        petRace: req.body.petRace,
+        petDateOfBirth: req.body.petDateOfBirth,
+        petSexe: req.body.petSexe,
         user: req.user.id
       });
 
@@ -115,6 +125,12 @@ router.put(
       check('text', 'La description est obligatoire')
         .not()
         .isEmpty(),
+      check('petRace', 'La race de votre animal est obligatoire')
+        .not()
+        .isEmpty(),
+      check('petSexe', 'Le sexe de votre animal est obligatoir')
+        .not()
+        .isEmpty()
     ]
   ],
   async (req, res) => {
@@ -136,7 +152,11 @@ router.put(
     try {  
       const newAdoptPost = ({
         text: req.body.text,
-        // picture: req.body.picture,
+        picture: req.body.picture,
+        petName: req.body.petName,
+        petRace: req.body.petRace,
+        petDateOfBirth: req.body.petDateOfBirth,
+        petSexe: req.body.petSexe,
       });
 
       const adoptpost = await AdoptPost.findOneAndUpdate({ _id: req.params.id }, {$set:{...newAdoptPost}}, {new: true});

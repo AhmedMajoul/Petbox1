@@ -9,7 +9,7 @@ import PetshopForm from './PetshopForm';
 import PetshopPosts from './PetshopPosts'
 import { getPosts } from '../../actions/petShopPosts';
 
-const Posts = ({ getPosts, petShopPosts, loading }) => {
+const PetSopPosts = ({ getPosts, petShopPosts, loading }) => {
   useEffect(() => {getPosts()}, [getPosts]);
 
   return (
@@ -19,7 +19,7 @@ loading ?
    
       <h1 className='large text-primary'>Posts</h1>
       <p className='lead'>
-        <i className='fas fa-user' /> Welcome to the community
+        <i className='fas fa-user' /> Welcome Pet Shop
       </p>
      
       <PetshopForm />
@@ -34,7 +34,7 @@ loading ?
   );
 };
 
-Posts.propTypes = {
+PetSopPosts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   petShopPosts: PropTypes.array.isRequired
 };
@@ -46,4 +46,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getPosts }
-)(Posts);
+)(PetSopPosts);

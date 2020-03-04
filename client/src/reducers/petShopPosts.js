@@ -1,13 +1,15 @@
 import {
-	GET_POSTS,
-	POST_ERROR,
-	UPDATE_LIKES,
-	DELETE_POST,
-	ADD_POST,
-	GET_POST,
-	ADD_COMMENT,
-	REMOVE_COMMENT,
-	PUT_POST
+
+	GET_SHOP_POSTS,
+	POST_SHOP_ERROR,
+	DELETE_SHOP_POST,
+	ADD_SHOP_POST,
+	UPDATE_SHOP_LIKES,
+	GET_SHOP_POST,
+	ADD_SHOP_COMMENT,
+	REMOVE_SHOP_COMMENT,
+	PUT_SHOP_POSt,
+
   } from '../actions/types';
   
   const initialState = {
@@ -21,37 +23,37 @@ import {
 	const { type, payload } = action;
   
 	switch (type) {
-	  case GET_POSTS:
+	  case GET_SHOP_POSTS:
 		return {
 		  ...state,
 		  petShopPosts: payload,
 		  loading: false
 		};
-	  case GET_POST:
+	  case GET_SHOP_POST:
 		return {
 		  ...state,
 		  petShopPost: payload,
 		  loading: false
 		};
-	  case ADD_POST:
+	  case ADD_SHOP_POST:
 		return {
 		  ...state,
 		  petShopPosts: [payload, ...state.petShopPosts],
 		  loading: false
 		};
-	  case DELETE_POST:
+	  case DELETE_SHOP_POST:
 		return {
 		  ...state,
 		  petShopPosts: state.petShopPosts.filter(post => post._id !== payload),
 		  loading: false
 		};
-	  case POST_ERROR:
+	  case POST_SHOP_ERROR:
 		return {
 		  ...state,
 		  error: payload,
 		  loading: false
 		};
-	  case UPDATE_LIKES:
+	  case UPDATE_SHOP_LIKES:
 		return {
 		  ...state,
 		  petShopPosts: state.petShopPosts.map(post =>
@@ -59,16 +61,15 @@ import {
 		  ),
 		  loading: false,
 		};
-	  case ADD_COMMENT:
+	  case ADD_SHOP_COMMENT:
 		return {
 		  ...state,
 		  petShopPosts: state.petShopPosts.map(post =>
 			post._id === payload.id ? { ...post, comments:payload.comments} : post
 		  ),
-		//   { ...state.adoptpost, comments: payload },
 		  loading: false
 		};
-	  case REMOVE_COMMENT:
+	  case REMOVE_SHOP_COMMENT:
 		return {
 		  ...state,
 		  petShopPost: {
@@ -80,16 +81,17 @@ import {
 
 		  loading: false
 		};
-	case PUT_POST:
+	  case PUT_SHOP_POSt:
 		return {
 		  ...state,
 		  petShopPosts: state.petShopPosts.map(post =>
-			post._id === payload.id ? { ...post, text: payload.new.text } : post
+			post._id === payload.id ? { ...payload.new } : post
 		  ),
 		  loading: false,
 		};
-	  default:
+	default:
 		return state;
 	}
   }
+
 

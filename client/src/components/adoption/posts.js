@@ -20,7 +20,7 @@ loading ?
    
       <h1 className='large text-primary'>Posts</h1>
       <p className='lead'>
-        <i className='fas fa-user' /> Welcome to the community
+        <i className='fas fa-user' /> Welcome to Adoption 
       </p>
      
       <PostForm />

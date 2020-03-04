@@ -1,15 +1,23 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 import {
-  GET_POSTS,
-  POST_ERROR,
+  GET_SHOP_POSTS,
+  UPDATE_SHOP_LIKES,
+  DELETE_SHOP_POST,
+  ADD_SHOP_POST,
+  GET_SHOP_POST,
+  ADD_SHOP_COMMENT,
+  REMOVE_SHOP_COMMENT,
+  PUT_SHOP_POSt,
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  PUT_POST
+  PUT_POSt,
+  POST_SHOP_ERROR
+
 } from './types';
 
 // Get posts
@@ -18,13 +26,13 @@ export const getPosts = () => async dispatch => {
     const res = await axios.get('/api/petshopposts');
     console.log(res.data)
     dispatch({
-      type: GET_POSTS,
+      type: GET_SHOP_POSTS,
       payload: res.data
     });
   } catch (err) {
     console.log("error:", err)
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
@@ -36,12 +44,12 @@ export const addLike = id => async dispatch => {
     const res = await axios.put(`/api/petshopposts/like/${id}`);
 
     dispatch({
-      type: UPDATE_LIKES,
+      type: UPDATE_SHOP_LIKES,
       payload: { id, likes: res.data }
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
@@ -53,12 +61,12 @@ export const removeLike = id => async dispatch => {
     const res = await axios.put(`/api/petshopposts/unlike/${id}`);
 
     dispatch({
-      type: UPDATE_LIKES,
+      type: UPDATE_SHOP_LIKES,
       payload: { id, likes: res.data }
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
@@ -70,14 +78,14 @@ export const deletePost = id => async dispatch => {
     await axios.delete(`/api/petshopposts/${id}`);
 
     dispatch({
-      type: DELETE_POST,
+      type: DELETE_SHOP_POST,
       payload: id
     });
 
     dispatch(setAlert('Post Removed', 'success'));
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
@@ -95,7 +103,7 @@ export const addPost = formData => async dispatch => {
     const res = await axios.post('/api/petshopposts', formData, config);
 
     dispatch({
-      type: ADD_POST,
+      type: ADD_SHOP_POST,
       payload: res.data
     });
     
@@ -103,7 +111,7 @@ export const addPost = formData => async dispatch => {
   } catch (err) {
 	  
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
@@ -115,13 +123,13 @@ export const getPost = id => async dispatch => {
     const res = await axios.get(`/api/petshopposts/${id}`);
 
     dispatch({
-      type: GET_POST,
+      type: GET_SHOP_POST,
       payload: res.data
     });
   } catch (err) {
     console.log('error', err)
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
@@ -143,7 +151,7 @@ export const addComment = (id, formData) => async dispatch => {
     );
 
     dispatch({
-      type: ADD_COMMENT,
+      type: ADD_SHOP_COMMENT,
       payload: { id, comments: res.data }
       // res.data
     });
@@ -152,7 +160,7 @@ export const addComment = (id, formData) => async dispatch => {
   } catch (err) {
     console.log('error', err)
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
@@ -164,30 +172,31 @@ export const deleteComment = (postId, commentId) => async dispatch => {
     await axios.delete(`/api/petshopposts/comment/${postId}/${commentId}`);
 
     dispatch({
-      type: REMOVE_COMMENT,
+      type: REMOVE_SHOP_COMMENT,
       payload: commentId
     });
 
     dispatch(setAlert('Comment Removed', 'success'));
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
 // Modify Post
-export const editPost = (id, newAdoptPost) => async dispatch => {
+export const editPost = (id, newShopPost) => async dispatch => {
   try {
-    const res = await axios.put(`/api/petshopposts/modify/${id}`, newAdoptPost);
+    const res = await axios.put(`/api/petshopposts/${id}`, newShopPost);
+    console.log('newShopPost', newShopPost)
 
     dispatch({
-      type: PUT_POST,
-      payload: { id, new: res.data }
+      type: PUT_SHOP_POSt,
+      payload: { id, new: res.data } 
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
+      type: POST_SHOP_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }

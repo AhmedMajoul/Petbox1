@@ -6,7 +6,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
-import { editPost } from '../../actions/adoptPosts';
+import { editPost } from '../../actions/petShopPosts';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
   edit: {
     color: '#4db6ac'
-  }
+  },
 }));
 
 const TransitionsModal = ({
@@ -34,25 +34,27 @@ const TransitionsModal = ({
   PostId,
   Description
 }) => {
-  const classes = useStyles();
+    const classes = useStyles();
     
-  const [state, setState] = React.useState({...Description});
+    const [state, setState] = React.useState({...Description});
 
-  const {text, picture, petName, petRace, petDateOfBirth, petSexe}= state
-  const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
+    const {text, petPhoto, petName, petPrice, petRace, petDateOfBirth, petSexe}= state
+    const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
 
-const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-const [edit, setedit] = React.useState(false);
+  const [edit, setedit] = React.useState(false);
+
 
   const handleOpen = () => {
     setOpen(true);
     setedit(!edit);
   };
 
-  const onSubmit = async e => {   
-
+  const onSubmit = async e => {
+    console.log('description', Description);
+    console.log('PostId' ,PostId)    
     e.preventDefault();
     setedit(!edit);
     setOpen(false);
@@ -94,34 +96,6 @@ const [edit, setedit] = React.useState(false);
         }}
       >
         <Fade in={open}>
-          {/* <form className='form' onSubmit={e => onSubmit(e)}>
-            <div className='form-group'>
-              <input
-                type='text'
-                placeholder='Description'
-                name='text'
-                defaultValue={text}
-                onChange={e => {
-                  onChange(e);
-                }} 
-                />
-            </div>
-
-            <input
-              type='submit'
-              className='btn btn-primary'
-              defaultValue='Modifier'
-              onClick={() => {
-                editPost();
-                handleClose();
-              }}
-            />
-            <input
-              onClick={() => handleCancel()}
-              className='btn btn-primary'
-              defaultValue='Annuler'
-            />
-          </form> */}
           <form className='form' onSubmit={e => onSubmit(e)}>
             <div className='form-group'>
               <input
@@ -136,8 +110,8 @@ const [edit, setedit] = React.useState(false);
                 <input
                 type='text'
                 placeholder='IMG SRC'
-                name='picture'
-                defaultValue={picture}
+                name='petPhoto'
+                defaultValue={petPhoto}
                 onChange={e => {
                   onChange(e);
                 }} 
@@ -147,6 +121,15 @@ const [edit, setedit] = React.useState(false);
                 placeholder='Nom'
                 name='petName'
                 defaultValue={petName}
+                onChange={e => {
+                  onChange(e);
+                }} 
+                />
+                <input
+                type='text'
+                placeholder='Prix en DT'
+                name='petPrice'
+                defaultValue={petPrice}
                 onChange={e => {
                   onChange(e);
                 }} 
@@ -204,7 +187,7 @@ const [edit, setedit] = React.useState(false);
 TransitionsModal.propTypes = {
   setAlert: PropTypes.func.isRequired,
   editPost: PropTypes.func.isRequired,
-  Description: PropTypes.string.isRequired
+  Description: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

@@ -8,38 +8,44 @@ import CommentForm from '../petshopPost/CommentForm';
 import CommentItem from '../petshopPost/CommentItem';
 import { getPost } from '../../../actions/petShopPosts';
 
-const Post = ({ getPost, petShopPosts, loading, match }) => {
+const ShopPost = ({ getPost, petShopPosts, loading, match }) => {
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost, match.params.id]);
-  console.log('petShopPosts', petShopPosts)
-  return   loading || petShopPosts.petShopPost === null ? (
+  console.log('petShopPosts', petShopPosts);
+  return loading || petShopPosts.petShopPost === null ? (
     <Spinner />
-  ) :
-  (
+  ) : (
     <Fragment>
-      <Link to="/petShop" className="btn">
+      <Link to='/petShop' className='btn'>
         Back To Posts
-      </Link> 
-      <PetshopPosts post={petShopPosts.petShopPost} postId={petShopPosts.petShopPost._id} showActions={false} />
-       <CommentForm postId={petShopPosts.petShopPost._id} />
-       <div className="comments">
+      </Link>
+      <PetshopPosts
+        post={petShopPosts.petShopPost}
+        postId={petShopPosts.petShopPost._id}
+        showActions={false}
+      />
+      <CommentForm postId={petShopPosts.petShopPost._id} />
+      <div className='comments'>
         {petShopPosts.petShopPost.comments.map(comment => (
-           <CommentItem key={comment._id} comment={comment} postId={petShopPosts.petShopPost._id} />
+          <CommentItem
+            key={comment._id}
+            comment={comment}
+            postId={petShopPosts.petShopPost._id}
+          />
         ))}
       </div>
     </Fragment>
   );
 };
 
-Post.propTypes = {
+ShopPost.propTypes = {
   getPost: PropTypes.func.isRequired,
-  adoptpost: PropTypes.object.isRequired
+  petShopPosts: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-petShopPosts: state.petShopPosts
-
+  petShopPosts: state.petShopPosts
 });
 
-export default connect(mapStateToProps, { getPost })(Post);
+export default connect(mapStateToProps, { getPost })(ShopPost);
