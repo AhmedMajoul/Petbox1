@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AdopPostSchema = new Schema({
+  name: {
+    type: String
+  },
+  picture: {
+    type: String
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users'
@@ -9,12 +15,6 @@ const AdopPostSchema = new Schema({
   text: {
     type: String,
     required: true
-  },
-  name: {
-    type: String
-  },
-  picture: {
-    type: String
   },
   avatar: {
     type: String

@@ -13,7 +13,7 @@ import Posts from '../adoption/posts'
 import AdoptPost from '../adoption/AdoptPost'
 import PetshopPost from '../PetShop/petshopPost/post'
 
-// import Dashboard from '../dashboard/Dashboard';
+import Itemshop from '../itemshop/Itemshop';
 // import CreateProfile from '../profile-forms/CreateProfile';
 // import EditProfile from '../profile-forms/EditProfile';
 // import AddExperience from '../profile-forms/AddExperience';
@@ -37,11 +37,12 @@ const Routes = () => {
         <Route exact path='/posts' component={Posts} />
         <Route exact path='/adoption' component={AdoptPost} />
         <Route exact path='/profile' component={Profile} />
+        <Route exact path='/posts/:id' component={Post} />
+        <Route exact path='/itemshop' component={Itemshop} />
         <Route exact path='/' component={Carousel} />
         <Route exact path='/petShop' component={PetShop} />
         <Route exact path='/adoptposts/:id' component={Post} />
         <Route exact path='/petShopPost/:id' component={PetshopPost} />
-
 
         {/* <Route exact path='/profiles' component={Profiles} />
       <Switch>
