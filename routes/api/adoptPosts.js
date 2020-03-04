@@ -6,6 +6,19 @@ const auth = require('../../middleware/auth');
 const AdoptPost = require('../../models/AdoptPost');
 const User = require('../../models/User');
 
+// @route    GET api/adoptposts
+// @desc     Get all adopt posts
+// @access   Public
+router.get('/', async (req, res) => {
+  try {
+    const Adoptposts = await AdoptPost.find().sort({ date: -1 });
+    res.json(Adoptposts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route    POST api/adoptposts
 // @desc     Create a adopt post
 // @access   Private
@@ -44,18 +57,7 @@ router.post(
     }
   }
 );
-// @route    GET api/adoptposts
-// @desc     Get all adopt posts
-// @access   Public
-router.get('/', async (req, res) => {
-    try {
-      const Adoptposts = await AdoptPost.find().sort({ date: -1 });
-      res.json(Adoptposts);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  });
+
 // @route    GET api/posts/:id
 // @desc     Get adopt post by ID
 // @access   Public
@@ -102,7 +104,7 @@ router.delete('/:id', auth, async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
-  // @route    PUT api/adoptposts/modify/:id    
+// @route    PUT api/adoptposts/modify/:id    
 // @desc     modify a sel pet post
 // @access   Private
 router.put(   //////////////not tested
