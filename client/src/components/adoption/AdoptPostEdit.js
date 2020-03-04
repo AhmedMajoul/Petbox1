@@ -51,9 +51,8 @@ const [edit, setedit] = React.useState(false);
     setedit(!edit);
   };
 
-  const onSubmit = async e => {
-    console.log('description', Description);
-    console.log('PostId' ,PostId)    
+  const onSubmit = async e => {   
+
     e.preventDefault();
     setedit(!edit);
     setOpen(false);

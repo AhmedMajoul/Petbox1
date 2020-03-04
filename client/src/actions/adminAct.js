@@ -49,7 +49,6 @@ export const getUser = (id) => async dispatch => {
 //delete user
 export const deleteUser = (id) => async dispatch => {
     try {
-        dispatch({type: LOADING});
         const res = await axios.delete(`/api/users/${id}`);
         console.log(res.data)
         getAllUsers();
@@ -65,7 +64,6 @@ export const deleteUser = (id) => async dispatch => {
 //promote user to admin
 export const promoteToAdmin = id => async dispatch => {
     try {
-        dispatch({type: LOADING});
         const res = await axios.put(`/api/users/promotetoadmin/${id}`);
         console.log(res.data)
         getAllUsers();

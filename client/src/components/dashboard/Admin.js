@@ -1,6 +1,7 @@
 // ToDo :
 // get all users / get one user by id
 // Delete user
+// promote user to admin / depromote admin to user
 // get user pets
 // get number of adoption posts, pets in sale and shop items (optional)
 // income statistics (optional)
@@ -31,14 +32,14 @@ const Dashboard = props => {
             <h1>Wellcome My Master, What might you request</h1>
             <Router>
                 <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-                    <Link to='/get-users'><Button>get all users</Button></Link>
-                    <Link to='/get-user-by-id'><Button>get one user by id</Button></Link>
-                    <Link to='/statistics'><Button>statistics</Button></Link>
+                    <Link to='/admin/get-users'><Button>get all users</Button></Link>
+                    <Link to='/admin/get-user-by-id'><Button>get one user by id</Button></Link>
+                    <Link to='/admin/statistics'><Button>statistics</Button></Link>
                 </ButtonGroup>
                 <Switch>
-                    <Route exact path='/get-users'>chobik lobik !!! haw el users el kol<br/><GetUsers/></Route>
-                    <Route exact path='/get-user-by-id'>how lgitou<br/><GetUser/></Route>
-                    <Route exact path='/statistics'>el3ab yala</Route>
+                    <Route exact path='/admin/get-users'>chobik lobik !!! haw el users el kol<br/><GetUsers/></Route>
+                    <Route exact path='/admin/get-user-by-id'>how lgitou<br/><GetUser/></Route>
+                    <Route exact path='/admin/statistics'>el3ab yala</Route>
                 </Switch>
             </Router>
         </div>
@@ -46,7 +47,7 @@ const Dashboard = props => {
 }
 
 Dashboard.propTypes = {
-
+    
 }
 
 export default Dashboard

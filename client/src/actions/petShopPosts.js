@@ -17,6 +17,7 @@ import {
   REMOVE_COMMENT,
   PUT_POSt,
   POST_SHOP_ERROR
+
 } from './types';
 
 // Get posts

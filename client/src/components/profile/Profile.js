@@ -8,7 +8,7 @@ import PetModal from './ModalPetAdd'
 
 const Profile = ({ getPets, auth, user, pets }) => {
     useEffect(()=>{
-     getPets(user._id)},[user])
+    getPets(user._id)},[user])
   return !auth.token ? (
       <span>login to continue</span>
     ) : (

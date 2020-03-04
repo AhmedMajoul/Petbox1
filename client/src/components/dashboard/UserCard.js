@@ -1,6 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { deleteUser, promoteToAdmin, depromoteToUser } from '../../actions/adminAct';
@@ -61,17 +61,24 @@ function UserCard({
     const handledeleteClick = (id) => {
         setsupp(!supp);
         deleteUser(id);
+        document.location.href = "http://localhost:3000/admin";
     };
     const promoteDepromote = (type, id) => {
         if (type === 'admin') {
             return (
-                <Button variant="contained" color="secondary" onClick={() => depromoteToUser(id)}>
+                <Button variant="contained" color="secondary" onClick={() =>{
+                     depromoteToUser(id);
+                     document.location.href = "http://localhost:3000/admin";
+                     }}>
                     Depromote to user
                 </Button>
             )
         } else {
             return (
-                <Button variant="contained" color="primary" onClick={() => promoteToAdmin(id)}>
+                <Button variant="contained" color="primary" onClick={() =>{
+                    promoteToAdmin(id);
+                    document.location.href = "http://localhost:3000/admin";
+                    }}>
                     Promote To Admin
                 </Button>
             )

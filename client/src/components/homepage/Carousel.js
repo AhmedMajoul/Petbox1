@@ -62,7 +62,7 @@ const Example = (props) => {
       <CarouselItem style={{width:'100%', margin:'0px', padding:'0px'}}
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item.src}
+        key={item.altText}
       >
         <img style={{width:'100%'}} src={item.src} alt={item.altText} />
         <CarouselCaption className="text-danger" captionText={item.captionSmall} captionHeader={item.captionBig} />

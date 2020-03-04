@@ -12,7 +12,7 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_PETS:
-      return [...state, ...payload];
+      return [...payload];
     case DELETE_PET:
       return [...state.filter(pet => pet._id !== payload.id)];
     case ADD_PET:
