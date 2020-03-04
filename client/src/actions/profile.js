@@ -1,8 +1,7 @@
 import {
   GET_PROFILE,
   PROFILE_ERROR,
-  PUT_PROFILE,
-  DELETE_PROFILE
+  PUT_PROFILE
 } from "./types";
 import axios from "axios";
 

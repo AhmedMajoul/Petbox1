@@ -30,14 +30,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TransitionsModal = ({putProfile,user,Description}) =>{
+const TransitionsModal = ({editItem,item,user}) =>{
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState({
-    ...user
+    ...item
   })
 
-  const { name, email, password, adress, phone } = state
+  const { _id, name, species, picture, price, description } = state
 
   const onChange = e =>
     setState({ ...state, [e.target.name]: e.target.value })
@@ -56,7 +56,7 @@ const TransitionsModal = ({putProfile,user,Description}) =>{
   const onSubmit = async e => {
       e.preventDefault();
       setOpen(false)
-      await putProfile(state);
+      await editItem(_id,state);
       document.location.reload();
     }
     const handleCancel = e => {
@@ -74,6 +74,7 @@ const TransitionsModal = ({putProfile,user,Description}) =>{
       {/* <button type="button" onClick={handleOpen}>
         Edit Post
       </button> */}
+      {user.type==="admin"&&
       <IconButton
             aria-label={edit}
             onClick={handleOpen}
@@ -83,6 +84,7 @@ const TransitionsModal = ({putProfile,user,Description}) =>{
           >
         <EditOutlinedIcon />
         </IconButton>
+      }
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -100,9 +102,9 @@ const TransitionsModal = ({putProfile,user,Description}) =>{
           <div className='form-group'>
           <input
             type='text'
-            placeholder='Description'
-            name='Description'
-            value={Description}
+            placeholder='Nom'
+            name='name'
+            value={name}
             onChange={e => onChange(e)}
           />
         </div>
@@ -157,6 +159,7 @@ const TransitionsModal = ({putProfile,user,Description}) =>{
 TransitionsModal.propTypes = {
     setAlert: PropTypes.func.isRequired,
     editItem: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
   };
   
   const mapStateToProps = state => ({

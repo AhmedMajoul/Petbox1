@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../layout/Spinner';
-
-import ItemForm from './ItemForm';
+import ModalItemAdd from './ModalItemAdd'
+// import ItemForm from './ItemForm';
 import Item from './Item'
 import { getItems } from '../../actions/itemShop';
 
-const Items = ({ getItems, items, loading }) => {
+const Items = ({ getItems, items, type, loading }) => {
   useEffect(() => {getItems()}, [getItems]);
 
   return (
@@ -21,8 +21,8 @@ loading ?
       <p className='lead'>
         <i className='fas fa-user' /> Welcome to the community
       </p>
-     
-      <ItemForm />
+     {type==="admin"&&
+      <ModalItemAdd />}
        <div className='posts'>
         {items.map(item => (
         //<p>{item.description}</p>
@@ -40,7 +40,8 @@ Items.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    items: state.itemShop.items
+    items: state.itemShop.items,
+    type:state.auth.user.type
 });
 
 export default connect(

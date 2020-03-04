@@ -108,22 +108,22 @@ export const addItem = formData => async dispatch => {
 };
 
 // Get post
-// export const getItem = id => async dispatch => {
-//   try {
-//     const res = await axios.get(`/api/itemshop/${id}`);
+export const getItem = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/itemshop/${id}`);
 
-//     dispatch({
-//       type: GET_ITEM,
-//       payload: res.data
-//     });
-//   } catch (err) {
-//     console.log('error', err)
-//     dispatch({
-//       type: ITEM_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
+    dispatch({
+      type: GET_ITEM,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log('error', err)
+    dispatch({
+      type: ITEM_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
 
 // Add comment
 export const addComment = (id, formData) => async dispatch => {
@@ -175,14 +175,14 @@ export const deleteComment = (itemId, commentId) => async dispatch => {
   }
 };
 // Modify like
-export const editItem = id => async dispatch => {
+export const editItem = (id,obj) => async dispatch => {
   try {
-    const res = await axios.put(`/api/itemshop/like/${id}`);
+    const res = await axios.put(`/api/itemshop/${id}`,obj);
 
-    dispatch({
-      type: UPDATE_LIKES,
-      payload: { id, likes: res.data }
-    });
+    // dispatch({
+    //   type: EDIT_ITEM,
+    //   payload: res.data
+    // });
   } catch (err) {
     dispatch({
       type: ITEM_ERROR,
