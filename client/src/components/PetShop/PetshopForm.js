@@ -20,7 +20,7 @@ const classes = useStyles();
 const [state, setState] = useState('');
 
 
-const {text, petPhoto, petName, petPrice, petRace, petDateOfBirth}= state
+const {text, petPhoto, petName, petPrice, petRace, petSexe, petDateOfBirth}= state
 const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
 
@@ -81,7 +81,15 @@ const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
           onChange={e => onChange(e)}
           required
         />
-
+         <textarea
+          cols='3'
+          placeholder='male/female'
+          name='petSexe'
+          defaultValue={petSexe}
+          onChange={e => {
+            onChange(e);
+          }} 
+          />
         <input
         type="date"
         placeholder="Date de naissance"

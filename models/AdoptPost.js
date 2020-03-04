@@ -10,7 +10,7 @@ const AdopPostSchema = new Schema({
     type: String,
     required: true
   },
-  name: {
+  petName: {
     type: String
   },
   picture: {
@@ -18,6 +18,17 @@ const AdopPostSchema = new Schema({
   },
   avatar: {
     type: String
+  },
+  petRace: { 
+    type: String,
+    required: true 
+  },
+  petSexe: { 
+    type: String, 
+    required: true 
+  },
+  petDateOfBirth: {
+    type: String 
   },
   likes: [
     {

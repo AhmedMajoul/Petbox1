@@ -65,7 +65,6 @@ import {
 		  adoptposts: state.adoptposts.map(post =>
 			post._id === payload.id ? { ...post, comments:payload.comments} : post
 		  ),
-		//   { ...state.adoptpost, comments: payload },
 		  loading: false
 		};
 	  case REMOVE_COMMENT:
@@ -84,11 +83,11 @@ import {
 		return {
 		  ...state,
 		  adoptposts: state.adoptposts.map(post =>
-			post._id === payload.id ? { ...post, text: payload.new.text } : post
+			post._id === payload.id ? { ...payload.new } : post
 		  ),
 		  loading: false,
 		};
-	  default:
+	default:
 		return state;
 	}
   }

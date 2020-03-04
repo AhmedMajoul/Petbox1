@@ -48,7 +48,8 @@ router.put( // tested the poster user: (200) ok / tested with non poster user: (
           petPhoto: req.body.petPhoto,
           petRace: req.body.petRace,
           petDateOfBirth: req.body.petDateOfBirth,
-          petPrice: req.body.petPrice
+          petPrice: req.body.petPrice,
+          petSexe: req.body.petSexe
         };
         const petpost = await PetShopPosts.findOneAndUpdate({ _id: req.params.id }, {$set:{...newPetShopPost}}, {new: true});
         await petpost.save();
@@ -129,10 +130,13 @@ router.post( //  tested: (200)ok
     check('text', 'La description est obligatoire')
       .not()
       .isEmpty(),
-      check('petRace', 'La race de votre pet est obligatoire')
+      check('petRace', 'La race de votre animal est obligatoire')
       .not()
       .isEmpty(),
-      check('petPrice', 'Le prix de votre pet est obligatoir')
+      check('petPrice', 'Le prix de votre animal est obligatoir')
+      .not()
+      .isEmpty(),
+      check('petSexe', 'Le sexe de votre animal est obligatoir')
       .not()
       .isEmpty()
   ]
@@ -155,7 +159,8 @@ async (req, res) => {
       petPhoto: req.body.petPhoto,
       petRace: req.body.petRace,
       petDateOfBirth: req.body.petDateOfBirth,
-      petPrice: req.body.petPrice
+      petPrice: req.body.petPrice,
+      petSexe: req.body.petSexe
     });
 
     const petpost = await newPetShopPost.save();

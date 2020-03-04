@@ -88,19 +88,18 @@ function AdoptPost({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date, picture },
+  post: { _id, text, name, avatar, user, likes, comments, date, picture, petName, petRace, petDateOfBirth, petSexe },
   showActions
 }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  // };
   
   const isliked=auth.user?(likes.filter((el)=>el.user===auth.user._id).length>0):false
-  const [Text, setText] = React.useState('');
-  const [count, setCount] = React.useState(0);
+
   const [liked, setliked] = React.useState(isliked);
   
 
@@ -114,8 +113,6 @@ function AdoptPost({
   const handledeleteClick = () => {
     setsupp(!supp);
   };
-
-  const [edit, setedit] = React.useState(false);
 
   return (
     <Card className={classes.card}>
@@ -148,13 +145,25 @@ function AdoptPost({
           <Typography variant='body2' color='textSecondary' className='text'>
             {text}
           </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petName}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petRace}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petSexe}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+            {petDateOfBirth}
+          </Typography>
         </CardContent>
 
-        {(picture !== '') && (
+        {(picture !== '') ? (
         <img 
           className={classes.media}
           src={picture}
-        />)}
+        />):<span></span>}
 
         
       {showActions && (
@@ -185,7 +194,7 @@ function AdoptPost({
               <DeleteIcon />
             </IconButton>
 
-            <AdoptPostEdit Description={text} PostId={_id} />
+            <AdoptPostEdit Description={{text, picture, petName, petRace, petDateOfBirth, petSexe}} PostId={_id} />
             </div>
           )}
           

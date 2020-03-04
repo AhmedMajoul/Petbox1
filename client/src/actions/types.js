@@ -9,6 +9,8 @@ export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const ACCOUNT_DELETED= 'ACCOUNT_DELETED';
 export const SET_ALERT= 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+//adoptposts
 export const GET_POSTS = 'GET_POSTS';
 export const POST_ERROR = 'POST_ERROR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
@@ -18,6 +20,18 @@ export const GET_POST = 'GET_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const PUT_POSt = 'PUT_POSt';
+
+//PetShop
+export const GET_SHOP_POSTS = 'GET_SHOP_POSTS';
+export const POST_SHOP_ERROR = 'POST_SHOP_ERROR';
+export const UPDATE_SHOP_LIKES = 'UPDATE_SHOP_LIKES';
+export const DELETE_SHOP_POST = 'DELETE_SHOP_POST';
+export const ADD_SHOP_POST = 'ADD_SHOP_POST';
+export const GET_SHOP_POST = 'GET_SHOP_POST';
+export const ADD_SHOP_COMMENT = 'ADD_SHOP_COMMENT';
+export const REMOVE_SHOP_COMMENT = 'REMOVE_SHOP_COMMENT';
+export const PUT_SHOP_POSt = 'PUT_SHOP_POSt';
+
 
 
 
