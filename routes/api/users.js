@@ -7,6 +7,8 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
+const AdoptPost = require('../../models/AdoptPost');
+const PetShopPosts = require('../../models/PetShopPosts');
 
 // @route    GET api/users/:id
 // @desc     Register user

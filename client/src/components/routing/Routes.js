@@ -4,7 +4,7 @@ import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Alert from '../layout/Alert';
 
-import Admin from '../dashboard/Admin';
+import AdminAccessControl from '../dashboard/AdminAccessControl';
 
 import Carousel from '../homepage/Carousel';
 
@@ -31,7 +31,7 @@ const Routes = () => {
 
       <Alert />
       <Switch>
-        <Route exact path='/admin' component={Admin} />
+        <Route exact path='/admin' component={AdminAccessControl} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/posts' component={Posts} />

@@ -54,7 +54,7 @@ const TransitionsModal = ({putProfile,user,Description}) =>{
   const onSubmit = async e => {
       e.preventDefault();
       setOpen(false)
-      await putProfile(state);
+      await putProfile(user); // bayrem: modifier cette ligne, ancienne valeur: await putProfile(state);
       document.location.reload();
     }
     const handleCancel = e => {
