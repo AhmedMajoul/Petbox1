@@ -7,7 +7,7 @@ import {
   GET_ITEM,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  PUT_ITEM
+  EDIT_ITEM
 } from "../actions/types";
 
 const initialState = {
@@ -76,7 +76,7 @@ export default function(state = initialState, action) {
 
         
       };
-    case PUT_ITEM:
+    case EDIT_ITEM:
       return {
         ...state,
         ...payload

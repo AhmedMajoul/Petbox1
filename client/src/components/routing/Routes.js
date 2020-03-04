@@ -11,9 +11,8 @@ import PetShop from "../PetShop/Posts";
 import Post from "../post/post";
 import Posts from '../adoption/posts'
 import AdoptPost from '../adoption/AdoptPost'
-import PetshopPost from '../PetShop/petshopPost/post'
-
 import Itemshop from '../itemshop/Itemshop';
+import ItemPost from '../itemshop/Post'
 // import CreateProfile from '../profile-forms/CreateProfile';
 // import EditProfile from '../profile-forms/EditProfile';
 // import AddExperience from '../profile-forms/AddExperience';
@@ -24,6 +23,7 @@ import Profile from '../profile/Profile';
 // import Post from '../post/Post';
 // import NotFound from '../layout/NotFound';
 // import PrivateRoute from '../routing/PrivateRoute';
+import PetshopPost from '../PetShop/petshopPost/post'
 
 const Routes = () => {
   return (
@@ -39,6 +39,7 @@ const Routes = () => {
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/posts/:id' component={Post} />
         <Route exact path='/itemshop' component={Itemshop} />
+        <Route exact path='/itemshop/:id' component={ItemPost} />
         <Route exact path='/' component={Carousel} />
         <Route exact path='/petShop' component={PetShop} />
         <Route exact path='/adoptposts/:id' component={Post} />

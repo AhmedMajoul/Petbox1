@@ -171,7 +171,7 @@ function AdoptPost({
         </IconButton>
 
 
-            {!auth.loading && user === auth.user._id && (
+            {!auth.loading && user === auth.user._id || auth.user.type==="admin" && (
             <div className={classes.icons}>
             <IconButton
               aria-label={supp}
