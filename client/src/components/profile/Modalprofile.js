@@ -29,7 +29,7 @@ const TransitionsModal = ({putProfile,user}) =>{
     ...user
   })
 
-  const { name, email, password, adress, phone } = state
+  const { name, adress, phone } = state
 
   const onChange = e =>
     setState({ ...state, [e.target.name]: e.target.value })
@@ -80,27 +80,28 @@ const TransitionsModal = ({putProfile,user}) =>{
             onChange={e => onChange(e)}
           />
         </div>
-        <div className='form-group'>
+        {/* <div className='form-group'>
           <input
             type='email'
             placeholder='Adresse Email'
             name='email'
             value={email}
             onChange={e => onChange(e)}
-          />
+          /> */}
           {/* <small className='form-text'>
             Ce cite utilise Gravatar. Si vous souhaitiez avoir une photo, utilisez un mail qui utilise Gravatar
-          </small> */}
-        </div>
-        <div className='form-group'>
+          </small> 
+        </div>*/}
+        {/* <div className='form-group'>
           <input
             type='password'
             placeholder='Mot de passe'
             name='password'
-            value={password}
+            value={"123456"}
             onChange={e => onChange(e)}
+            autoComplete='cc-number'
           />
-        </div>
+        </div> */}
         <div className='form-group'>
           <input
             type='text'

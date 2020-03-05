@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 function PetProfile({ auth, pet, delPet }) {
-  const { _id, name, picture, sex, species, race, dateBirth, date } = pet;
+  const { _id, petName, picture, sex, species, race, dateBirth, date } = pet;
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -90,7 +90,7 @@ function PetProfile({ auth, pet, delPet }) {
             M
           </Avatar>
         }
-        title={name}
+        title={petName}
         subheader={
           <p className="post-date">
             Date d'ajout : <Moment format='DD/MM/YYYY'>{date}</Moment>

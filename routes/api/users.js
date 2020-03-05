@@ -121,11 +121,6 @@ router.put(
       check('name', 'Name is required')
       .not()
       .isEmpty(),
-    check('email', 'Please include a valid email').isEmail(),
-    check(
-      'password',
-      'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 }),
     check('adress', 'Adress is required')
       .not()
       .isEmpty()
@@ -139,9 +134,7 @@ router.put(
 
     const {
       name,
-      email,
       avatar,
-      password,
       adress,
       phone,
       type
@@ -150,17 +143,15 @@ router.put(
     
     const modUser = {
       name,
-      email,
       avatar,
-      password,
       adress,
       phone,
       type
     };
 
-    const salt = await bcrypt.genSalt(10);
+    // const salt = await bcrypt.genSalt(10);
 
-    modUser.password = await bcrypt.hash(password, salt);
+    // modUser.password = await bcrypt.hash(password, salt);
 
     try {
       const user = await User.findOneAndUpdate({ _id: req.user.id }, {$set:{...modUser}}, {new: true});

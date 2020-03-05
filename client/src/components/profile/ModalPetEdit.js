@@ -27,7 +27,7 @@ const PetEditModal = ({ editPet, pet, user }) => {
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState(pet);
 
-  const { name, picture, species, sex, race, dateBirth, UserId } = state;
+  const { petName, picture, species, sex, race, dateBirth, UserId } = state;
 
   const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
@@ -89,8 +89,8 @@ const PetEditModal = ({ editPet, pet, user }) => {
               <input
                 type="text"
                 placeholder="Nom"
-                name="name"
-                value={name}
+                name="petName"
+                value={petName}
                 onChange={e => onChange(e)}
               />
             </div>
