@@ -161,6 +161,7 @@ function Item({
       {showActions && (
       <CardActions disableSpacing className={classes.space}>
         <div>
+        {auth.user.type === "visitor" ? null :
         <IconButton
         onClick={()=>{ 
          handlelikeClick();
@@ -174,7 +175,7 @@ function Item({
         >
           <FavoriteIcon />
           <span>{likes.length > 0 && <span className={classes.Number}>{likes.length}</span>}</span>
-        </IconButton>
+        </IconButton>}
 
 
             {!auth.loading && auth.user.type==="admin" && (

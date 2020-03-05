@@ -17,7 +17,7 @@ router.post( //  tested: (200) ok
   [
     auth,
     [
-      check('name', 'Le nom de votre pet est obligatoire')
+      check('petName', 'Le nom de votre pet est obligatoire')
         .not()
         .isEmpty(),
       check('species', 'La nature de votre pet est obligatoire')
@@ -35,7 +35,7 @@ router.post( //  tested: (200) ok
 
       const newPet = new Pet({
         userId: req.user.id,
-        name: req.body.name,
+        petName: req.body.petName,
         picture: req.body.picture,
         species: req.body.species,
         race: req.body.race,
@@ -107,7 +107,7 @@ router.put( // tested the poster user: 200 ok / tested with non poster user: (40
   [
     auth,
     [
-      check('name', 'Le nom de votre pet est obligatoire')
+      check('petName', 'Le nom de votre pet est obligatoire')
         .not()
         .isEmpty(),
       check('species', 'La nature de votre pet est obligatoire')
@@ -132,7 +132,7 @@ router.put( // tested the poster user: 200 ok / tested with non poster user: (40
 
     try {
       const newPet = {
-        name: req.body.name,
+        petName: req.body.petName,
         picture: req.body.picture,
         species: req.body.species,
         race: req.body.race,

@@ -54,7 +54,7 @@ import {
           token: null,
           isAuthenticated: false,
           loading: false,
-          user: null
+          user: {type:"visitor"}
         };
       case LOGOUT:
         return {
@@ -62,7 +62,7 @@ import {
           token: null,
           isAuthenticated: false,
           loading: false,
-          user: null
+          user: {type:"visitor"}
         };
       default:
         return state;
