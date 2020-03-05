@@ -10,7 +10,7 @@ import PostForm from './PostForm';
 import AdoptPost from './AdoptPost'
 import { getPosts } from '../../actions/adoptPosts';
 
-const Posts = ({ getPosts, adoptposts }) => {
+const Posts = ({ getPosts, adoptposts ,type }) => {
   useEffect(() => {getPosts()}, []);
 
 
@@ -24,7 +24,7 @@ const Posts = ({ getPosts, adoptposts }) => {
         <i className='fas fa-user' /> Welcome to Adoption 
       </p>
      
-      <PostForm />
+      {type === "visitor" ? null : <PostForm />}
        <div className='posts'>
         {adoptposts.adoptposts.map(post => (
         // <p>{post.text}</p>
@@ -38,11 +38,13 @@ const Posts = ({ getPosts, adoptposts }) => {
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  adoptposts: PropTypes.object.isRequired
+  adoptposts: PropTypes.object.isRequired,
+  type: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-    adoptposts: state.adoptPosts
+    adoptposts: state.adoptPosts,
+    type:state.auth.user.type
 });
 
 export default connect(

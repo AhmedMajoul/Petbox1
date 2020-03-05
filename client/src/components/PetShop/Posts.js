@@ -9,7 +9,7 @@ import PetshopForm from './PetshopForm';
 import PetshopPosts from './PetshopPosts'
 import { getPosts } from '../../actions/petShopPosts';
 
-const PetSopPosts = ({ getPosts, petShopPosts, loading }) => {
+const PetSopPosts = ({ getPosts, petShopPosts, loading, type }) => {
   useEffect(() => {getPosts()}, [getPosts]);
 
   return (
@@ -22,7 +22,7 @@ loading ?
         <i className='fas fa-user' /> Welcome Pet Shop
       </p>
      
-      <PetshopForm />
+      {type === "visitor" ? null : <PetshopForm />}
        <div className='posts'>
         {petShopPosts.map(post => (
         // <p>{post.text}</p>
@@ -36,11 +36,13 @@ loading ?
 
 PetSopPosts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  petShopPosts: PropTypes.array.isRequired
+  petShopPosts: PropTypes.array.isRequired,
+  type: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-    petShopPosts: state.petShopPosts.petShopPosts
+    petShopPosts: state.petShopPosts.petShopPosts,
+    type:state.auth.user.type
 });
 
 export default connect(

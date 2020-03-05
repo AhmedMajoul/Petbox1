@@ -174,6 +174,7 @@ function PetShopPost({
       {showActions && (
       <CardActions disableSpacing className={classes.space}>
         <div className={classes.icons}>
+        {auth.user.type === "visitor" ? null :
         <IconButton
         onClick={()=>{ 
          handlelikeClick();
@@ -182,7 +183,7 @@ function PetShopPost({
         >
           <FavoriteIcon />
           <span>{likes.length > 0 && <span className={classes.Number}>{likes.length}</span>}</span>
-        </IconButton>
+        </IconButton>}
 
 
             {!auth.loading && user === auth.user._id && (

@@ -9,7 +9,7 @@ import CommentForm from '../post/CommentForm';
 import CommentItem from '../post/CommentItem';
 import { getPost } from '../../actions/adoptPosts';
 
-const Post = ({ getPost, adoptpostState, loading, match }) => {
+const Post = ({ getPost, adoptpostState, loading, match, type }) => {
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost, match.params.id]);
@@ -23,7 +23,7 @@ const Post = ({ getPost, adoptpostState, loading, match }) => {
         Back To Posts
       </Link> 
       <AdoptPost post={adoptpostState.adoptpost} postId={adoptpostState.adoptpost._id} showActions={false} />
-       <CommentForm postId={adoptpostState.adoptpost._id} />
+       {type === "visitor" ? null : <CommentForm postId={adoptpostState.adoptpost._id} />}
        <div className="comments">
         {adoptpostState.adoptpost.comments&&
           adoptpostState.adoptpost.comments.map(comment => (
@@ -36,11 +36,13 @@ const Post = ({ getPost, adoptpostState, loading, match }) => {
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
-  adoptpostState: PropTypes.object.isRequired
+  adoptpostState: PropTypes.object.isRequired,
+  type: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  adoptpostState: state.adoptPosts
+  adoptpostState: state.adoptPosts,
+  type:state.auth.user.type
 });
 
 export default connect(mapStateToProps, { getPost })(Post);

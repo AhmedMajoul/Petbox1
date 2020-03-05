@@ -8,7 +8,7 @@ import CommentForm from '../petshopPost/CommentForm';
 import CommentItem from '../petshopPost/CommentItem';
 import { getPost } from '../../../actions/petShopPosts';
 
-const ShopPost = ({ getPost, petShopPosts, loading, match }) => {
+const ShopPost = ({ getPost, petShopPosts, loading, match, type }) => {
   useEffect(() => {
     getPost(match.params.id);
   }, [match.params.id]);
@@ -25,7 +25,7 @@ const ShopPost = ({ getPost, petShopPosts, loading, match }) => {
         postId={petShopPosts.petShopPost._id}
         showActions={false}
       />
-      <CommentForm postId={petShopPosts.petShopPost._id} />
+      {type === "visitor" ? null : <CommentForm postId={petShopPosts.petShopPost._id} />}
       <div className='comments'>
         {petShopPosts.petShopPost.comments.map(comment => (
           <CommentItem
@@ -41,11 +41,13 @@ const ShopPost = ({ getPost, petShopPosts, loading, match }) => {
 
 ShopPost.propTypes = {
   getPost: PropTypes.func.isRequired,
-  petShopPosts: PropTypes.object.isRequired
+  petShopPosts: PropTypes.object.isRequired,
+  type: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  petShopPosts: state.petShopPosts
+  petShopPosts: state.petShopPosts,
+  type:state.auth.user.type
 });
 
 export default connect(mapStateToProps, { getPost })(ShopPost);
