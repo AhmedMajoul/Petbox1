@@ -94,7 +94,7 @@
 //         title={name}
 //         subheader={
 //           <p className="post-date">
-//             Date d'ajout : <Moment format="YYYY/MM/DD">{date}</Moment>
+//             Date d'ajout : <Moment format="DD/MM/YYYY">{date}</Moment>
 //           </p>
 //         }
 //       />

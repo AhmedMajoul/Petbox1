@@ -5,8 +5,8 @@ import {
   DELETE_ITEM,
   ADD_ITEM,
   GET_ITEM,
-  ADD_COMMENT,
-  REMOVE_COMMENT,
+  ADD_ITEM_COMMENT,
+  REMOVE_ITEM_COMMENT,
   EDIT_ITEM
 } from "../actions/types";
 
@@ -53,7 +53,7 @@ export default function(state = initialState, action) {
           item._id === payload.id ? { ...item, likes: payload.likes } : item
         ),
       };
-    case ADD_COMMENT:
+    case ADD_ITEM_COMMENT:
       return {
         ...state,
         items: state.items.map(item =>
@@ -64,7 +64,7 @@ export default function(state = initialState, action) {
         //   { ...state.item, comments: payload },
         
       };
-    case REMOVE_COMMENT:
+    case REMOVE_ITEM_COMMENT:
       return {
         ...state,
         item: {

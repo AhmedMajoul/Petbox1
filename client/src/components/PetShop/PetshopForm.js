@@ -20,7 +20,7 @@ const classes = useStyles();
 const [state, setState] = useState('');
 
 
-const {text, petPhoto, petName, petPrice, petRace, petSexe, petDateOfBirth}= state
+const {text, picture, petName, price, race, sexe, dateBirth}= state
 const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
 
@@ -48,11 +48,11 @@ const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
           required
         />
         <textarea
-          name='petPhoto'
+          name='picture'
           cols='30'
           rows='1'
           placeholder='SRC IMG'
-          value={petPhoto}
+          value={picture}
           onChange={e => onChange(e)}
           required
         />
@@ -66,26 +66,26 @@ const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
           required
         />
         <textarea
-          name='petPrice'
+          name='price'
           cols='3'
           placeholder='Prix'
-          value={petPrice}
+          value={price}
           onChange={e => onChange(e)}
           required
         />
         <textarea
-          name='petRace'
+          name='race'
           cols='3'
           placeholder='Race'
-          value={petRace}
+          value={race}
           onChange={e => onChange(e)}
           required
         />
          <textarea
           cols='3'
           placeholder='male/female'
-          name='petSexe'
-          defaultValue={petSexe}
+          name='sexe'
+          defaultValue={sexe}
           onChange={e => {
             onChange(e);
           }} 
@@ -93,8 +93,8 @@ const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
         <input
         type="date"
         placeholder="Date de naissance"
-        name="petDateOfBirth"
-        value={petDateOfBirth}
+        name="dateBirth"
+        value={dateBirth}
         onChange={e => onChange(e)}
         />
         </div>

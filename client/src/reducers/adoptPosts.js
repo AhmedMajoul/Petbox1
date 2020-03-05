@@ -12,7 +12,7 @@ import {
   
   const initialState = {
 	adoptposts: [],
-	adoptpost: null,
+	adoptpost: {},
 	loading: true,
 	error: {}
   };

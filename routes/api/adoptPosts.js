@@ -30,10 +30,10 @@ router.post(
       check('text', 'Text is required')
         .not()
         .isEmpty(),
-      check('petRace', 'La race de votre animal est obligatoire')
+      check('race', 'La race de votre animal est obligatoire')
         .not()
         .isEmpty(),
-      check('petSexe', 'Le sexe de votre animal est obligatoir')
+      check('sexe', 'Le sexe de votre animal est obligatoir')
         .not()
         .isEmpty()
     ]
@@ -51,10 +51,10 @@ router.post(
         name: user.name,
         avatar: user.avatar,
         picture: req.body.picture,
-        petName: req.body.petName,
-        petRace: req.body.petRace,
-        petDateOfBirth: req.body.petDateOfBirth,
-        petSexe: req.body.petSexe,
+        name: req.body.name,
+        race: req.body.race,
+        dateBirth: req.body.dateBirth,
+        sexe: req.body.sexe,
         user: req.user.id
       });
 
@@ -125,10 +125,10 @@ router.put(
       check('text', 'La description est obligatoire')
         .not()
         .isEmpty(),
-      check('petRace', 'La race de votre animal est obligatoire')
+      check('race', 'La race de votre animal est obligatoire')
         .not()
         .isEmpty(),
-      check('petSexe', 'Le sexe de votre animal est obligatoir')
+      check('sexe', 'Le sexe de votre animal est obligatoir')
         .not()
         .isEmpty()
     ]
@@ -153,10 +153,10 @@ router.put(
       const newAdoptPost = ({
         text: req.body.text,
         picture: req.body.picture,
-        petName: req.body.petName,
-        petRace: req.body.petRace,
-        petDateOfBirth: req.body.petDateOfBirth,
-        petSexe: req.body.petSexe,
+        name: req.body.name,
+        race: req.body.race,
+        dateBirth: req.body.dateBirth,
+        sexe: req.body.sexe,
       });
 
       const adoptpost = await AdoptPost.findOneAndUpdate({ _id: req.params.id }, {$set:{...newAdoptPost}}, {new: true});

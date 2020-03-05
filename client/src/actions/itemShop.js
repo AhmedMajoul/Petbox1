@@ -7,8 +7,8 @@ import {
   DELETE_ITEM,
   ADD_ITEM,
   GET_ITEM,
-  ADD_COMMENT,
-  REMOVE_COMMENT
+  ADD_ITEM_COMMENT,
+  REMOVE_ITEM_COMMENT
 } from './types';
 
 // Get posts
@@ -24,7 +24,7 @@ export const getItems = () => async dispatch => {
     console.log("error:", err)
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -41,7 +41,7 @@ export const addLike = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -58,7 +58,7 @@ export const removeLike = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -77,7 +77,7 @@ export const deleteItem = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -102,7 +102,7 @@ export const addItem = formData => async dispatch => {
   } catch (err) {
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -120,7 +120,7 @@ export const getItem = id => async dispatch => {
     console.log('error', err)
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -141,7 +141,7 @@ export const addComment = (id, formData) => async dispatch => {
     );
 
     dispatch({
-      type: ADD_COMMENT,
+      type: ADD_ITEM_COMMENT,
       payload: { id, comments: res.data }
       // res.data
     });
@@ -151,7 +151,7 @@ export const addComment = (id, formData) => async dispatch => {
     console.log('error', err)
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -162,7 +162,7 @@ export const deleteComment = (itemId, commentId) => async dispatch => {
     await axios.delete(`/api/itemshop/comment/${itemId}/${commentId}`);
 
     dispatch({
-      type: REMOVE_COMMENT,
+      type: REMOVE_ITEM_COMMENT,
       payload: commentId
     });
 
@@ -170,7 +170,7 @@ export const deleteComment = (itemId, commentId) => async dispatch => {
   } catch (err) {
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -186,7 +186,7 @@ export const editItem = (id,obj) => async dispatch => {
   } catch (err) {
     dispatch({
       type: ITEM_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };

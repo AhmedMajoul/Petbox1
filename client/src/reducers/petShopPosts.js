@@ -8,7 +8,7 @@ import {
 	GET_SHOP_POST,
 	ADD_SHOP_COMMENT,
 	REMOVE_SHOP_COMMENT,
-	PUT_SHOP_POSt,
+	PUT_SHOP_POST,
 
   } from '../actions/types';
   
@@ -81,7 +81,7 @@ import {
 
 		  loading: false
 		};
-	  case PUT_SHOP_POSt:
+	  case PUT_SHOP_POST:
 		return {
 		  ...state,
 		  petShopPosts: state.petShopPosts.map(post =>

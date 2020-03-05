@@ -27,7 +27,7 @@ const PetEditModal = ({ editPet, pet, user }) => {
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState(pet);
 
-  const { name, picture, species, race, dateBirth, UserId } = state;
+  const { name, picture, species, sex, race, dateBirth, UserId } = state;
 
   const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
@@ -102,9 +102,15 @@ const PetEditModal = ({ editPet, pet, user }) => {
                 value={species}
                 onChange={e => onChange(e)}
               />
-              {/* <small className='form-text'>
-            Ce cite utilise Gravatar. Si vous souhaitiez avoir une photo, utilisez un mail qui utilise Gravatar
-          </small> */}
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="sexe"
+                name="sex"
+                value={sex}
+                onChange={e => onChange(e)}
+              />
             </div>
             <div className="form-group">
               <input

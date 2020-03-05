@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 function PetProfile({ auth, pet, delPet }) {
-  const { _id, name, picture, species, race, dateBirth, date } = pet;
+  const { _id, name, picture, sex, species, race, dateBirth, date } = pet;
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -93,7 +93,7 @@ function PetProfile({ auth, pet, delPet }) {
         title={name}
         subheader={
           <p className="post-date">
-            Date d'ajout : <Moment format="YYYY/MM/DD">{date}</Moment>
+            Date d'ajout : <Moment format='DD/MM/YYYY'>{date}</Moment>
           </p>
         }
       />
@@ -106,6 +106,11 @@ function PetProfile({ auth, pet, delPet }) {
         {species}
       </Typography>
 
+      <Typography className="text">Sexe :</Typography>
+      <Typography variant="body2" color="textSecondary" className="text">
+        {sex}
+      </Typography>
+
       <Typography className="text">Race :</Typography>
       <Typography variant="body2" color="textSecondary" className="text">
         {race}
@@ -113,7 +118,7 @@ function PetProfile({ auth, pet, delPet }) {
 
       <Typography className="text">Date de naissance :</Typography>
       <Typography variant="body2" color="textSecondary" className="text">
-        {dateBirth}
+      <Moment format='DD/MM/YYYY'>{dateBirth}</Moment>
       </Typography>
       <button
         className="MuiButtonBase-root MuiIconButton-root makeStyles-dislike-181"

@@ -13,7 +13,7 @@ import {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
-    user: null
+    user: {type:"visitor"}
   };
   
   export default function(state = initialState, action) {

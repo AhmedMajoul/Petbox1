@@ -18,10 +18,10 @@ router.put( // tested the poster user: (200) ok / tested with non poster user: (
         check('text', 'La description est obligatoire')
           .not()
           .isEmpty(),
-          check('petRace', 'La race de votre pet est obligatoire')
+          check('race', 'La race de votre pet est obligatoire')
           .not()
           .isEmpty(),
-          check('petPrice', 'Le prix de votre pet est obligatoir')
+          check('price', 'Le prix de votre pet est obligatoir')
           .not()
           .isEmpty()
       ]
@@ -44,12 +44,12 @@ router.put( // tested the poster user: (200) ok / tested with non poster user: (
       try {  
         const newPetShopPost = {
           text: req.body.text,
-          petName: req.body.petName,
-          petPhoto: req.body.petPhoto,
-          petRace: req.body.petRace,
-          petDateOfBirth: req.body.petDateOfBirth,
-          petPrice: req.body.petPrice,
-          petSexe: req.body.petSexe
+          name: req.body.name,
+          picture: req.body.picture,
+          race: req.body.race,
+          dateBirth: req.body.dateBirth,
+          price: req.body.price,
+          sexe: req.body.sexe
         };
         const petpost = await PetShopPosts.findOneAndUpdate({ _id: req.params.id }, {$set:{...newPetShopPost}}, {new: true});
         await petpost.save();
@@ -130,13 +130,13 @@ router.post( //  tested: (200)ok
     check('text', 'La description est obligatoire')
       .not()
       .isEmpty(),
-      check('petRace', 'La race de votre animal est obligatoire')
+      check('race', 'La race de votre animal est obligatoire')
       .not()
       .isEmpty(),
-      check('petPrice', 'Le prix de votre animal est obligatoir')
+      check('price', 'Le prix de votre animal est obligatoir')
       .not()
       .isEmpty(),
-      check('petSexe', 'Le sexe de votre animal est obligatoir')
+      check('sexe', 'Le sexe de votre animal est obligatoir')
       .not()
       .isEmpty()
   ]
@@ -155,12 +155,12 @@ async (req, res) => {
       name: user.name,
       avatar: user.avatar,
       user: req.user.id,
-      petName: req.body.petName,
-      petPhoto: req.body.petPhoto,
-      petRace: req.body.petRace,
-      petDateOfBirth: req.body.petDateOfBirth,
-      petPrice: req.body.petPrice,
-      petSexe: req.body.petSexe
+      name: req.body.name,
+      picture: req.body.picture,
+      race: req.body.race,
+      dateBirth: req.body.dateBirth,
+      price: req.body.price,
+      sexe: req.body.sexe
     });
 
     const petpost = await newPetShopPost.save();

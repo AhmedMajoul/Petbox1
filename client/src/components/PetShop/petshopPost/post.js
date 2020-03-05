@@ -11,11 +11,11 @@ import { getPost } from '../../../actions/petShopPosts';
 const ShopPost = ({ getPost, petShopPosts, loading, match }) => {
   useEffect(() => {
     getPost(match.params.id);
-  }, [getPost, match.params.id]);
+  }, [match.params.id]);
   console.log('petShopPosts', petShopPosts);
   return loading || petShopPosts.petShopPost === null ? (
     <Spinner />
-  ) : (
+  ) :  (
     <Fragment>
       <Link to='/petShop' className='btn'>
         Back To Posts

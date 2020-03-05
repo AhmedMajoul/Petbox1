@@ -107,15 +107,6 @@ const ItemModal = ({ addItem, user }) => {
                 onChange={e => onChange(e)}
               />
             </div>
-            <div className="form-group">
-              <input
-                type="date"
-                placeholder="Date de naissance"
-                name="description"
-                value={description}
-                onChange={e => onChange(e)}
-              />
-            </div>
             <input type="submit" className="btn btn-primary" value="Créer" />
             <input
               onClick={() => handleCancel()}

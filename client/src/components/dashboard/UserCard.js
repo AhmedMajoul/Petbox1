@@ -55,6 +55,8 @@ function UserCard({
     auth,
     user
 }) {
+    const { _id, type, name, email, avatar, adress, phone, date } = user;
+
     const classes = useStyles();
 
     const [supp, setsupp] = React.useState(false);
@@ -103,7 +105,6 @@ function UserCard({
         }
     }
 
-    const { _id, type, name, email, avatar, adress, phone, date } = user;
     return (
         <Card className="usercard">
             <CardHeader
@@ -115,7 +116,7 @@ function UserCard({
                 }
                 title={name}
                 subheader={<p className='post-date'>
-                    Créé en <Moment format='YYYY/MM/DD'>{date}</Moment>
+                    Créé en <Moment format='DD/MM/YYYY'>{date}</Moment>
                 </p>}
             />
             <div className="content">

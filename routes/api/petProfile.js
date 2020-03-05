@@ -39,7 +39,8 @@ router.post( //  tested: (200) ok
         picture: req.body.picture,
         species: req.body.species,
         race: req.body.race,
-        dateBirth: req.body.dateBirth
+        dateBirth: req.body.dateBirth,
+        sex: req.body.sex
       });
 
       const pet = await newPet.save();
@@ -135,7 +136,8 @@ router.put( // tested the poster user: 200 ok / tested with non poster user: (40
         picture: req.body.picture,
         species: req.body.species,
         race: req.body.race,
-        dateBirth: req.body.dateBirth
+        dateBirth: req.body.dateBirth,
+        sex: req.body.sex
       };
       const pet = await Pet.findOneAndUpdate({ _id: req.params.id }, { $set: { ...newPet } }, { new: true });
       await pet.save();

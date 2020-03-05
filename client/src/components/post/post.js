@@ -14,7 +14,7 @@ const Post = ({ getPost, adoptpostState, loading, match }) => {
     getPost(match.params.id);
   }, [getPost, match.params.id]);
   console.log('adoptpost', adoptpostState.adoptpost)
-  return   loading || adoptpostState.adoptpost === null ? (
+  return   (loading || adoptpostState.adoptpost === null) ? (
     <Spinner />
   ) :
   (
@@ -25,7 +25,8 @@ const Post = ({ getPost, adoptpostState, loading, match }) => {
       <AdoptPost post={adoptpostState.adoptpost} postId={adoptpostState.adoptpost._id} showActions={false} />
        <CommentForm postId={adoptpostState.adoptpost._id} />
        <div className="comments">
-        {adoptpostState.adoptpost.comments.map(comment => (
+        {adoptpostState.adoptpost.comments&&
+          adoptpostState.adoptpost.comments.map(comment => (
            <CommentItem key={comment._id} comment={comment} postId={adoptpostState.adoptpost._id} />
         ))}
       </div>
@@ -35,7 +36,7 @@ const Post = ({ getPost, adoptpostState, loading, match }) => {
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
-  adoptpost: PropTypes.object.isRequired
+  adoptpostState: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
