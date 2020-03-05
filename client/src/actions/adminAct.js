@@ -32,7 +32,7 @@ export const getAllUsers = () => async dispatch => {
 export const getUser = (id) => async dispatch => {
     try {
         dispatch({type: LOADING});
-        const res = await axios.get(`api/users/${id}`);
+        const res = await axios.get(`/api/users/${id}`);
 
         dispatch({
             type: LOAD_USER,
