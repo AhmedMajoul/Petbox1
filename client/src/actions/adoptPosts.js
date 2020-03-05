@@ -25,7 +25,7 @@ export const getPosts = () => async dispatch => {
     console.log("error:", err)
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -42,7 +42,7 @@ export const addLike = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -59,7 +59,7 @@ export const removeLike = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -78,7 +78,7 @@ export const deletePost = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -103,7 +103,7 @@ export const addPost = formData => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -121,7 +121,7 @@ export const getPost = id => async dispatch => {
     console.log('error', err)
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -152,7 +152,7 @@ export const addComment = (id, formData) => async dispatch => {
     console.log('error', err)
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -171,7 +171,7 @@ export const deleteComment = (postId, commentId) => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -187,7 +187,7 @@ export const editPost = (id, newAdoptPost) => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };

@@ -1,4 +1,5 @@
 import React, { Fragment,useEffect } from "react";
+import Moment from 'react-moment';
 import { connect } from "react-redux";
 import { getPets } from "../../actions/petProfile";
 import PropTypes from 'prop-types';
@@ -20,7 +21,7 @@ const Profile = ({ getPets, auth, user, pets }) => {
       <p>E-mail : {user.email}</p>
       <p>Adresse : {user.adress}</p>
       <p>N° de téléphone : {user.phone}</p>
-      <p>{`Date d'inscription : ${user.date.split('T')[0]}`}</p>
+      <p>Date d'inscription : <Moment format='DD/MM/YYYY'>{user.date}</Moment></p>
       <div className="card-container">
       <PetModal/>
       {pets.map((el,i)=>

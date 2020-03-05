@@ -98,58 +98,53 @@ const TransitionsModal = ({editItem,item,user}) =>{
         }}
       >
         <Fade in={open}>
-          <form className='form' onSubmit={e => onSubmit(e)}>
-          <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Nom'
-            name='name'
-            value={name}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        {/* <div className='form-group'>
-          <input
-            type='email'
-            placeholder='Adresse Email'
-            name='email'
-            value={email}
-            onChange={e => onChange(e)}
-          /> */}
-          {/* <small className='form-text'>
+        <form className="form" onSubmit={e => onSubmit(e)}>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Nom"
+                name="name"
+                value={name}
+                onChange={e => onChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Espèce"
+                name="species"
+                value={species}
+                onChange={e => onChange(e)}
+              />
+              {/* <small className='form-text'>
             Ce cite utilise Gravatar. Si vous souhaitiez avoir une photo, utilisez un mail qui utilise Gravatar
           </small> */}
-        {/* </div> */}
-        {/* <div className='form-group'>
-          <input
-            type='password'
-            placeholder='Mot de passe'
-            name='password'
-            value={password}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='adresse'
-            name='adress'
-            value={adress}
-            onChange={e => onChange(e)}
-          />
-        </div> */}
-        {/* <div className='form-group'>
-          <input
-            type='text'
-            placeholder='téléphone'
-            name='phone'
-            value={phone}
-            onChange={e => onChange(e)}
-          />
-        </div> */}
-        <input type='submit' className='btn btn-primary' value="Modifier" onClick={()=>{editItem(); handleClose()}} />
-        <input onClick={()=>handleCancel()} className='btn btn-primary' value="Annuler" />
-        </form>
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="src"
+                name="picture"
+                value={picture}
+                onChange={e => onChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="prix"
+                name="price"
+                value={price}
+                onChange={e => onChange(e)}
+              />
+            </div>
+            <input type="submit" className="btn btn-primary" value="Créer" />
+            <input
+              onClick={() => handleCancel()}
+              className="btn btn-primary"
+              defaultValue="Annuler"
+            />
+          </form>
         </Fade>
       </Modal>
     </div>

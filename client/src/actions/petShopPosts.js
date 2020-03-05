@@ -8,14 +8,13 @@ import {
   GET_SHOP_POST,
   ADD_SHOP_COMMENT,
   REMOVE_SHOP_COMMENT,
-  PUT_SHOP_POSt,
+  PUT_SHOP_POST,
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  PUT_POSt,
   POST_SHOP_ERROR
 
 } from './types';
@@ -33,7 +32,7 @@ export const getPosts = () => async dispatch => {
     console.log("error:", err)
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -50,7 +49,7 @@ export const addLike = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -67,7 +66,7 @@ export const removeLike = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -86,7 +85,7 @@ export const deletePost = id => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -112,7 +111,7 @@ export const addPost = formData => async dispatch => {
 	  
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -130,7 +129,7 @@ export const getPost = id => async dispatch => {
     console.log('error', err)
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -161,7 +160,7 @@ export const addComment = (id, formData) => async dispatch => {
     console.log('error', err)
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -180,7 +179,7 @@ export const deleteComment = (postId, commentId) => async dispatch => {
   } catch (err) {
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };
@@ -191,13 +190,13 @@ export const editPost = (id, newShopPost) => async dispatch => {
     console.log('newShopPost', newShopPost)
 
     dispatch({
-      type: PUT_SHOP_POSt,
+      type: PUT_SHOP_POST,
       payload: { id, new: res.data } 
     });
   } catch (err) {
     dispatch({
       type: POST_SHOP_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: { msg: err.response }
     });
   }
 };

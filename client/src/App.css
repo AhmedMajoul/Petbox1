@@ -227,7 +227,8 @@
   }
   /* Utilities */
 .container {
-    max-width: 1100px;
+    max-width: 100%;
+    height: auto;
     margin: auto;
     overflow: hidden;
     padding: 0 2rem;
@@ -291,7 +292,6 @@
     padding: 3rem 0;
   }
   
-=======
 .App {
   text-align: center;
 }

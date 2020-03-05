@@ -38,7 +38,7 @@ const TransitionsModal = ({
     
     const [state, setState] = React.useState({...Description});
 
-    const {text, petPhoto, petName, petPrice, petRace, petDateOfBirth, petSexe}= state
+    const {text, picture, petName, price, race, dateBirth, sexe}= state
     const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
 
@@ -110,8 +110,8 @@ const TransitionsModal = ({
                 <input
                 type='text'
                 placeholder='IMG SRC'
-                name='petPhoto'
-                defaultValue={petPhoto}
+                name='picture'
+                defaultValue={picture}
                 onChange={e => {
                   onChange(e);
                 }} 
@@ -128,8 +128,8 @@ const TransitionsModal = ({
                 <input
                 type='text'
                 placeholder='Prix en DT'
-                name='petPrice'
-                defaultValue={petPrice}
+                name='price'
+                defaultValue={price}
                 onChange={e => {
                   onChange(e);
                 }} 
@@ -137,8 +137,8 @@ const TransitionsModal = ({
                 <input
                 type='text'
                 placeholder='Race'
-                name='petRace'
-                defaultValue={petRace}
+                name='race'
+                defaultValue={race}
                 onChange={e => {
                   onChange(e);
                 }} 
@@ -146,8 +146,8 @@ const TransitionsModal = ({
                  <input
                 type='text'
                 placeholder='male/female'
-                name='petSexe'
-                defaultValue={petSexe}
+                name='sexe'
+                defaultValue={sexe}
                 onChange={e => {
                   onChange(e);
                 }} 
@@ -155,8 +155,8 @@ const TransitionsModal = ({
                 <input
                 type='text'
                 placeholder='Date de naissance'
-                name='petDateOfBirth'
-                defaultValue={petDateOfBirth}
+                name='dateBirth'
+                defaultValue={dateBirth}
                 onChange={e => {
                   onChange(e);
                 }} 

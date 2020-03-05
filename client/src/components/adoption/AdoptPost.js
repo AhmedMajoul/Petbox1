@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   card : {
     padding: "5px 10px",
     width:"50%",
-    height:"580px",
+    height:"auto",
     margin:"20px",
     boxShadow:"5px 10px 18px #888888"
     },
@@ -88,7 +88,7 @@ function AdoptPost({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date, picture, petName, petRace, petDateOfBirth, petSexe },
+  post: { _id, text, name, avatar, user, likes, comments, date, picture, petName, race, dateBirth, sexe },
   showActions
 }) {
   const classes = useStyles();
@@ -98,7 +98,7 @@ function AdoptPost({
   //   setExpanded(!expanded);
   // };
   
-  const isliked=auth.user?(likes.filter((el)=>el.user===auth.user._id).length>0):false
+  const isliked=auth.user?(likes&&likes.filter((el)=>el.user===auth.user._id).length>0):false
 
   const [liked, setliked] = React.useState(isliked);
   
@@ -114,7 +114,7 @@ function AdoptPost({
     setsupp(!supp);
   };
 
-  return (
+  return !adoptpostState.loading&&(
     <Card className={classes.card}>
           
       <CardHeader
@@ -125,11 +125,11 @@ function AdoptPost({
           </Avatar>
           </Link>
         }
-        action={
-          <IconButton aria-label='settings'>
-            <MoreVertIcon />
-          </IconButton>
-        }
+        // action={
+        //   <IconButton aria-label='settings'>
+        //     <MoreVertIcon />
+        //   </IconButton>
+        // }
         
         title={
           <Link to={`/profile/${user}`}>{name}</Link>}
@@ -149,13 +149,13 @@ function AdoptPost({
             {petName}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petRace}
+            {race}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petSexe}
+            {sexe}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petDateOfBirth}
+            {dateBirth}
           </Typography>
         </CardContent>
 
@@ -194,7 +194,7 @@ function AdoptPost({
               <DeleteIcon />
             </IconButton>
 
-            <AdoptPostEdit Description={{text, picture, petName, petRace, petDateOfBirth, petSexe}} PostId={_id} />
+            <AdoptPostEdit Description={{text, picture, petName, race, dateBirth, sexe}} PostId={_id} />
             </div>
           )}
           

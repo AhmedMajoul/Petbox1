@@ -27,7 +27,7 @@ const PetModal = ({ addPet, user }) => {
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState({});
 
-  const { name, picture, species, race, userId=user._id, dateBirth } = state;
+  const { name, sex, picture, species, race, userId=user._id, dateBirth } = state;
 
   const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
@@ -95,6 +95,15 @@ const PetModal = ({ addPet, user }) => {
                 placeholder="src"
                 name="picture"
                 value={picture}
+                onChange={e => onChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Sexe"
+                name="sex"
+                value={sex}
                 onChange={e => onChange(e)}
               />
             </div>

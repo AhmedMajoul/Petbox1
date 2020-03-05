@@ -110,14 +110,14 @@ function Item({
     <Card className='root'>
           
       <CardHeader
-        action={
-          <IconButton aria-label='settings'>
-            <MoreVertIcon />
-          </IconButton>
-        }
+        // action={
+        //   <IconButton aria-label='settings'>
+        //     <MoreVertIcon />
+        //   </IconButton>
+        // }
         subheader={
           <p className='post-date'>
-            Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
+            Posted on <Moment format='DD/MM/YYYY'>{date}</Moment>
           </p>
         }
       />
@@ -210,12 +210,12 @@ function Item({
           </Link>
 
         <div>
-          <Link to={`/itemshop/${_id}`}>
+          {/* <Link to={`/itemshop/${_id}`}>
             {comments.length > 0 && (
               <span className={classes.Number}>{comments.length}</span>
             )}
-          </Link>
-          <IconButton
+          </Link> */}
+          {/* <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded
             })}
@@ -224,7 +224,7 @@ function Item({
             aria-label='show more'
           >
             <ExpandMoreIcon />
-          </IconButton>
+          </IconButton> */}
         </div>
       </CardActions>
       )}

@@ -18,7 +18,7 @@ const PostForm = ({ addPost }) => {
   const [state, setState] = useState('');
 
 
-  const {text, picture, petName, petPrice, petRace, petSexe, petDateOfBirth}= state
+  const {text, picture, petName, price, race, sexe, dateBirth}= state
   const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
   return (
@@ -45,7 +45,7 @@ const PostForm = ({ addPost }) => {
           required
         />
         <textarea
-          name='petPhoto'
+          name='picture'
           cols='30'
           rows='1'
           placeholder='SRC IMG'
@@ -63,18 +63,18 @@ const PostForm = ({ addPost }) => {
           required
         />
         <textarea
-          name='petRace'
+          name='race'
           cols='3'
           placeholder='Race'
-          value={petRace}
+          value={race}
           onChange={e => onChange(e)}
           required
         />
          <textarea
           cols='3'
           placeholder='male/female'
-          name='petSexe'
-          defaultValue={petSexe}
+          name='sexe'
+          defaultValue={sexe}
           onChange={e => {
             onChange(e);
           }} 
@@ -82,8 +82,8 @@ const PostForm = ({ addPost }) => {
         <input
         type="date"
         placeholder="Date de naissance"
-        name="petDateOfBirth"
-        value={petDateOfBirth}
+        name="dateBirth"
+        value={dateBirth}
         onChange={e => onChange(e)}
         />
         </div>

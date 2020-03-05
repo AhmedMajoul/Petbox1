@@ -15,6 +15,9 @@ const PetSchema = new mongoose.Schema({
       type:Date,
       default:Date.now
   },
+  sex:{
+    type:String
+  },
   species:{
     type:String,
     required:true

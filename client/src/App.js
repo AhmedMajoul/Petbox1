@@ -29,8 +29,6 @@ const App = ({ loading, token }) => {
       ) : (
         <Router>
           <MainNavbar />
-          {/* <SearchFilters /> */}
-          {/* <AdoptPost/> */}
           <Switch>
             <Route component={Routes} />
           </Switch>

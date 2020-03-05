@@ -10,12 +10,13 @@ import PostForm from './PostForm';
 import AdoptPost from './AdoptPost'
 import { getPosts } from '../../actions/adoptPosts';
 
-const Posts = ({ getPosts, adoptposts, loading }) => {
-  useEffect(() => {getPosts()}, [getPosts]);
+const Posts = ({ getPosts, adoptposts }) => {
+  useEffect(() => {getPosts()}, []);
 
-  return (
-loading ? 
-<Spinner />:
+
+  return adoptposts.loading?
+(
+<Spinner />):(
 <Fragment>
    
       <h1 className='large text-primary'>Posts</h1>
@@ -25,7 +26,7 @@ loading ?
      
       <PostForm />
        <div className='posts'>
-        {adoptposts.map(post => (
+        {adoptposts.adoptposts.map(post => (
         // <p>{post.text}</p>
           <AdoptPost key={post._id} post={post} />
         ))}
@@ -37,11 +38,11 @@ loading ?
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
-  adoptposts: PropTypes.array.isRequired
+  adoptposts: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    adoptposts: state.adoptPosts.adoptposts
+    adoptposts: state.adoptPosts
 });
 
 export default connect(

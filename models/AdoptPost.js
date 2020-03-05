@@ -16,7 +16,7 @@ const AdopPostSchema = new Schema({
     type: String,
     required: true
   },
-  petName: {
+  name: {
     type: String
   },
   picture: {
@@ -25,15 +25,15 @@ const AdopPostSchema = new Schema({
   avatar: {
     type: String
   },
-  petRace: { 
+  race: { 
     type: String,
     required: true 
   },
-  petSexe: { 
+  sexe: { 
     type: String, 
     required: true 
   },
-  petDateOfBirth: {
+  dateBirth: {
     type: String 
   },
   likes: [

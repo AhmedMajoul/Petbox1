@@ -30,7 +30,7 @@ export const ADD_SHOP_POST = 'ADD_SHOP_POST';
 export const GET_SHOP_POST = 'GET_SHOP_POST';
 export const ADD_SHOP_COMMENT = 'ADD_SHOP_COMMENT';
 export const REMOVE_SHOP_COMMENT = 'REMOVE_SHOP_COMMENT';
-export const PUT_SHOP_POSt = 'PUT_SHOP_POSt';
+export const PUT_SHOP_POST = 'PUT_SHOP_POST';
 
 
 
@@ -59,3 +59,5 @@ export const EDIT_ITEM = 'EDIT_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ITEM_ERROR = 'ITEM_ERRORS';
 export const GET_ITEM = 'GET_ITEM';
+export const ADD_ITEM_COMMENT = 'ADD_ITEM_COMMENT';
+export const REMOVE_ITEM_COMMENT = 'REMOVE_ITEM_COMMENT'

@@ -85,7 +85,7 @@ function PetShopPost({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date, petPhoto, petName, petPrice, petRace, petDateOfBirth, petSexe },
+  post: { _id, text, name, avatar, user, likes, comments, date, picture, petName, price, race, dateBirth, sexe },
   showActions
 }) {
   const classes = useStyles();
@@ -125,11 +125,11 @@ function PetShopPost({
           </Avatar>
           </Link>
         }
-        action={
-          <IconButton aria-label='settings'>
-            <MoreVertIcon />
-          </IconButton>
-        }
+        // action={
+        //   <IconButton aria-label='settings'>
+        //     <MoreVertIcon />
+        //   </IconButton>
+        // }
         
         title={
           <Link to={`/profile/${user}`}>{name}</Link>}
@@ -150,24 +150,24 @@ function PetShopPost({
             {petName}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petSexe}
+            {sexe}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petRace}
+            {race}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petDateOfBirth}
+            {dateBirth}
           </Typography>
           <Typography variant='body2' color='textSecondary' className='text'>
-            {petPrice}
+            {price}
           </Typography>
           </div>
         </CardContent>
 
-        {(petPhoto !== '') ? (
+        {(picture !== '') ? (
         <img 
           className={classes.media}
-          src={petPhoto}
+          src={picture}
         />):<span></span>}
 
         
@@ -199,7 +199,7 @@ function PetShopPost({
               <DeleteIcon />
             </IconButton>
 
-            <PetShopPostEdit Description={{text, petPhoto, petName, petPrice, petRace, petDateOfBirth, petSexe}} PostId={_id} />
+            <PetShopPostEdit Description={{text, picture, petName, price, race, dateBirth, sexe}} PostId={_id} />
             </div>
           )}
         </div>
