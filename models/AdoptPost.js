@@ -16,7 +16,7 @@ const AdopPostSchema = new Schema({
     type: String,
     required: true
   },
-  name: {
+  petName: {
     type: String
   },
   picture: {

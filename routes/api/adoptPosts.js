@@ -51,7 +51,7 @@ router.post(
         name: user.name,
         avatar: user.avatar,
         picture: req.body.picture,
-        name: req.body.name,
+        petName: req.body.petName,
         race: req.body.race,
         dateBirth: req.body.dateBirth,
         sexe: req.body.sexe,
@@ -153,7 +153,7 @@ router.put(
       const newAdoptPost = ({
         text: req.body.text,
         picture: req.body.picture,
-        name: req.body.name,
+        petName: req.body.petName,
         race: req.body.race,
         dateBirth: req.body.dateBirth,
         sexe: req.body.sexe,

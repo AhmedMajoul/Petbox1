@@ -18,7 +18,7 @@ const PostForm = ({ addPost }) => {
   const [state, setState] = useState('');
 
 
-  const {text, picture, petName, price, race, sexe, dateBirth}= state
+  const {text, picture, petName, race, sexe, dateBirth}= state
   const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
   return (

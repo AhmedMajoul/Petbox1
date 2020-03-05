@@ -11,7 +11,7 @@ const Items = require('../../models/Items')
 // @access   Public
 router.get('/', async (req, res) => {
   try {
-    const items = await Items.find()
+    const items = await Items.find().sort({ date: -1 })
     if (!items) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
     }

@@ -16,7 +16,7 @@ const PetShopPostsSchema = new Schema({
   avatar: {
     type: String
   },
-  name: { type: String },
+  petName: { type: String },
   price: { type: Number, required: true },
   picture: { type: String },
   race: { type: String, required: true },

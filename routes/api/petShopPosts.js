@@ -44,7 +44,7 @@ router.put( // tested the poster user: (200) ok / tested with non poster user: (
       try {  
         const newPetShopPost = {
           text: req.body.text,
-          name: req.body.name,
+          petName: req.body.petName,
           picture: req.body.picture,
           race: req.body.race,
           dateBirth: req.body.dateBirth,
@@ -155,7 +155,7 @@ async (req, res) => {
       name: user.name,
       avatar: user.avatar,
       user: req.user.id,
-      name: req.body.name,
+      petName: req.body.petName,
       picture: req.body.picture,
       race: req.body.race,
       dateBirth: req.body.dateBirth,
