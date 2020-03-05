@@ -177,6 +177,8 @@ function MainNavbar({ token, user, logout }) {
             </Link>
           </Typography>
           <div className="navbar-links">
+          {user.type==="admin"&&
+            <Link to="/admin">Dashboard</Link>}
             <Link to="/itemshop">Itemshop</Link>
             <Link to="/petshop">Petshop</Link>
             <Link to="/posts">Adopt a pet </Link>
