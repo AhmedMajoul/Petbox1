@@ -43,7 +43,7 @@ function MainNavbar({ token, user, logout }) {
                 <p className="navbar-name">{user?user.name:""}</p>
                 </Link>
                 <div className="signup-signin">
-                  <Link className="navbar-buttons disconnect" onClick={logout} to="/logout"><p>
+                  <Link className="navbar-buttons disconnect" onClick={logout} to="/"><p>
                   Se déconnecter
               </p>
                   </Link>
