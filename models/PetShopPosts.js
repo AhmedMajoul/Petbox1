@@ -19,7 +19,11 @@ const PetShopPostsSchema = new Schema({
   petName: { type: String },
   price: { type: Number, required: true },
   picture: { type: String },
-  race: { type: String, required: true },
+  race: { type: String},
+  species:{
+    type: String,
+    required: true 
+  },
   sexe: { type: String, required: true },
   dateBirth: { type: String },
   likes: [

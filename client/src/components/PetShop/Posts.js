@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Spinner from '../layout/Spinner';
 // import PostItem from './postItem';
@@ -9,8 +10,17 @@ import PetshopForm from './PetshopForm';
 import PetshopPosts from './PetshopPosts'
 import { getPosts } from '../../actions/petShopPosts';
 
+const useStyles = makeStyles(theme => ({
+  posts:{
+    display:"flex",
+    width:"100%",
+    flexWrap: "wrap"
+  }
+}));
+
 const PetSopPosts = ({ getPosts, petShopPosts, loading, type }) => {
   useEffect(() => {getPosts()}, [getPosts]);
+  const classes = useStyles();
 
   return (
 loading ? 
@@ -23,7 +33,7 @@ loading ?
       </p>
      
       {type === "visitor" ? null : <PetshopForm />}
-       <div className='posts'>
+       <div className={classes.posts}>
         {petShopPosts.map(post => (
         // <p>{post.text}</p>
           <PetshopPosts key={post._id} post={post} />

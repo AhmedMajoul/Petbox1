@@ -30,7 +30,7 @@ router.post(
       check('text', 'Text is required')
         .not()
         .isEmpty(),
-      check('race', 'La race de votre animal est obligatoire')
+      check('species', `L' espèce de votre animal est obligatoire`)
         .not()
         .isEmpty(),
       check('sexe', 'Le sexe de votre animal est obligatoir')
@@ -53,6 +53,7 @@ router.post(
         picture: req.body.picture,
         petName: req.body.petName,
         race: req.body.race,
+        species: req.body.species,
         dateBirth: req.body.dateBirth,
         sexe: req.body.sexe,
         user: req.user.id
@@ -114,6 +115,7 @@ router.delete('/:id', auth, async (req, res) => {
       res.status(500).send('Server Error');
     }
   });
+  
 // @route    PUT api/adoptposts/modify/:id    
 // @desc     modify a sel pet post
 // @access   Private
@@ -125,7 +127,7 @@ router.put(
       check('text', 'La description est obligatoire')
         .not()
         .isEmpty(),
-      check('race', 'La race de votre animal est obligatoire')
+      check('species', `L' espèce de votre animal est obligatoire`)
         .not()
         .isEmpty(),
       check('sexe', 'Le sexe de votre animal est obligatoir')
@@ -155,6 +157,7 @@ router.put(
         picture: req.body.picture,
         petName: req.body.petName,
         race: req.body.race,
+        species: req.body.species,
         dateBirth: req.body.dateBirth,
         sexe: req.body.sexe,
       });

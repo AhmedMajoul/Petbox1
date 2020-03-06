@@ -24,6 +24,7 @@ const ShopPost = ({ getPost, petShopPosts, loading, match, type }) => {
         post={petShopPosts.petShopPost}
         postId={petShopPosts.petShopPost._id}
         showActions={false}
+        show={true}
       />
       {type === "visitor" ? null : <CommentForm postId={petShopPosts.petShopPost._id} />}
       <div className='comments'>

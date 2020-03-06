@@ -27,6 +27,10 @@ const AdopPostSchema = new Schema({
   },
   race: { 
     type: String,
+    // required: true 
+  },
+  species:{
+    type: String,
     required: true 
   },
   sexe: { 

@@ -2,17 +2,27 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { makeStyles } from '@material-ui/core/styles';
 import Spinner from '../layout/Spinner';
 import ModalItemAdd from './ModalItemAdd'
 // import ItemForm from './ItemForm';
 import Item from './Item'
 import { getItems } from '../../actions/itemShop';
 
+
+const useStyles = makeStyles(theme => ({
+  posts:{
+    display:"flex",
+    width:"100%",
+    flexWrap: "wrap"
+  }
+}));
+
 const Items = ({ getItems, items, type, loading }) => {
   useEffect(() => {getItems()}, [getItems]);
+  const classes = useStyles();
 
-  return (
+return (
 loading ? 
 <Spinner />:
 <Fragment>
@@ -23,7 +33,7 @@ loading ?
       </p>
      {type==="admin"&&
       <ModalItemAdd />}
-       <div className='posts'>
+       <div className={classes.posts}>
         {items.map(item => (
         //<p>{item.description}</p>
           <Item key={item._id} item={item} />

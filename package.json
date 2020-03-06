@@ -1,5 +1,4 @@
-{
-  "name": "petbox",
+{ "name": "petbox",
   "version": "1.0.0",
   "description": "pet services",
   "main": "server.js",
