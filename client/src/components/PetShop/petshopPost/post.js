@@ -16,6 +16,7 @@ const ShopPost = ({ getPost, petShopPosts, loading, match, type }) => {
   return loading || petShopPosts.petShopPost === null ? (
     <Spinner />
   ) :  (
+    //test
     <Fragment>
       <Link to='/petShop' className='btn'>
         Back To Posts
@@ -26,6 +27,7 @@ const ShopPost = ({ getPost, petShopPosts, loading, match, type }) => {
         showActions={false}
         show={true}
       />
+      
       {type === "visitor" ? null : <CommentForm postId={petShopPosts.petShopPost._id} />}
       <div className='comments'>
         {petShopPosts.petShopPost.comments.map(comment => (
