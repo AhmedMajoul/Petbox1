@@ -6,7 +6,7 @@ import Alert from '../layout/Alert';
 
 import AdminAccessControl from '../dashboard/AdminAccessControl';
 
-import Carousel from '../homepage/Carousel';
+import Home from '../homepage/Home';
 import PetShop from "../PetShop/Posts";
 import Post from "../post/post";
 import Posts from '../adoption/posts'
@@ -40,7 +40,7 @@ const Routes = () => {
         <Route exact path='/posts/:id' component={Post} />
         <Route exact path='/itemshop' component={Itemshop} />
         <Route exact path='/itemshop/:id' component={ItemPost} />
-        <Route exact path='/' component={Carousel} />
+        <Route exact path='/' component={Home} />
         <Route exact path='/petShop' component={PetShop} />
         <Route exact path='/adoptposts/:id' component={Post} />
         <Route exact path='/petShopPost/:id' component={PetshopPost} />

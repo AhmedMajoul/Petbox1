@@ -1,5 +1,5 @@
   
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import ModalItemAdd from './ModalItemAdd'
 // import ItemForm from './ItemForm';
 import Item from './Item'
 import { getItems } from '../../actions/itemShop';
+import SideBarFiltreSearch from './filterSearchComp/SideBarFiltreSearch';
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,21 +22,35 @@ const useStyles = makeStyles(theme => ({
 const Items = ({ getItems, items, type, loading }) => {
   useEffect(() => {getItems()}, [getItems]);
   const classes = useStyles();
-
-return (
+// search filter config
+  const [myFilter, setFilter] = useState({
+    fltrOption:"", fltrValue:null
+  });
+  const filterBy = (fltrOption, fltrValue) => {
+    if (fltrOption===''||fltrValue===''){
+      setFilter({fltrOption:"", fltrValue:null})
+    }else{ setFilter({fltrOption, fltrValue}) }
+  }
+  const { fltrOption, fltrValue } = myFilter;
+  // price filer config
+  const [minMax, setMinMax] = useState([]);
+  const priceRange = arr => setMinMax(arr);
+  return (
 loading ? 
 <Spinner />:
 <Fragment>
    
       <h1 className='large text-primary'>Items</h1>
+      <SideBarFiltreSearch filterBy={filterBy} priceRange={priceRange}/>
       <p className='lead'>
         <i className='fas fa-user' /> Welcome to the community
       </p>
      {type==="admin"&&
       <ModalItemAdd />}
        <div className={classes.posts}>
-        {items.map(item => (
-        //<p>{item.description}</p>
+        {items.filter(el=> minMax.length === 2 ? el.price > minMax[0] && el.price < minMax[1] : true)
+        .filter(el => fltrOption === 'species' ? el.species.includes(fltrValue) : fltrOption ? el[fltrOption] === fltrValue : true )
+        .map(item => (
           <Item key={item._id} item={item} />
         ))}
       </div> 
