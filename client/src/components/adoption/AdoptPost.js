@@ -30,16 +30,16 @@ import AdoptPostEdit from './AdoptPostEdit';
 import './AdoptPost.css';
 
 const useStyles = makeStyles(theme => ({
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)'
-  },
+  // expand: {
+  //   transform: 'rotate(0deg)',
+  //   marginLeft: 'auto',
+  //   transition: theme.transitions.create('transform', {
+  //     duration: theme.transitions.duration.shortest
+  //   })
+  // },
+  // expandOpen: {
+  //   transform: 'rotate(180deg)'
+  // },
   avatar: {
     backgroundColor: blue[500]
   },
@@ -64,17 +64,32 @@ const useStyles = makeStyles(theme => ({
     color: 'grey',
     fontSize: 15
   },
+  actions: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignsItems: "center",
+    maxHeight:"4em"
+  },
   space: {
     display: 'flex',
     justifyContent: 'space-between'
   },
   media: {
-    width: '100%',
-    // padding: '0px 10px',
-    justifyContent: 'center',
-    height: '350px'
+    display: 'block',
+    height: '100%',
+    width:'auto',
+    overflow:'hidden',
+    minWidth: '100%',
+    maxHeight: '100%',
   },
-  cardFemale: {
+  imgContainer:{
+    display:"flex",
+    // border: "solid 1px",
+    height: '21.8em',
+    width : '100%',
+    overflow:'hidden'
+  },
+  cardFemale: { 
     padding: '5px 10px',
     width: '30%',
     height: '30%',
@@ -91,9 +106,11 @@ const useStyles = makeStyles(theme => ({
   card: {
     padding: '5px 10px',
     width: '30%',
-    height: '480px',
-    margin: '20px',
-    boxShadow: '5px 10px 18px #888888'
+    height: '30rem',
+    margin: '1rem',
+    boxShadow: '5px 10px 18px #888888',
+    borderRadius: "7%",
+    // border: "solid 1px #FFFFFF"
   },
   icons: {
     display: 'flex'
@@ -112,8 +129,9 @@ const useStyles = makeStyles(theme => ({
   head: {
     marginTop: "4%",
     display:"flex",
-    alignItems: 'center',
-    justifyContent:"space-between"
+    // alignItems: 'center',
+    justifyContent:"space-between",
+    minWidth:"4em"
   },
   UserInfos:{
     display:"flex",
@@ -252,13 +270,15 @@ function AdoptPost({
         </CardContent> )}
 
         {picture !== '' ? (
-          <img className={classes.media} src={picture} />
+         <div className={
+          classes.imgContainer
+         }> <img className={classes.media} src={picture} /> </div>
         ) : (
           <span></span>
         )}
 
         {showActions && (
-          <CardActions disableSpacing className={classes.space}>
+          <CardActions disableSpacing className={classes.actions}>
             <div className={classes.icons}>
               {auth.user.type === 'visitor' ? null : (
                 <IconButton
