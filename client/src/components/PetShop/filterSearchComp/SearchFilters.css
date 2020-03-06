@@ -44,3 +44,9 @@
 	-o-transition: all 1s cubic-bezier(0.42, 0, 0.58, 1);
 	transition: all 1s cubic-bezier(0.42, 0, 0.58, 1);
 }
+.MuiIconButton-root{
+	border-radius: 10% !important;
+}
+.MuiIconButton-root:hover .MuiTypography-h6,.MuiIconButton-root:hover .MuiSvgIcon-root{
+	color:tomato
+}

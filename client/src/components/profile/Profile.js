@@ -27,8 +27,10 @@ const Profile = ({ getPets, auth, user, pets }) => {
       </div>
       <div className="card-container">
       <PetModal/>
+      <div className="card-container2">
       {pets.map((el,i)=>
       <Card key={i} pet={el}/>)}
+      </div>
       </div>
       {/* <div key={i}>
       <h1>{el?el.name:""}</h1>

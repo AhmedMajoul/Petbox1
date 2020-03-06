@@ -215,7 +215,7 @@ function Item({
           </div>
 
         </div>
-
+        
         {picture !== '' ? (
          <div className={
           classes.imgContainer
