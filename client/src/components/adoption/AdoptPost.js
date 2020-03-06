@@ -3,7 +3,12 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addLike, removeLike, deletePost, addComment } from '../../actions/adoptPosts';
+import {
+  addLike,
+  removeLike,
+  deletePost,
+  addComment
+} from '../../actions/adoptPosts';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -20,7 +25,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import AdoptPostEdit from './AdoptPostEdit'
+import CallIcon from '@material-ui/icons/Call';
+import AdoptPostEdit from './AdoptPostEdit';
 import './AdoptPost.css';
 
 const useStyles = makeStyles(theme => ({
@@ -63,33 +69,95 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between'
   },
   media: {
-    width:'100%',
-    padding: "0px 10px",
-    justifyContent: "center",
-    height:"370px"
+    width: '100%',
+    // padding: '0px 10px',
+    justifyContent: 'center',
+    height: '350px'
   },
-  card : {
-    padding: "5px 10px",
-    width:"50%",
-    height:"auto",
-    margin:"20px",
-    boxShadow:"5px 10px 18px #888888"
+  cardFemale: {
+    padding: '5px 10px',
+    width: '30%',
+    height: '30%',
+    margin: '30px',
+    boxShadow: '5px 10px 18px #F8C7B8', 
+  },
+  cardMale: {
+    padding: '5px 10px',
+    width: '30%',
+    height: '30%',
+    margin: '30px',
+    boxShadow: '5px 10px 18px #BEF4F7'
+  },
+  card: {
+    padding: '5px 10px',
+    width: '30%',
+    height: '480px',
+    margin: '20px',
+    boxShadow: '5px 10px 18px #888888'
+  },
+  icons: {
+    display: 'flex'
+  },
+  contact: {
+    display: 'flex',
+    // border: 'solid 1px #486D84',
+    // borderRadius: '5px'
+    // alignContent:"center",
+    // justifyContent:"baseline"
+  },
+  phone: {
+    fill: '#486D84',
+    width: '20px'
+  },
+  head: {
+    marginTop: "4%",
+    display:"flex",
+    alignItems: 'center',
+    justifyContent:"space-between"
+  },
+  UserInfos:{
+    display:"flex",
+    flexDirection:"column",
+    lineHeight: 1.2,
+    fontSize:"14px",
+    margin: "0 10px",
     },
-    icons:{
+    petName:{
+      fontFamily:'"Apple Color Emoji"',
+      color:'#ED6436',
+      fontWeight:"bold"
+    },
+    Namephone:{
       display:"flex",
+    flexDirection:"column",
+    textAlign:"end"
     }
 }));
 
 function AdoptPost({
   adoptpostState,
-  addComment,
-  postId,
   addLike,
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date, picture, petName, race, dateBirth, sexe },
-  showActions
+  post: {
+    _id,
+    text,
+    name,
+    avatar,
+    user,
+    likes,
+    comments,
+    date,
+    picture,
+    petName,
+    species,
+    race,
+    dateBirth,
+    sexe
+  },
+  showActions,
+  show
 }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -97,121 +165,159 @@ function AdoptPost({
   // const handleExpandClick = () => {
   //   setExpanded(!expanded);
   // };
-  
-  const isliked=auth.user?(likes&&likes.filter((el)=>el.user===auth.user._id).length>0):false
+
+  const isliked = auth.user
+    ? likes && likes.filter(el => el.user === auth.user._id).length > 0
+    : false;
 
   const [liked, setliked] = React.useState(isliked);
-  
 
   const handlelikeClick = () => {
-    if (auth.user){
-    if(liked) {removeLike(_id); setliked(false)}
-    else {addLike(_id); setliked(true)}}
+    if (auth.user) {
+      if (liked) {
+        removeLike(_id);
+        setliked(false);
+      } else {
+        addLike(_id);
+        setliked(true);
+      }
+    }
   };
   const [supp, setsupp] = React.useState(false);
-  
+
   const handledeleteClick = () => {
     setsupp(!supp);
   };
 
-  return !adoptpostState.loading&&(
-    <Card className={classes.card}>
-          
-      <CardHeader
-        avatar={
-          <Link to={`/profile/${user}`}>
-          <Avatar className={classes.avatar} aria-label='recipe' src={avatar}>
-            M
-          </Avatar>
-          </Link>
-        }
-        // action={
-        //   <IconButton aria-label='settings'>
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        
-        title={
-          <Link to={`/profile/${user}`}>{name}</Link>}
-        subheader={
-          <p className='post-date'>
-            Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
-          </p>
-        }
-      />
-      
-        <CardContent>
-          {/* <Typography className='text'>Description :</Typography> */}
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {text}
+  return (
+    !adoptpostState.loading && (
+      <Card className={classes.card}>
+        <div className={classes.head}>
+          <div className={classes.icons}>
+          {
+            <Link to={`/profile/${user}`}>
+              <Avatar
+                className={classes.avatar}
+                aria-label='recipe'
+                src={avatar}
+              >
+                M
+              </Avatar>
+            </Link>
+          }
+
+          <div className={classes.UserInfos}>
+            {<Link to={`/profile/${user}`}><Typography color='textSecondary'>{name}</Typography></Link>}
+            <p className='post-date'>
+              <Moment format='YYYY/MM/DD'><Typography color='textSecondary'>{date}</Typography></Moment>
+            </p>
+          </div>
+          </div>
+
+          <div className={classes.Namephone}>
+          <Typography variant='body2' className='text'>
+            {auth.user.phone !== '' ? (
+              <div className={classes.contact}>
+                <CallIcon className={classes.phone} />
+                <Typography color='textSecondary'>{auth.user.phone}</Typography>
+              </div>
+            ) : null}
           </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
+          <Typography variant='body2' color='textPrimary' className={classes.petName}>
             {petName}
           </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {race}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {sexe}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {dateBirth}
-          </Typography>
-        </CardContent>
-
-        {(picture !== '') ? (
-        <img 
-          className={classes.media}
-          src={picture}
-        />):<span></span>}
-
-        
-      {showActions && (
-      <CardActions disableSpacing className={classes.space}>
-        <div className={classes.icons}>
-        {auth.user.type === "visitor" ? null : 
-        <IconButton
-        onClick={()=>{ 
-         handlelikeClick();
-        }}
-        style={liked ? {color:"#d32f2f"}:{color:"grey"}}
-        >
-          <FavoriteIcon />
-          <span>{likes.length > 0 && <span className={classes.Number}>{likes.length}</span>}</span>
-        </IconButton>}
-
-
-            {!auth.loading && user === auth.user._id || auth.user.type==="admin" && (
-            <div className={classes.icons}>
-            <IconButton
-              aria-label={supp}
-              onClick={() => {
-                deletePost(_id);
-              }}
-              className={clsx(classes.dislike, {
-                [classes.supp]: supp
-              })}
-            >
-              <DeleteIcon />
-            </IconButton>
-
-            <AdoptPostEdit Description={{text, picture, petName, race, dateBirth, sexe}} PostId={_id} />
-            </div>
-          )}
-          
+          </div>
 
         </div>
-         
-        <Link to={`/adoptposts/${_id}`} className='btn btn-primary'>
-            Discussion{' '}
-            {comments.length > 0 && (
-              <span className='comment-count'>{comments.length}</span>
-            )}
-          </Link>
+        {show && (
+        <CardContent>
+          <Typography variant='body2' color='textSecondary' className='text'>
+          Description :{text}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+          Nom de l'animal : {petName}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           Espèce : {species}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           Race : {race}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           Sexe de l'animal : {sexe}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           date de naissance de l'animal : {dateBirth}
+          </Typography>
+        </CardContent> )}
 
-      </CardActions>
-      )}
-    </Card>
+        {picture !== '' ? (
+          <img className={classes.media} src={picture} />
+        ) : (
+          <span></span>
+        )}
+
+        {showActions && (
+          <CardActions disableSpacing className={classes.space}>
+            <div className={classes.icons}>
+              {auth.user.type === 'visitor' ? null : (
+                <IconButton
+                  onClick={() => {
+                    handlelikeClick();
+                  }}
+                  style={liked ? { color: '#d32f2f' } : { color: 'grey' }}
+                >
+                  <FavoriteIcon />
+                  <span>
+                    {likes.length > 0 && (
+                      <span className={classes.Number}>{likes.length}</span>
+                    )}
+                  </span>
+                </IconButton>
+              )}
+
+              {((!auth.loading && user === auth.user._id) ||
+                (auth.user.type === 'admin' && user === auth.user._id) ||
+                auth.user.type === 'admin') && (
+                <div className={classes.icons}>
+                  <IconButton
+                    aria-label={supp}
+                    onClick={() => {
+                      deletePost(_id);
+                    }}
+                    className={clsx(classes.dislike, {
+                      [classes.supp]: supp
+                    })}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+
+                  <AdoptPostEdit
+                    Description={{
+                      text,
+                      picture,
+                      petName,
+                      race,
+                      species,
+                      dateBirth,
+                      sexe
+                    }}
+                    PostId={_id}
+                  />
+                </div>
+              )}
+            </div>
+
+            <Link to={`/adoptposts/${_id}`} className='btn btn-secondary'>
+              {'+'}
+              {comments.length > 0 && (
+                <span className='comment-count'>{comments.length}</span>
+              )}
+            </Link>
+          </CardActions>
+        )}
+      </Card>
+    )
   );
 }
 
@@ -220,7 +326,7 @@ AdoptPost.defaultProps = {
 };
 
 AdoptPost.propTypes = {
-  addComment:PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   addLike: PropTypes.func.isRequired,
@@ -235,4 +341,9 @@ const mapStateToProps = state => ({
   adoptpostState: state.adoptPosts
 });
 
-export default connect(mapStateToProps, { addLike, removeLike, deletePost, addComment })(AdoptPost);
+export default connect(mapStateToProps, {
+  addLike,
+  removeLike,
+  deletePost,
+  addComment
+})(AdoptPost);

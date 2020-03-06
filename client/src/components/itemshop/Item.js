@@ -22,6 +22,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ItemEdit from './ItemEdit'
 import './Item.css';
+import CallIcon from '@material-ui/icons/Call';
+
 
 const useStyles = makeStyles(theme => ({
   expand: {
@@ -61,7 +63,71 @@ const useStyles = makeStyles(theme => ({
   space: {
     display: 'flex',
     justifyContent: 'space-between'
-  }
+  },
+  media: {
+    width: '100%',
+    // padding: '0px 10px',
+    justifyContent: 'center',
+    height: '350px'
+  },
+  cardFemale: {
+    padding: '5px 10px',
+    width: '30%',
+    height: '30%',
+    margin: '30px',
+    boxShadow: '5px 10px 18px #F8C7B8', 
+  },
+  cardMale: {
+    padding: '5px 10px',
+    width: '30%',
+    height: '30%',
+    margin: '30px',
+    boxShadow: '5px 10px 18px #BEF4F7'
+  },
+  card: {
+    padding: '5px 10px',
+    width: '30%',
+    height: '480px',
+    margin: '20px',
+    boxShadow: '5px 10px 18px #888888'
+  },
+  icons: {
+    display: 'flex'
+  },
+  contact: {
+    display: 'flex',
+    // border: 'solid 1px #486D84',
+    // borderRadius: '5px'
+    // alignContent:"center",
+    // justifyContent:"baseline"
+  },
+  phone: {
+    fill: '#486D84',
+    width: '20px'
+  },
+  head: {
+    marginTop: "4%",
+    display:"flex",
+    alignItems: 'center',
+    justifyContent:"space-between"
+  },
+  UserInfos:{
+    display:"flex",
+    flexDirection:"column",
+    lineHeight: 1.2,
+    fontSize:"14px",
+    margin: "0 10px",
+    },
+    petName:{
+      fontFamily:'"Apple Color Emoji"',
+      color:'#ED6436',
+      fontWeight:"bold"
+    },
+    Namephone:{
+      display:"flex",
+    flexDirection:"column",
+    textAlign:"end"
+    }
 }));
 
 function Item({
@@ -109,7 +175,33 @@ function Item({
   return (
     <Card className='root'>
           
-      <CardHeader
+          <div className={classes.head}>
+          <div className={classes.icons}>
+          
+
+          <div className={classes.UserInfos}>
+            <p className='post-date'>
+              <Moment format='YYYY/MM/DD'><Typography color='textSecondary'>{date}</Typography></Moment>
+            </p>
+          </div>
+          </div>
+
+          <div className={classes.Namephone}>
+          <Typography variant='body2' className='text'>
+            {auth.user.phone !== '' ? (
+              <div className={classes.contact}>
+                <CallIcon className={classes.phone} />
+                <Typography color='textSecondary'>{auth.user.phone}</Typography>
+              </div>
+            ) : null}
+          </Typography>
+          <Typography variant='body2' color='textPrimary' className={classes.petName}>
+          {name}
+          </Typography>
+          </div>
+
+        </div>
+      {/* <CardHeader
         // action={
         //   <IconButton aria-label='settings'>
         //     <MoreVertIcon />
@@ -156,8 +248,8 @@ function Item({
           <Typography variant='body2' color='textSecondary' className='text'>
             {description}
           </Typography>
-        </CardContent>
-      </div>
+        </CardContent> */}
+      {/* </div> */}
       {showActions && (
       <CardActions disableSpacing className={classes.space}>
         <div>
@@ -192,76 +284,21 @@ function Item({
             </IconButton>
           )}
           <ItemEdit item={item}/>
-          {/* <IconButton
-            aria-label={edit}
-            onClick={handleeditClick}
-            className={clsx(classes.dislike, {
-              [classes.edit]: edit
-            })}
-          >
-            <EditOutlinedIcon /> */}
-          {/* </IconButton> */}
+
         </div>
-         
+        <Typography color='textSecondary' className={classes.petName}> <span> {price} TND</span></Typography>
         <Link to={`/itemshop/${_id}`} className='btn btn-primary'>
-            Discussion{' '}
+        {'+'}
             {comments.length > 0 && (
               <span className='comment-count'>{comments.length}</span>
             )}
           </Link>
 
         <div>
-          {/* <Link to={`/itemshop/${_id}`}>
-            {comments.length > 0 && (
-              <span className={classes.Number}>{comments.length}</span>
-            )}
-          </Link> */}
-          {/* <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label='show more'
-          >
-            <ExpandMoreIcon />
-          </IconButton> */}
         </div>
       </CardActions>
       )}
-      {/* <Collapse in={expanded} timeout='auto' unmountOnExit>
-        <CardContent>
-           <form
-        className='form my-1'
-        onSubmit={e => {
-          e.preventDefault();
-          addComment(_id, { Text });
-          setText('');
-        }}
-      >
-        <textarea
-          name='text'
-          cols='30'
-          rows='5'
-          placeholder='Comment the post'
-          value={ Text }
-          onChange={e => setText(e.target.value)}
-          required
-        />
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
-      </form>
-          <Typography className='comment'>
-            <Avatar
-              className={classes.avatarcomment}
-              aria-label='recipe'
-              src='avatar'
-            >
-              R
-            </Avatar>
-            <span>text</span>
-          </Typography>
-        </CardContent>
-      </Collapse> */}
+
     </Card>
   );
 }

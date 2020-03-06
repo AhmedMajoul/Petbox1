@@ -22,6 +22,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import PetShopPostEdit from '../PetShop/PetShopPostEdit'
 import '../adoption/AdoptPost.css';
+import CallIcon from '@material-ui/icons/Call';
+
 
 const useStyles = makeStyles(theme => ({
   expand: {
@@ -63,20 +65,54 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between'
   },
   media: {
-    width:'100%',
-    padding: "0px 10px",
-    justifyContent: "center",
-    height:"370px"
+    width: '100%',
+    // padding: '0px 10px',
+    justifyContent: 'center',
+    height: '350px'
   },
-  card : {
-    padding: "5px 10px",
-    width:"50%",
-    height:"580px",
-    margin:"20px",
-    boxShadow:"5px 10px 18px #888888"
+  card: {
+    padding: '5px 10px',
+    width: '30%',
+    height: '480px',
+    margin: '20px',
+    boxShadow: '5px 10px 18px #888888'
+  },
+  icons: {
+    display: 'flex'
+  },
+  contact: {
+    display: 'flex',
+    // border: 'solid 1px #486D84',
+    // borderRadius: '5px'
+    // alignContent:"center",
+    // justifyContent:"baseline"
+  },
+  phone: {
+    fill: '#486D84',
+    width: '20px'
+  },
+  head: {
+    marginTop: "4%",
+    display:"flex",
+    alignItems: 'center',
+    justifyContent:"space-between"
+  },
+  UserInfos:{
+    display:"flex",
+    flexDirection:"column",
+    lineHeight: 1.2,
+    fontSize:"14px",
+    margin: "0 10px",
     },
-    icons:{
+    petName:{
+      fontFamily:'"Apple Color Emoji"',
+      color:'#ED6436',
+      fontWeight:"bold"
+    },
+    Namephone:{
       display:"flex",
+    flexDirection:"column",
+    textAlign:"end"
     }
 }));
 
@@ -85,8 +121,9 @@ function PetShopPost({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date, picture, petName, price, race, dateBirth, sexe },
-  showActions
+  post: { _id, text, name, avatar, user, likes, comments, date, picture, petName, species, price, race, dateBirth, sexe },
+  showActions,
+  show
 }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -117,52 +154,68 @@ function PetShopPost({
   return (
     <Card className={classes.card}>
           
-      <CardHeader
-        avatar={
-          <Link to={`/profile/${user}`}>
-          <Avatar className={classes.avatar} aria-label='recipe' src={avatar}>
-            M
-          </Avatar>
-          </Link>
-        }
-        // action={
-        //   <IconButton aria-label='settings'>
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        
-        title={
-          <Link to={`/profile/${user}`}>{name}</Link>}
-        subheader={
-          <p className='post-date'>
-            Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
-          </p>
-        }
-      />
-      
-        <CardContent>
-          {/* <Typography className='text'>Description :</Typography> */}
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {text}
-          </Typography>
+          <div className={classes.head}>
           <div className={classes.icons}>
-          <Typography variant='body2' color='textSecondary' className='text'>
+          {
+            <Link to={`/profile/${user}`}>
+              <Avatar
+                className={classes.avatar}
+                aria-label='recipe'
+                src={avatar}
+              >
+                M
+              </Avatar>
+            </Link>
+          }
+
+          <div className={classes.UserInfos}>
+            {<Link to={`/profile/${user}`}><Typography color='textSecondary'>{name}</Typography></Link>}
+            <p className='post-date'>
+              <Moment format='YYYY/MM/DD'><Typography color='textSecondary'>{date}</Typography></Moment>
+            </p>
+          </div>
+          </div>
+
+          <div className={classes.Namephone}>
+          <Typography variant='body2' className='text'>
+            {auth.user.phone !== '' ? (
+              <div className={classes.contact}>
+                <CallIcon className={classes.phone} />
+                <Typography color='textSecondary'>{auth.user.phone}</Typography>
+              </div>
+            ) : null}
+          </Typography>
+          <Typography variant='body2' color='textPrimary' className={classes.petName}>
             {petName}
           </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {sexe}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {race}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {dateBirth}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {price}
-          </Typography>
           </div>
-        </CardContent>
+
+        </div>
+
+        {show && (
+        <CardContent>
+          <Typography variant='body2' color='textSecondary' className='text'>
+          Description :{text}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+          Nom de l'animal : {petName}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           Espèce : {species}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           Race : {race}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           Sexe de l'animal : {sexe}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           date de naissance de l'animal : {dateBirth}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' className='text'>
+           Prix de l'animal : {price}
+          </Typography>
+        </CardContent> )}
 
         {(picture !== '') ? (
         <img 
@@ -186,7 +239,7 @@ function PetShopPost({
         </IconButton>}
 
 
-            {!auth.loading && user === auth.user._id && (
+            {((!auth.loading && user === auth.user._id )|| (auth.user.type==="admin" && user === auth.user._id)|| (auth.user.type==="admin")) && (
             <div className={classes.icons}>
             <IconButton
               aria-label={supp}
@@ -200,13 +253,13 @@ function PetShopPost({
               <DeleteIcon />
             </IconButton>
 
-            <PetShopPostEdit Description={{text, picture, petName, price, race, dateBirth, sexe}} PostId={_id} />
+            <PetShopPostEdit Description={{text, picture, petName, price, species, race, dateBirth, sexe}} PostId={_id} />
             </div>
           )}
         </div>
-
-        <Link to={`/petShopPost/${_id}`} className='btn btn-primary'>
-            Discussion{' '}
+        <Typography color='textSecondary' className={classes.petName}> <span> {price} TND</span></Typography>
+        <Link to={`/petShopPost/${_id}`} className='btn btn-secondary'>
+        {'+'}
             {comments.length > 0 && (
               <span className='comment-count'>{comments.length}</span>
             )}
