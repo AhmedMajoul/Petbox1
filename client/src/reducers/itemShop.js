@@ -7,7 +7,9 @@ import {
   GET_ITEM,
   ADD_ITEM_COMMENT,
   REMOVE_ITEM_COMMENT,
-  EDIT_ITEM
+  EDIT_ITEM,
+  ITEM_MOST_RECENT_SORT,
+  ITEM_LEAST_RECENT_SORT
 } from "../actions/types";
 
 const initialState = {
@@ -81,6 +83,22 @@ export default function(state = initialState, action) {
         ...state,
         ...payload
       };
+      case ITEM_MOST_RECENT_SORT:
+        return {
+          ...state,
+          items: state.items.sort(function(a, b) {
+            var dateA = new Date(a.date), dateB = new Date(b.date);
+            return dateB - dateA;
+          })
+        }
+      case ITEM_LEAST_RECENT_SORT:
+        return {
+          ...state,
+          items: state.items.sort(function(a, b) {
+            var dateA = new Date(a.date), dateB = new Date(b.date);
+            return dateA - dateB;
+          })
+        }
     default:
       return state;
   }

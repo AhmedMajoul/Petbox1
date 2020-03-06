@@ -84,7 +84,7 @@ export default function TemporaryDrawer() {
     return (
         <div>
             <h3>Search Dog</h3>
-            <Button id="magnifying-glass" onClick={toggleDrawer('left', true)}></Button>
+            <Button id="filter-search-btn" onClick={toggleDrawer('left', true)}></Button>
             <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
                 {sideList('left')}
             </Drawer>

@@ -10,7 +10,6 @@ import Spinner from "./components/layout/Spinner";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
-import SearchFilters from "./components/search_filters/SearchFilters";
 
 import "./App.css";
 
