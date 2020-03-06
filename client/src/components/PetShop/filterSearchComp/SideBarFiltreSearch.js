@@ -20,7 +20,7 @@ import './SearchFilters.css';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-    root: {
+    sidebarfilter: {
         display: 'flex',
     },
     appBarShift: {
@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
+        paddingTop: '50px',
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
@@ -103,7 +104,7 @@ function SideBarFiltreSearch({ filterBy, priceRange }) {
     };
 
     return (
-        <div className={classes.root}>
+        <div className={classes.sidebarfilter}>
             <Toolbar>
                 <IconButton
                     color="inherit"

@@ -38,7 +38,7 @@ const TransitionsModal = ({
     
   const [state, setState] = React.useState({...Description});
 
-  const {text, picture, petName, race, dateBirth, sexe}= state
+  const {text, picture, petName, species, race, dateBirth, sexe}= state
   const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
 
@@ -94,34 +94,7 @@ const [edit, setedit] = React.useState(false);
         }}
       >
         <Fade in={open}>
-          {/* <form className='form' onSubmit={e => onSubmit(e)}>
-            <div className='form-group'>
-              <input
-                type='text'
-                placeholder='Description'
-                name='text'
-                defaultValue={text}
-                onChange={e => {
-                  onChange(e);
-                }} 
-                />
-            </div>
-
-            <input
-              type='submit'
-              className='btn btn-primary'
-              defaultValue='Modifier'
-              onClick={() => {
-                editPost();
-                handleClose();
-              }}
-            />
-            <input
-              onClick={() => handleCancel()}
-              className='btn btn-primary'
-              defaultValue='Annuler'
-            />
-          </form> */}
+          
           <form className='form' onSubmit={e => onSubmit(e)}>
             <div className='form-group'>
               <input
@@ -147,6 +120,15 @@ const [edit, setedit] = React.useState(false);
                 placeholder='Nom'
                 name='petName'
                 defaultValue={petName}
+                onChange={e => {
+                  onChange(e);
+                }} 
+                />
+                <input
+                type='text'
+                placeholder='Espèce'
+                name='species'
+                defaultValue={species}
                 onChange={e => {
                   onChange(e);
                 }} 

@@ -1,18 +1,29 @@
-  
 import React, { Fragment, useEffect, useState } from 'react';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { makeStyles } from '@material-ui/core/styles';
 import Spinner from '../layout/Spinner';
 import PostItem from './postItem';
-
 import PostForm from './PostForm';
 import AdoptPost from './AdoptPost';
 import { getPosts } from '../../actions/adoptPosts';
 import SideBarFiltreSearch from './filterSearchComp/SideBarFiltreSearch';
 
+const useStyles = makeStyles(theme => ({
+  posts:{
+    display:"flex",
+    width:"100%",
+    flexWrap: "wrap"
+  }
+}));
+
+
+
 const Posts = ({ getPosts, adoptposts ,type }) => {
   useEffect(() => {getPosts()}, []);
+  const classes = useStyles();
+
   const [myFilter, setFilter] = useState({
     fltrOption:"", fltrValue:null
   });
@@ -35,9 +46,8 @@ const Posts = ({ getPosts, adoptposts ,type }) => {
       </p>
      
       {type === "visitor" ? null : <PostForm />}
-       <div className='posts'>
+        <div className={classes.posts}>
         {adoptposts.adoptposts.filter(el => fltrOption ? el[fltrOption] === fltrValue : true ).map(post => (
-        // <p>{post.text}</p>
           <AdoptPost key={post._id} post={post} />
         ))}
       </div> 

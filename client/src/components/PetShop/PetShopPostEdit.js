@@ -38,7 +38,7 @@ const TransitionsModal = ({
     
     const [state, setState] = React.useState({...Description});
 
-    const {text, picture, petName, price, race, dateBirth, sexe}= state
+    const {text, picture, petName, price, species, race, dateBirth, sexe}= state
     const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
 
@@ -130,6 +130,15 @@ const TransitionsModal = ({
                 placeholder='Prix en DT'
                 name='price'
                 defaultValue={price}
+                onChange={e => {
+                  onChange(e);
+                }} 
+                />
+                <input
+                type='text'
+                placeholder='Espèce'
+                name='species'
+                defaultValue={species}
                 onChange={e => {
                   onChange(e);
                 }} 

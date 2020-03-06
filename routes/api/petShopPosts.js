@@ -18,7 +18,7 @@ router.put( // tested the poster user: (200) ok / tested with non poster user: (
         check('text', 'La description est obligatoire')
           .not()
           .isEmpty(),
-          check('race', 'La race de votre pet est obligatoire')
+          check('species', `L'espèce de votre pet est obligatoire`)
           .not()
           .isEmpty(),
           check('price', 'Le prix de votre pet est obligatoir')
@@ -47,6 +47,7 @@ router.put( // tested the poster user: (200) ok / tested with non poster user: (
           petName: req.body.petName,
           picture: req.body.picture,
           race: req.body.race,
+          species: req.body.species,
           dateBirth: req.body.dateBirth,
           price: req.body.price,
           sexe: req.body.sexe
@@ -130,7 +131,7 @@ router.post( //  tested: (200)ok
     check('text', 'La description est obligatoire')
       .not()
       .isEmpty(),
-      check('race', 'La race de votre animal est obligatoire')
+      check('species', `L'espèce de votre animal est obligatoire`)
       .not()
       .isEmpty(),
       check('price', 'Le prix de votre animal est obligatoir')
@@ -158,6 +159,7 @@ async (req, res) => {
       petName: req.body.petName,
       picture: req.body.picture,
       race: req.body.race,
+      species: req.body.species,
       dateBirth: req.body.dateBirth,
       price: req.body.price,
       sexe: req.body.sexe

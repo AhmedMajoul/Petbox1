@@ -18,7 +18,7 @@ const PostForm = ({ addPost }) => {
   const [state, setState] = useState('');
 
 
-  const {text, picture, petName, race, sexe, dateBirth}= state
+  const {text, picture, petName, species, race, sexe, dateBirth}= state
   const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
 
   return (
@@ -63,12 +63,19 @@ const PostForm = ({ addPost }) => {
           required
         />
         <textarea
+          name='species'
+          cols='3'
+          placeholder='Espèce'
+          value={species}
+          onChange={e => onChange(e)}
+          required
+        />
+        <textarea
           name='race'
           cols='3'
           placeholder='Race'
           value={race}
           onChange={e => onChange(e)}
-          required
         />
          <textarea
           cols='3'

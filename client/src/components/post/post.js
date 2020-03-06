@@ -22,7 +22,7 @@ const Post = ({ getPost, adoptpostState, loading, match, type }) => {
       <Link to="/posts" className="btn">
         Back To Posts
       </Link> 
-      <AdoptPost post={adoptpostState.adoptpost} postId={adoptpostState.adoptpost._id} showActions={false} />
+      <AdoptPost post={adoptpostState.adoptpost} postId={adoptpostState.adoptpost._id} showActions={false} show={true} />
        {type === "visitor" ? null : <CommentForm postId={adoptpostState.adoptpost._id} />}
        <div className="comments">
         {adoptpostState.adoptpost.comments&&

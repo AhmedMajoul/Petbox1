@@ -34,12 +34,12 @@ const Dashboard = props => {
                 <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                     <Link to='/admin/get-users'><Button>get all users</Button></Link>
                     <Link to='/admin/get-user-by-id'><Button>get one user by id</Button></Link>
-                    <Link to='/admin/statistics'><Button>statistics</Button></Link>
+                    {/* <Link to='/admin/statistics'><Button>statistics</Button></Link> */}
                 </ButtonGroup>
                 <Switch>
                     <Route exact path='/admin/get-users'>chobik lobik !!! haw el users el kol<br/><GetUsers/></Route>
                     <Route exact path='/admin/get-user-by-id'>how lgitou<br/><GetUser/></Route>
-                    <Route exact path='/admin/statistics'>el3ab yala</Route>
+                    {/* <Route exact path='/admin/statistics'>el3ab yala</Route> */}
                 </Switch>
             </Router>
         </div>
