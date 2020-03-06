@@ -1,5 +1,5 @@
   
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,12 +7,21 @@ import Spinner from '../layout/Spinner';
 import PostItem from './postItem';
 
 import PostForm from './PostForm';
-import AdoptPost from './AdoptPost'
+import AdoptPost from './AdoptPost';
 import { getPosts } from '../../actions/adoptPosts';
+import SideBarFiltreSearch from './filterSearchComp/SideBarFiltreSearch';
 
 const Posts = ({ getPosts, adoptposts ,type }) => {
   useEffect(() => {getPosts()}, []);
-
+  const [myFilter, setFilter] = useState({
+    fltrOption:"", fltrValue:null
+  });
+  const filterBy = (fltrOption, fltrValue) => {
+    if (fltrOption===''||fltrValue===''){
+      setFilter({fltrOption:"", fltrValue:null})
+    }else{ setFilter({fltrOption, fltrValue}) }
+  }
+  const { fltrOption, fltrValue } = myFilter;
 
   return adoptposts.loading?
 (
@@ -20,13 +29,14 @@ const Posts = ({ getPosts, adoptposts ,type }) => {
 <Fragment>
    
       <h1 className='large text-primary'>Posts</h1>
+      <SideBarFiltreSearch filterBy={filterBy}/>
       <p className='lead'>
         <i className='fas fa-user' /> Welcome to Adoption 
       </p>
      
       {type === "visitor" ? null : <PostForm />}
        <div className='posts'>
-        {adoptposts.adoptposts.map(post => (
+        {adoptposts.adoptposts.filter(el => fltrOption ? el[fltrOption] === fltrValue : true ).map(post => (
         // <p>{post.text}</p>
           <AdoptPost key={post._id} post={post} />
         ))}

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -8,23 +8,39 @@ import Spinner from '../layout/Spinner';
 import PetshopForm from './PetshopForm';
 import PetshopPosts from './PetshopPosts'
 import { getPosts } from '../../actions/petShopPosts';
+import SideBarFiltreSearch from './filterSearchComp/SideBarFiltreSearch';
 
 const PetSopPosts = ({ getPosts, petShopPosts, loading, type }) => {
   useEffect(() => {getPosts()}, [getPosts]);
-
+  // search filter config
+  const [myFilter, setFilter] = useState({
+    fltrOption:"", fltrValue:null
+  });
+  const filterBy = (fltrOption, fltrValue) => {
+    if (fltrOption===''||fltrValue===''){
+      setFilter({fltrOption:"", fltrValue:null})
+    }else{ setFilter({fltrOption, fltrValue}) }
+  }
+  const { fltrOption, fltrValue } = myFilter;
+  // price filer config
+  const [minMax, setMinMax] = useState([]);
+  const priceRange = arr => setMinMax(arr);
   return (
 loading ? 
 <Spinner />:
 <Fragment>
    
       <h1 className='large text-primary'>Posts</h1>
+      <SideBarFiltreSearch filterBy={filterBy} priceRange={priceRange}/>
       <p className='lead'>
         <i className='fas fa-user' /> Welcome Pet Shop
       </p>
      
       {type === "visitor" ? null : <PetshopForm />}
        <div className='posts'>
-        {petShopPosts.map(post => (
+        {petShopPosts.filter(el=> minMax.length === 2 ? el.price > minMax[0] && el.price < minMax[1] : true)
+        .filter(el => fltrOption ? el[fltrOption] === fltrValue : true )
+        .map(post => (
         // <p>{post.text}</p>
           <PetshopPosts key={post._id} post={post} />
         ))}

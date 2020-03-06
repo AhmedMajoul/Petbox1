@@ -9,7 +9,8 @@ import {
 	ADD_SHOP_COMMENT,
 	REMOVE_SHOP_COMMENT,
 	PUT_SHOP_POST,
-
+	PETSHOP_MOST_RECENT_SORT,
+	PETSHOP_LEAST_RECENT_SORT
   } from '../actions/types';
   
   const initialState = {
@@ -89,6 +90,22 @@ import {
 		  ),
 		  loading: false,
 		};
+		case PETSHOP_MOST_RECENT_SORT:
+			return {
+				...state,
+				petShopPosts: state.petShopPosts.sort(function(a, b) {
+					var dateA = new Date(a.date), dateB = new Date(b.date);
+					return dateB - dateA;
+				})
+			};
+		case PETSHOP_LEAST_RECENT_SORT:
+			return {
+				...state,
+				petShopPosts: state.petShopPosts.sort(function(a, b) {
+					var dateA = new Date(a.date), dateB = new Date(b.date);
+					return dateA - dateB;
+				})
+			};
 	default:
 		return state;
 	}

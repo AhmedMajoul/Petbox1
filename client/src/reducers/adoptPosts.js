@@ -7,7 +7,9 @@ import {
 	GET_POST,
 	ADD_COMMENT,
 	REMOVE_COMMENT,
-	PUT_POST
+	PUT_POST,
+	ADOPTION_MOST_RECENT_SORT,
+	ADOPTION_LEAST_RECENT_SORT
   } from '../actions/types';
   
   const initialState = {
@@ -87,6 +89,22 @@ import {
 		  ),
 		  loading: false,
 		};
+	case ADOPTION_MOST_RECENT_SORT:
+		return {
+			...state,
+			adoptposts: state.adoptposts.sort(function(a, b) {
+				var dateA = new Date(a.date), dateB = new Date(b.date);
+				return dateB - dateA;
+			})
+		}
+	case ADOPTION_LEAST_RECENT_SORT:
+		return {
+			...state,
+			adoptposts: state.adoptposts.sort(function(a, b) {
+				var dateA = new Date(a.date), dateB = new Date(b.date);
+				return dateA - dateB;
+			})
+		}
 	default:
 		return state;
 	}
