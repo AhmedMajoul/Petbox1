@@ -250,6 +250,13 @@ function Item({
           </Typography>
         </CardContent> */}
       {/* </div> */}
+
+      {picture !== '' ? (
+          <img className={classes.media} src={picture} />
+        ) : (
+          <span></span>
+        )}
+
       {showActions && (
       <CardActions disableSpacing className={classes.space}>
         <div>
