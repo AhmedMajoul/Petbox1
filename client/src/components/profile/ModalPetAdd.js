@@ -7,6 +7,7 @@ import Fade from "@material-ui/core/Fade";
 import { setAlert } from "../../actions/alert";
 import PropTypes from "prop-types";
 import { addPet } from "../../actions/petProfile";
+import './ModalPetAdd.css'
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -50,11 +51,11 @@ const PetModal = ({ addPet, user }) => {
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
+    <div className="addbutton-container">
+      <button className="addbutton" type="button" onClick={handleOpen}>
         Ajouter un pet
       </button>
-      <Modal
+      <Modal className="card-container1"
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
