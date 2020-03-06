@@ -15,7 +15,14 @@ const useStyles = makeStyles(theme => ({
     display:"flex",
     width:"100%",
     flexWrap: "wrap"
-  }
+  },
+  background:{
+    margin: 0 ,
+    width : "100%",
+
+  backgroundImage: "url('http://pawsitive.bold-themes.com/buddy/wp-content/uploads/sites/2/2018/09/featured_image_blog.jpg')"
+  // 'url("http://pawsitive.bold-themes.com/buddy/wp-content/uploads/sites/2/2018/09/featured_image_blog.jpg")'
+}
 }));
 
 
@@ -37,7 +44,8 @@ const Posts = ({ getPosts, adoptposts ,type }) => {
   return adoptposts.loading?
 (
 <Spinner />):(
-<Fragment>
+  // <div className={classes.background}>
+<Fragment >
    
       <h1 className='large text-primary'>Posts</h1>
       <SideBarFiltreSearch filterBy={filterBy}/>
@@ -53,8 +61,9 @@ const Posts = ({ getPosts, adoptposts ,type }) => {
       </div> 
     
     </Fragment>
-  );
-};
+    // </div>  
+    );
+  };
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,

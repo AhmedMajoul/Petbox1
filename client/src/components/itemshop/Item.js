@@ -60,17 +60,28 @@ const useStyles = makeStyles(theme => ({
     color: 'grey',
     fontSize: 15
   },
-  space: {
+  actions: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignsItems: "center",
+    maxHeight:"4em"
   },
   media: {
-    width: '100%',
-    // padding: '0px 10px',
-    justifyContent: 'center',
-    height: '350px'
+    display: 'block',
+    height: '100%',
+    width:'auto',
+    overflow:'hidden',
+    minWidth: '100%',
+    maxHeight: '100%',
   },
-  cardFemale: {
+  imgContainer:{
+    display:"flex",
+    // border: "solid 1px",
+    height: '21.8em',
+    width : '100%',
+    overflow:'hidden'
+  },
+  cardFemale: { 
     padding: '5px 10px',
     width: '30%',
     height: '30%',
@@ -87,9 +98,11 @@ const useStyles = makeStyles(theme => ({
   card: {
     padding: '5px 10px',
     width: '30%',
-    height: '480px',
-    margin: '20px',
-    boxShadow: '5px 10px 18px #888888'
+    height: '30rem',
+    margin: '1rem',
+    boxShadow: '5px 10px 18px #888888',
+    borderRadius: "7%",
+    // border: "solid 1px #FFFFFF"
   },
   icons: {
     display: 'flex'
@@ -108,8 +121,9 @@ const useStyles = makeStyles(theme => ({
   head: {
     marginTop: "4%",
     display:"flex",
-    alignItems: 'center',
-    justifyContent:"space-between"
+    // alignItems: 'center',
+    justifyContent:"space-between",
+    minWidth:"4em"
   },
   UserInfos:{
     display:"flex",
@@ -173,7 +187,7 @@ function Item({
   var timeLikeClicked = 1;
 
   return (
-    <Card className='root'>
+    <Card className={classes.card}>
           
           <div className={classes.head}>
           <div className={classes.icons}>
@@ -201,76 +215,25 @@ function Item({
           </div>
 
         </div>
-      {/* <CardHeader
-        // action={
-        //   <IconButton aria-label='settings'>
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        subheader={
-          <p className='post-date'>
-            Posted on <Moment format='DD/MM/YYYY'>{date}</Moment>
-          </p>
-        }
-      />
-      <div className='content'>
-        <img
-          className='media'
-          src={picture}
-        />
-
-        <CardContent>
-          <Typography className='text'>Nom :</Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {name}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography className='text'>Description :</Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {description}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography className='text'>Prix :</Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {price}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography className='text'>Espèce :</Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {species}
-          </Typography>
-        </CardContent>
-        <CardContent>
-          <Typography className='text'>Description :</Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-            {description}
-          </Typography>
-        </CardContent> */}
-      {/* </div> */}
-
-      {picture !== '' ? (
-          <img className={classes.media} src={picture} />
+        
+        {picture !== '' ? (
+         <div className={
+          classes.imgContainer
+         }> <img className={classes.media} src={picture} /> </div>
         ) : (
           <span></span>
         )}
-
-      {showActions && (
-      <CardActions disableSpacing className={classes.space}>
-        <div>
+        
+        {showActions && (
+          
+      <CardActions disableSpacing className={classes.actions}>
+        <div className={classes.icons}>
         {auth.user.type === "visitor" ? null :
         <IconButton
         onClick={()=>{ 
          handlelikeClick();
         }}
         style={liked ? {color:"#d32f2f"}:{color:"grey"}}
-        // style={(liked )?{color:"#d32f2f"}:{color:"grey"}}
-        // className={
-        //   clsx(classes.dislike, {
-        //   [classes.like]: liked,
-        // })}
         >
           <FavoriteIcon />
           <span>{likes.length > 0 && <span className={classes.Number}>{likes.length}</span>}</span>
@@ -300,9 +263,6 @@ function Item({
               <span className='comment-count'>{comments.length}</span>
             )}
           </Link>
-
-        <div>
-        </div>
       </CardActions>
       )}
 
