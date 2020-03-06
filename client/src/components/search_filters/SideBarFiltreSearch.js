@@ -57,7 +57,7 @@ export default function TemporaryDrawer() {
             
                 <h2>Filtrer avec :</h2>
                 
-            <List>
+            <List style='z-index:10'>
                 {['Marque', 'Prix', 'Race'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>

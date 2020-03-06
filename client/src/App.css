@@ -22,7 +22,7 @@
     background-color: #fff;
     color: #333;
     font-family:cursive;
-
+    justify-content: flex-start;
   }
   
   a {

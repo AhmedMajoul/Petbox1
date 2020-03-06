@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Modalprofile from './Modalprofile';
 import Card from './Card'
 import PetModal from './ModalPetAdd'
+import './Profile.css'
 
 const Profile = ({ getPets, auth, user, pets }) => {
     useEffect(()=>{
@@ -13,7 +14,8 @@ const Profile = ({ getPets, auth, user, pets }) => {
   return !auth.token ? (
       <span>login to continue</span>
     ) : (
-    <div>
+    <div className="profile-container">
+    <div className="profile">
     <Modalprofile/>
     {/* <SimpleModal/> */}
       <h1>{user.name}</h1>
@@ -22,6 +24,7 @@ const Profile = ({ getPets, auth, user, pets }) => {
       <p>Adresse : {user.adress}</p>
       <p>N° de téléphone : {user.phone}</p>
       <p>Date d'inscription : <Moment format='DD/MM/YYYY'>{user.date}</Moment></p>
+      </div>
       <div className="card-container">
       <PetModal/>
       {pets.map((el,i)=>

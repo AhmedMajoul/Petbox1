@@ -7,6 +7,7 @@ import Fade from '@material-ui/core/Fade';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import {putProfile} from '../../actions/profile'
+import './Modalprofile.css'
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -53,8 +54,8 @@ const TransitionsModal = ({putProfile,user}) =>{
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
+    <div className="container">
+      <button className="button-edit-profile" type="button" onClick={handleOpen}>
         Edit profile
       </button>
       <Modal
