@@ -26,6 +26,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CallIcon from '@material-ui/icons/Call';
+import PetsIcon from '@material-ui/icons/Pets';
 import AdoptPostEdit from './AdoptPostEdit';
 import './AdoptPost.css';
 
@@ -67,8 +68,8 @@ const useStyles = makeStyles(theme => ({
   actions: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignsItems: "center",
-    maxHeight:"4em"
+    alignsItems: 'center',
+    maxHeight: '4em'
   },
   space: {
     display: 'flex',
@@ -77,24 +78,24 @@ const useStyles = makeStyles(theme => ({
   media: {
     display: 'block',
     height: '100%',
-    width:'auto',
-    overflow:'hidden',
+    width: 'auto',
+    overflow: 'hidden',
     minWidth: '100%',
-    maxHeight: '100%',
+    maxHeight: '100%'
   },
-  imgContainer:{
-    display:"flex",
+  imgContainer: {
+    display: 'flex',
     // border: "solid 1px",
     height: '21.8em',
-    width : '100%',
-    overflow:'hidden'
+    width: '100%',
+    overflow: 'hidden'
   },
-  cardFemale: { 
+  cardFemale: {
     padding: '5px 10px',
     width: '30%',
     height: '30%',
     margin: '30px',
-    boxShadow: '5px 10px 18px #F8C7B8', 
+    boxShadow: '5px 10px 18px #F8C7B8'
   },
   cardMale: {
     padding: '5px 10px',
@@ -109,7 +110,7 @@ const useStyles = makeStyles(theme => ({
     height: '30rem',
     margin: '1rem',
     boxShadow: '5px 10px 18px #888888',
-    borderRadius: "7%",
+    borderRadius: '7%'
     // border: "solid 1px #FFFFFF"
   },
   icons: {
@@ -117,39 +118,45 @@ const useStyles = makeStyles(theme => ({
   },
   contact: {
     display: 'flex',
-    // border: 'solid 1px #486D84',
-    // borderRadius: '5px'
-    // alignContent:"center",
-    // justifyContent:"baseline"
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
   phone: {
     fill: '#486D84',
-    width: '20px'
+    width: '20px',
+    margin: '0 5px 0 0'
+  },
+  petsIcon: {
+    // fill: '#486D84',
+    width: '18px',
+    margin: '0 5% 0 0'
   },
   head: {
-    marginTop: "4%",
-    display:"flex",
+    marginTop: '4%',
+    display: 'flex',
     // alignItems: 'center',
-    justifyContent:"space-between",
-    minWidth:"4em"
+    justifyContent: 'space-between',
+    minWidth: '4em'
   },
-  UserInfos:{
-    display:"flex",
-    flexDirection:"column",
+  UserInfos: {
+    display: 'flex',
+    flexDirection: 'column',
     lineHeight: 1.2,
-    fontSize:"14px",
-    margin: "0 10px",
-    },
-    petName:{
-      fontFamily:'"Apple Color Emoji"',
-      color:'#ED6436',
-      fontWeight:"bold"
-    },
-    Namephone:{
-      display:"flex",
-    flexDirection:"column",
-    textAlign:"end"
-    }
+    fontSize: '14px',
+    margin: '0 10px'
+  },
+  petName: {
+    fontFamily: '"Apple Color Emoji"',
+    color: '#ED6436',
+    fontWeight: 'bold',
+    fontSize: 'large',
+    textAlign: 'end'
+  },
+  Namephone: {
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'end'
+  }
 }));
 
 function AdoptPost({
@@ -212,67 +219,84 @@ function AdoptPost({
       <Card className={classes.card}>
         <div className={classes.head}>
           <div className={classes.icons}>
-          {
-            <Link to={`/profile/${user}`}>
-              <Avatar
-                className={classes.avatar}
-                aria-label='recipe'
-                src={avatar}
-              >
-                M
-              </Avatar>
-            </Link>
-          }
+            {
+              <Link to={`/profile/${user}`}>
+                <Avatar
+                  className={classes.avatar}
+                  aria-label='recipe'
+                  src={avatar}
+                >
+                  M
+                </Avatar>
+              </Link>
+            }
 
-          <div className={classes.UserInfos}>
-            {<Link to={`/profile/${user}`}><Typography color='textSecondary'>{name}</Typography></Link>}
-            <p className='post-date'>
-              <Moment format='YYYY/MM/DD'><Typography color='textSecondary'>{date}</Typography></Moment>
-            </p>
-          </div>
+            <div className={classes.UserInfos}>
+              {
+                <Link to={`/profile/${user}`}>
+                  <Typography color='textSecondary'>{name}</Typography>
+                </Link>
+              }
+              <p className='post-date'>
+                <Moment format='YYYY/MM/DD'>
+                  <Typography color='textSecondary'>{date}</Typography>
+                </Moment>
+              </p>
+            </div>
           </div>
 
           <div className={classes.Namephone}>
-          <Typography variant='body2' className='text'>
-            {auth.user.phone !== '' ? (
-              <div className={classes.contact}>
-                <CallIcon className={classes.phone} />
-                <Typography color='textSecondary'>{auth.user.phone}</Typography>
-              </div>
-            ) : null}
-          </Typography>
-          <Typography variant='body2' color='textPrimary' className={classes.petName}>
-            {petName}
-          </Typography>
-          </div>
+            <Typography variant='body2' className='text'>
+              {auth.user.phone !== '' ? (
+                <div className={classes.contact}>
+                  <CallIcon className={classes.phone} />
+                  <Typography color='textSecondary'>
+                    <span>{auth.user.phone}</span>
+                  </Typography>
+                </div>
+              ) : null}
+            </Typography>
 
+            <div className={classes.contact}>
+              <PetsIcon className={classes.petsIcon} />
+              <Typography
+                variant='body2'
+                color='textPrimary'
+                className={classes.petName}
+              >
+                <span> {petName}</span>
+              </Typography>
+            </div>
+          </div>
         </div>
         {show && (
-        <CardContent>
-          <Typography variant='body2' color='textSecondary' className='text'>
-          Description :{text}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-          Nom de l'animal : {petName}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-           Espèce : {species}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-           Race : {race}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-           Sexe de l'animal : {sexe}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' className='text'>
-           date de naissance de l'animal : {dateBirth}
-          </Typography>
-        </CardContent> )}
+          <CardContent>
+            <Typography variant='body2' color='textSecondary' className='text'>
+              Description :{text}
+            </Typography>
+            <Typography variant='body2' color='textSecondary' className='text'>
+              Nom de l'animal : {petName}
+            </Typography>
+            <Typography variant='body2' color='textSecondary' className='text'>
+              Espèce : {species}
+            </Typography>
+            <Typography variant='body2' color='textSecondary' className='text'>
+              Race : {race}
+            </Typography>
+            <Typography variant='body2' color='textSecondary' className='text'>
+              Sexe de l'animal : {sexe}
+            </Typography>
+            <Typography variant='body2' color='textSecondary' className='text'>
+              date de naissance de l'animal : {dateBirth}
+            </Typography>
+          </CardContent>
+        )}
 
         {picture !== '' ? (
-         <div className={
-          classes.imgContainer
-         }> <img className={classes.media} src={picture} /> </div>
+          <div className={classes.imgContainer}>
+            {' '}
+            <img className={classes.media} src={picture} />{' '}
+          </div>
         ) : (
           <span></span>
         )}

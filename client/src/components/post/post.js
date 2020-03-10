@@ -13,22 +13,32 @@ const Post = ({ getPost, adoptpostState, loading, match, type }) => {
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost, match.params.id]);
-  console.log('adoptpost', adoptpostState.adoptpost)
-  return   (loading || adoptpostState.adoptpost === null) ? (
+  console.log('adoptpost', adoptpostState.adoptpost);
+  return loading || adoptpostState.adoptpost === null ? (
     <Spinner />
-  ) :
-  (
+  ) : (
     <Fragment>
-      <Link to="/posts" className="btn">
+      <Link to='/posts' className='btn'>
         Back To Posts
-      </Link> 
-      <AdoptPost post={adoptpostState.adoptpost} postId={adoptpostState.adoptpost._id} showActions={false} show={true} />
-       {type === "visitor" ? null : <CommentForm postId={adoptpostState.adoptpost._id} />}
-       <div className="comments">
-        {adoptpostState.adoptpost.comments&&
+      </Link>
+      <AdoptPost
+        post={adoptpostState.adoptpost}
+        postId={adoptpostState.adoptpost._id}
+        showActions={false}
+        show={true}
+      />
+      {type === 'visitor' ? null : (
+        <CommentForm postId={adoptpostState.adoptpost._id} />
+      )}
+      <div className='comments'>
+        {adoptpostState.adoptpost.comments &&
           adoptpostState.adoptpost.comments.map(comment => (
-           <CommentItem key={comment._id} comment={comment} postId={adoptpostState.adoptpost._id} />
-        ))}
+            <CommentItem
+              key={comment._id}
+              comment={comment}
+              postId={adoptpostState.adoptpost._id}
+            />
+          ))}
       </div>
     </Fragment>
   );
@@ -42,7 +52,7 @@ Post.propTypes = {
 
 const mapStateToProps = state => ({
   adoptpostState: state.adoptPosts,
-  type:state.auth.user.type
+  type: state.auth.user.type
 });
 
 export default connect(mapStateToProps, { getPost })(Post);

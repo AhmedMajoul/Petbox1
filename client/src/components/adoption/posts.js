@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
   background:{
     margin: 0 ,
     width : "100%",
+    // padding:0,
 
   backgroundImage: "url('http://pawsitive.bold-themes.com/buddy/wp-content/uploads/sites/2/2018/09/featured_image_blog.jpg')"
   // 'url("http://pawsitive.bold-themes.com/buddy/wp-content/uploads/sites/2/2018/09/featured_image_blog.jpg")'
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const Posts = ({ getPosts, adoptposts ,type }) => {
-  useEffect(() => {getPosts()}, []);
+  useEffect(() => {getPosts()}, [getPosts]);
   const classes = useStyles();
 
   const [myFilter, setFilter] = useState({
@@ -45,6 +46,8 @@ const Posts = ({ getPosts, adoptposts ,type }) => {
 (
 <Spinner />):(
   // <div className={classes.background}>
+
+  
 <Fragment >
    
       <h1 className='large text-primary'>Posts</h1>
